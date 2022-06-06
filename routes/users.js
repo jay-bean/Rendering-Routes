@@ -91,4 +91,51 @@ router.post('/sign-up', csrfProtection, userValidators,
     }
   }));
 
+  router.get('/log-in', csrfProtection, (req, res) => {
+    res.render('user-login', {
+      title: 'Login',
+      csrfToken: req.csrfToken(),
+    });
+  });
+
+  const loginValidators = [
+    check('email')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for Email Address'),
+    check('password')
+      .exists({ checkFalsy: true })
+      .withMessage('Please provide a value for Password'),
+  ];
+
+  router.post('/log-in', csrfProtection, loginValidators,
+    asyncHandler(async (req, res) => {
+      const {
+        email,
+        password,
+      } = req.body;
+
+      let errors = [];
+      const validatorErrors = validationResult(req);
+
+      if (validatorErrors.isEmpty()) {
+        // TODO Attempt to login the user.
+        const user = await db.User.findOne({ where: { email } });
+        if (user !== null) {
+          // If the user exists then compare their password
+          // to the provided password.
+          const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+          
+        }
+      } else {
+        errors = validatorErrors.array().map((error) => error.msg);
+      }
+
+      res.render('user-login', {
+        title: 'Login',
+        email,
+        errors,
+        csrfToken: req.csrfToken(),
+      });
+    }));
+
 module.exports = router;
