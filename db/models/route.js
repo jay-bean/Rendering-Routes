@@ -42,6 +42,21 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Route.associate = function(models) {
     // associations can be defined here
+    Route.belongsToMany(models.User, {
+      through: 'ClimbList',
+      foreignKey: 'routeId',
+      otherKey: 'userId'
+    });
+    Route.hasMany(models.Review, {
+      foreignKey: 'routeId'
+    });
+    Route.belongsTo(models.Crag, {
+      foreignKey: 'cragId'
+    });
+    // Optional
+    Route.belongsTo(models.User, {
+      foreignKey: 'userId'
+    });
   };
   return Route;
 };

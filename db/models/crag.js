@@ -27,6 +27,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Crag.associate = function(models) {
     // associations can be defined here
+    Crag.belongsTo(models.User, {
+      foreignKey: 'userId'
+    });
+    Crag.hasMany(models.Route, {
+      foreignKey: 'cragId'
+    });
   };
   return Crag;
 };
