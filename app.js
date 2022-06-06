@@ -25,7 +25,7 @@ const store = new SequelizeStore({ db: sequelize });
 
 app.use(
   session({
-    secret: 'superSecret',
+    secret: 'superSecret',   //UPDATE THIS
     store,
     saveUninitialized: false,
     resave: false,
