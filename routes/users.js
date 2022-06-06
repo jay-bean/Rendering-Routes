@@ -1,5 +1,7 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
+
 
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
@@ -74,6 +76,8 @@ router.post('/sign-up', csrfProtection, userValidators,
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
       await user.save();
       res.redirect('/');   //TO DO: change to profile page?
     } else {
