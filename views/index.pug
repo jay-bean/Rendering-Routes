@@ -8,4 +8,12 @@ append head
 
 block content
   h1= title
-  p Welcome to your Project Skeleton
+  p Welcome to Rendering Routes
+  if locals.authenticated
+    p Welcome #{user.username}!
+    form(action='/users/log-out' method='post')
+      button(type='submit') Logout
+  else
+    div
+      a(href='/users/log-in') Login
+      a(href='/users/sign-up') Sign Up
