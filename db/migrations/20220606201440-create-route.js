@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Routes', {
@@ -31,6 +32,10 @@ module.exports = {
       protection: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      type: {
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       userId: {
         allowNull: false,
