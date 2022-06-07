@@ -8,9 +8,10 @@ const { requireAuth } = require('../auth');
 const db = require('../db/models');
 const { cragValidators } = require('../validations');
 
-router.get('/', csrfProtection, (req, res) => {
-    res.render('all-crags');
-});
+router.get('/', csrfProtection, asyncHandler(async (req, res) => {
+    const allCrags = await db.Crag.findAll({ limit: 20 });
+    res.render('all-crags', { allCrags });
+}));
 
 router.get('/:cragId(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const cragId = parseInt(req.params.cragId, 10);

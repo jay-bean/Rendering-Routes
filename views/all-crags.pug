@@ -2,3 +2,5 @@ extends layout.pug
 
 block content
     h1 Welcome to the crags page!
+    each crag in allCrags
+        p #{crag.name}
