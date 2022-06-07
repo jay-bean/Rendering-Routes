@@ -1,0 +1,15 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+  +validationErrorSummary(errors)
+  +validationErrorSummary(errors)
+  form(action='/crags' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    +field('Name', 'name', user.name)
+    +field('Location', 'location', user.location, 'text', 'ex: \'Chestnut Hill, Massachusetts\'')
+    +field('Description', 'description', user.description, 'textarea')
+    div
+      a(href='/' ) Cancel
+      button(type='submit') Create
