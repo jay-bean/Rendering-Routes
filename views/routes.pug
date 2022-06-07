@@ -1,0 +1,9 @@
+extends layout.pug
+
+block content
+  h1 Routes
+  h2 What will you climb today?
+
+  ul
+    each route in routes
+      li= route.name
