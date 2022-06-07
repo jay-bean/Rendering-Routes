@@ -1,5 +1,5 @@
 const express = require('express');
-const { check, vaildationResult, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
 
@@ -39,7 +39,10 @@ router.get('/add', csrfProtection, requireAuth, asyncHandler(async (req, res) =>
 }));
 
 router.post('/', csrfProtection, requireAuth, routeValidators,
+
   asyncHandler(async (req, res) => {
+    const crags = await db.Crag.findAll();
+
     const {
       name,
       description,
@@ -47,9 +50,10 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       difficulty,
       height,
       protection,
-      type
+      type,
+      cragId
     } = req.body;
-
+console.log(req.body)
     const route = db.Route.build({
       name,
       description,
@@ -59,7 +63,7 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       protection,
       type,
       userId: res.locals.user.id,
-      cragId: res.locals.crag.id // not sure if this is correct
+      cragId: parseInt(cragId, 10)
     });
 
     const validatorErrors = validationResult(req);
@@ -69,9 +73,10 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       res.redirect(`/routes/${route.id}`);
     }
     else {
-      const errors = validatorErrors.array().map((error) => error.message);
-      res.render('/add', {
-        crag,
+      const errors = validatorErrors.array().map((error) => error.msg);
+      res.render('route-add', {
+        route,
+        crags,
         errors,
         csrfToken: req.csrfToken()
       });

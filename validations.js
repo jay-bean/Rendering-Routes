@@ -72,12 +72,18 @@ const routeValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Name')
     .isLength({ max: 255 })
-    .withMessage('Route Name must not be more than 255 characters long'),
+    .withMessage('Route Name must not be more than 255 characters long')
+    .custom((value) => {
+      return db.Route.findOne({ where: { name: value } })
+        .then((route) => {
+          if (route) {
+            return Promise.reject('The provided Route already exists.');
+          }
+        });
+    }),
   check('description')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Description'),
-  check('image'),
-    /////////////////////////
   check('difficulty')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Difficulty')
@@ -86,7 +92,8 @@ const routeValidators = [
   check('height')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Height')
-    .isInt({ min: 1 }),
+    .isInt()
+    .withMessage('Please provide a number value for Height'),
   check('protection')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Protection')
@@ -103,4 +110,5 @@ module.exports = {
     userValidators,
     loginValidators,
     cragValidators,
+    routeValidators
 };
