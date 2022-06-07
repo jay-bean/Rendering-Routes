@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+    table
+        thead
+            tr
+                th Avatar
+                th Username
+                th Biography
+                th Climb Lists
+                th Reviews
+        tbody
+            tr
+                th
+                th= user.username
+                th= user.biography
+                th: a(href=`/users/${user.id}/climb-list`)
+                th list of all users reviews
+    a(typeclass='delete-user-btn' id=`delete-user-${user.id}`) Delete Account
