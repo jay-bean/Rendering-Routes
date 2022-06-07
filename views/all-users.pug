@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    table
+        thead
+            tr
+                th Avatar
+                th Profile Link
+        tbody
+            each user in users
+                tr
+                    td
+                    td: a(href=`/users/${user.id}`) #{user.username}'s profile

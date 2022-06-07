@@ -1,0 +1,27 @@
+extends layout.pug
+
+block content
+  h1= route.name
+  h2 Created by: #{user.username}
+  div
+    p Difficulty
+    p= route.difficulty
+  div
+    p Height
+    p #{route.height} ft.
+  div
+    p Type of Climb
+    p= route.type
+  div
+    p Protection
+    p= route.protection
+  div
+    p Description
+    p= route.description
+  div
+    if seshAuth
+      if route.userId === seshAuth.userId
+        button Edit Route
+  div
+    button Add to Climb List
+  include reviews.pug

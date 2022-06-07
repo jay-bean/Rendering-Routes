@@ -11,6 +11,12 @@ const { userValidators, loginValidators } = require('../validations');
 
 const router = express.Router();
 
+router.get('/', requireAuth,
+  asyncHandler(async (req, res) => {
+    const users = await db.User.findAll();
+    res.render('all-users', { users })
+  }));
+
 router.get('/sign-up', csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render('user-register', {
@@ -35,24 +41,24 @@ router.post('/sign-up', csrfProtection, userValidators,
       biography
     });
 
-  const validatorErrors = validationResult(req);
+    const validatorErrors = validationResult(req);
 
-  if (validatorErrors.isEmpty()) {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    user.password = hashedPassword;
-    await user.save();
-    loginUser(req, res, user);
-    res.redirect('/');
-  } else {
-    const errors = validatorErrors.array().map((error) => error.msg);
-    res.render('user-register', {
-      title: 'Register',
-      user,
-      errors,
-      csrfToken: req.csrfToken(),
-    });
-  }
-}));
+    if (validatorErrors.isEmpty()) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+      await user.save();
+      loginUser(req, res, user);
+      res.redirect('/');
+    } else {
+      const errors = validatorErrors.array().map((error) => error.msg);
+      res.render('user-register', {
+        title: 'Register',
+        user,
+        errors,
+        csrfToken: req.csrfToken(),
+      });
+    }
+  }));
 
 router.get('/log-in', csrfProtection, (req, res) => {
   res.render('user-login', {
@@ -92,11 +98,92 @@ router.post('/log-in', csrfProtection, loginValidators,
       errors,
       csrfToken: req.csrfToken(),
     });
-}));
+  }));
 
 router.post('/log-out', (req, res) => {
-    logoutUser(req, res);
-    res.redirect('/');
+  logoutUser(req, res);
+  res.redirect('/');
 });
+
+router.get('/:userId(\\d+)', requireAuth,
+  asyncHandler(async (req, res) => {
+    const user = await db.User.findByPk(req.params.userId
+      // ,{
+      //   include: [{
+      //     model: Review
+      //   }, {
+      //     model: Route
+      //   }]  //how to include multiple models??
+      // }
+    )
+    res.render('user-profile', { user })
+  }));
+
+//TO DO: test code below
+router.patch('/:userId(\\d+)', requireAuth,
+ asyncHandler(async (req, res) => {
+  const {
+    username,
+    email,
+    biography,
+    password,
+  } = req.body;
+
+  const user = await db.User.findByPk(req.params.userId);
+  await user.update({
+    username: username,
+    email: email,
+    biography: biography,
+    password: password
+  })
+
+  await user.save();
+
+}));
+
+//TO DO: test code below
+router.delete('/:userId(\\d+)',
+asyncHandler(async(req, res)=>{
+  const user = await db.User.findByPk(req.params.userId)
+  await user.destroy()
+
+  res.status(204).end()
+  res.json({message: 'Your account has been successfully deleted'})
+
+}));
+
+// //TO DO: test code below
+// router.get('/:userId(\\d+)/climb-list', requireAuth,
+// asyncHandler(async(req, res)=>{
+// const userId = req.body.userId
+// const climbListRoutes = await db.ClimbList.findAll({
+//   where: {userId},
+//   include:[{
+//     model: Route,
+//     attributes: ['name', 'haveClimbed']
+//   }]
+// })
+
+// res.render('/climb-list', { climbListRoutes})
+// })
+// );
+
+// router.post('/:userId(\\d+)/climb-list', requireAuth,
+// asyncHandler(async(req, res)=>{
+// // const climbStatus = await
+// })
+// );
+
+// // router.patch('/:userId(\\d+)/climb-list', requireAuth,
+// // asyncHandler(async(req, res)=>{
+
+// // })
+// // );
+
+// // router.delete('/:userId(\\d+)/climb-list', requireAuth,
+// // asyncHandler(async(req, res)=>{
+
+// // })
+// // );
 
 module.exports = router;

@@ -1,4 +1,4 @@
-extends layout
+extends layout.pug
 
 append head
   //- add page specific styles by appending to the head
@@ -8,7 +8,14 @@ append head
 
 block content
   h1= title
-  p Welcome to Rendering Routes
+  p Welcome to Rendering Routes!
+    h2= buttons
+    div
+      a(href='/routes') Routes
+      a(href='/crags') Crags
+      a(href='/users') People
+      a(href='/contact-us') Contact Us
+
   if locals.authenticated
     p Welcome #{user.username}!
     form(action='/users/log-out' method='post')
@@ -17,3 +24,29 @@ block content
     div
       a(href='/users/log-in') Login
       a(href='/users/sign-up') Sign Up
+
+  h3
+    img(src="https://cdn2.apstatic.com/photos/climb/107372993_medium_1494184730.jpg")
+    p "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+  div
+    h4 Deciding what to climb next?
+      ul
+        li random route A
+        li random route B
+        li random route C
+    h5 What are your friends climbing?
+      p Check out everyone's climblists to pick out your next adventure, or find others who are in your area!
+
+  div
+    h3 Explore the most popular routes
+      ul
+        li random route D
+        li random route E
+        li random route F
+  div
+    h3 Had fun on a specific route?
+      p Leave a review on your most recent route!
+
+  div
+    p Jay Hutts   Lynn Luong    Brandon Flores    Zeke Hashimoto

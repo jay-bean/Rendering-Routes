@@ -67,8 +67,48 @@ const cragValidators = [
     .withMessage('Please provide a value for Description'),
 ];
 
+const routeValidators = [
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Name')
+    .isLength({ max: 255 })
+    .withMessage('Route Name must not be more than 255 characters long')
+    .custom((value) => {
+      return db.Route.findOne({ where: { name: value } })
+        .then((route) => {
+          if (route) {
+            return Promise.reject('The provided Route already exists.');
+          }
+        });
+    }),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Description'),
+  check('difficulty')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Difficulty')
+    .isLength({ max: 255 })
+    .withMessage('Difficulty must not be more than 255 characters long'),
+  check('height')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Height')
+    .isInt()
+    .withMessage('Please provide a number value for Height'),
+  check('protection')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Protection')
+    .isLength({ max: 255 })
+    .withMessage('Protection must not be more than 255 characters long'),
+  check('type')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Type')
+    .isLength({ max: 50 })
+    .withMessage('Type must not be more than 50 characters long')
+];
+
 module.exports = {
     userValidators,
     loginValidators,
     cragValidators,
+    routeValidators
 };
