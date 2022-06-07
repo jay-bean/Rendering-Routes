@@ -1,0 +1,30 @@
+extends layout.pug
+
+block content
+  if error
+    div
+      p The following error(s) occured:
+      pre= JSON.stringify(error, null, 2)
+  form(action='routes/route/add' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    div
+      label(for='name') Name
+      input(type='text' id='name' name='name' value=route.name)
+    div
+      label(for='description') Name
+      input(type='text' id='name' name='name' value=route.name)
+    div
+      label(for='image') Name
+      input(type='text' id='name' name='name' value=route.name)
+    div
+      label(for='difficulty') Name
+      input(type='text' id='name' name='name' value=route.name)
+    div
+      label(for='height') Name
+      input(type='text' id='name' name='name' value=route.name)
+    div
+      label(for='protection') Name
+      input(type='text' id='name' name='name' value=route.name)
+    div
+      label(for='type') Name
+      input(type='text' id='name' name='name' value=route.name)

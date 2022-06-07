@@ -6,4 +6,4 @@ block content
 
   ul
     each route in routes
-      li= route.name
+      li= a(href=`routes/${route.id}`) route.name
