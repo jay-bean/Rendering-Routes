@@ -8,3 +8,5 @@ const { requireAuth } = require('../auth');
 router.get('/', function(req, res, next) {
     res.render('contact-us', { title: 'Meet the Development Team'});
 });
+
+module.exports = router;
