@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+    h2 Want to Climb List
+    ul
+    for route in climbListRoutes
+        if route.haveClimbed === true
+            li= route
+    h2 Have Climbed List
+    ul
+    for route in climbListRoutes
+        if route.haveClimbed === false
+            li= route
