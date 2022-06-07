@@ -26,17 +26,21 @@ block content
       a(href='/users/sign-up') Sign Up
 
   h3
-    img(src="https://cdn2.apstatic.com/photos/climb/107372993_medium_1494184730.jpg")
-    p "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    ul
+      each route in displayRoutes
+        li=route.image
+        li=route.name 
+        li=route.description
 
   div
-    h4 Deciding what to climb next?
+    h3 Deciding what to climb next?
       ul
-        li random route A
-        li random route B
-        li random route C
-    h5 What are your friends climbing?
+        each route in cycleRoutes 
+          li=route.name 
+          li=route.description
+    h3 What are your friends climbing?
       p Check out everyone's climblists to pick out your next adventure, or find others who are in your area!
+      a(href='/users') 
 
   div
     h3 Explore the most popular routes
@@ -47,6 +51,7 @@ block content
   div
     h3 Had fun on a specific route?
       p Leave a review on your most recent route!
+      a(href='/routes') Find a Route
 
   div
     p Jay Hutts   Lynn Luong    Brandon Flores    Zeke Hashimoto
