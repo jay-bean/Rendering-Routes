@@ -1,11 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+
+const router = express.Router();
+
 const {csrfProtection, asyncHandler} = require('./utils');
+const { requireAuth } = require('../auth');
 
-
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'a/A Express Skeleton Home' });
+  res.render('index', { title: 'Rendering Routes' });
 });
 
 module.exports = router;
