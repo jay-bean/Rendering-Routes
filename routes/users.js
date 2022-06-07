@@ -11,6 +11,12 @@ const { userValidators, loginValidators } = require('../validations');
 
 const router = express.Router();
 
+router.get('/', requireAuth,
+  asyncHandler(async (req, res) => {
+    const users = await db.User.findAll();
+    res.render('all-users', { users })
+  }));
+
 router.get('/sign-up', csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render('user-register', {
@@ -35,24 +41,24 @@ router.post('/sign-up', csrfProtection, userValidators,
       biography
     });
 
-  const validatorErrors = validationResult(req);
+    const validatorErrors = validationResult(req);
 
-  if (validatorErrors.isEmpty()) {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    user.password = hashedPassword;
-    await user.save();
-    loginUser(req, res, user);
-    res.redirect('/');
-  } else {
-    const errors = validatorErrors.array().map((error) => error.msg);
-    res.render('user-register', {
-      title: 'Register',
-      user,
-      errors,
-      csrfToken: req.csrfToken(),
-    });
-  }
-}));
+    if (validatorErrors.isEmpty()) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+      await user.save();
+      loginUser(req, res, user);
+      res.redirect('/');
+    } else {
+      const errors = validatorErrors.array().map((error) => error.msg);
+      res.render('user-register', {
+        title: 'Register',
+        user,
+        errors,
+        csrfToken: req.csrfToken(),
+      });
+    }
+  }));
 
 router.get('/log-in', csrfProtection, (req, res) => {
   res.render('user-login', {
@@ -92,11 +98,47 @@ router.post('/log-in', csrfProtection, loginValidators,
       errors,
       csrfToken: req.csrfToken(),
     });
-}));
+  }));
 
 router.post('/log-out', (req, res) => {
-    logoutUser(req, res);
-    res.redirect('/');
+  logoutUser(req, res);
+  res.redirect('/');
 });
+
+router.get('/:userId(\\d+)', requireAuth,
+  asyncHandler(async (req, res) => {
+    const user = await db.User.findByPk(req.params.userId
+      // ,{
+      //   include: [{
+      //     model: Review
+      //   }, {
+      //     model: Route
+      //   }]  //how to include multiple models??
+      // }
+    )
+    res.render('user-profile', { user })
+  }));
+
+
+router.patch('/:userId(\\d+)',
+ asyncHandler(async (req, res) => {
+  const users = await db.User.findByPk(req.params.userId);
+
+  
+}))
+
+router.delete('/:userId(\\d+)',
+asyncHandler(async(req, res)=>{
+  const user = await db.User.findByPk(req.params.userId)
+  await user.destroy()
+
+  res.json({message: 'Your account has been successfully deleted'})
+}));
+
+// router.get('/:userId(\\d+)/climb-list', requireAuth,
+// asyncHandler(async(req, res)=>{
+// const climbList = await db.ClimbList.findOne
+// })
+// )
 
 module.exports = router;
