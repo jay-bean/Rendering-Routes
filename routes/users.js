@@ -6,6 +6,8 @@ const bcrypt = require('bcryptjs');
 const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
+const { loginUser } = require('../auth');
+
 const router = express.Router();
 
 router.get('/sign-up', csrfProtection, (req, res) => {
@@ -123,9 +125,14 @@ router.post('/sign-up', csrfProtection, userValidators,
         if (user !== null) {
           // If the user exists then compare their password
           // to the provided password.
-          const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
-          
+          const passwordMatch = await bcrypt.compare(password, user.password.toString());
+
+          if (passwordMatch) {
+
+            return res.redirect('/');
+          }
         }
+        errors.push('Incorrect email or password');
       } else {
         errors = validatorErrors.array().map((error) => error.msg);
       }
