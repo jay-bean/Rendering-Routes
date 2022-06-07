@@ -19,4 +19,9 @@ block content
     p Description
     p= route.description
   div
-    button Edit Route
+    if seshAuth
+      if route.userId === seshAuth.userId
+        button Edit Route
+  div
+    button Add to Climb List
+  include reviews.pug
