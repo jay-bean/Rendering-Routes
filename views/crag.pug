@@ -1,8 +1,14 @@
 extends layout.pug
 
+append head
+  script(src="/javascripts/crags.js" type="module" defer)
+
 block content
     h1 TODO: Add dynamic title
     p Created by: #{user.username}
     p #{crag.name}
     p #{crag.location}
     p #{crag.description}
+    if seshAuth
+      if crag.userId === seshAuth.userId
+        button(id='crag-edit-button') Edit

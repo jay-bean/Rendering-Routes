@@ -16,11 +16,14 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
 router.get('/:cragId(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const cragId = parseInt(req.params.cragId, 10);
     const crag = await db.Crag.findByPk(cragId);
-    const user = await db.User.findByPk(crag.userId);
 
     if (!crag) res.redirect('/404');
 
-    res.render('crag', { crag, user });
+    const user = await db.User.findByPk(crag.userId);
+
+    const seshAuth = req.session.auth;
+
+    res.render('crag', { crag, user, seshAuth });
 }));
 
 router.get('/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
