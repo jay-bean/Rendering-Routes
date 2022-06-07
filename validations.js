@@ -51,7 +51,24 @@ const loginValidators = [
     .withMessage('Please provide a value for Password'),
 ];
 
+const cragValidators = [
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Name')
+    .isLength({ max: 255 })
+    .withMessage('Park Name must not be more than 255 characters long'),
+  check('location')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Location')
+    .isLength({ max: 255 })
+    .withMessage('Location must not be more than 255 characters long'),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Description'),
+];
+
 module.exports = {
     userValidators,
     loginValidators,
+    cragValidators,
 };
