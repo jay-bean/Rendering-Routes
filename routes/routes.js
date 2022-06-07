@@ -13,7 +13,7 @@ router.get('/', asyncHandler(async (req, res) => {
   })
 }));
 
-router.get('route/add', csrfProtection, (req, res) => {
+router.get('/add', csrfProtection, (req, res) => {
   const route = db.Route.build();
   res.render('route-add', {
     title: 'Add Route',
@@ -22,7 +22,7 @@ router.get('route/add', csrfProtection, (req, res) => {
   });
 });
 
-router.post('route/add', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/add', csrfProtection, asyncHandler(async (req, res) => {
   const {
     name,
     description,

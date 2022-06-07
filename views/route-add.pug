@@ -1,18 +1,19 @@
 extends layout.pug
 
 block content
+  h1 Create a Route
   if error
     div
       p The following error(s) occured:
       pre= JSON.stringify(error, null, 2)
-  form(action='routes/route/add' method='post')
+  form(action='routes/add' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     div
       label(for='name') Name
       input(type='text' id='name' name='name' value=route.name)
     div
       label(for='description') Description
-      input(type='text' id='description' name='description' value=route.description)
+      textarea(type='text' id='description' name='description' value=route.description)
     div
       label(for='image') Image
       input(type='text' id='image' name='image' value=route.image)
