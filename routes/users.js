@@ -119,14 +119,29 @@ router.get('/:userId(\\d+)', requireAuth,
     res.render('user-profile', { user })
   }));
 
-
-router.patch('/:userId(\\d+)',
+//TO DO: test code below
+router.patch('/:userId(\\d+)', requireAuth,
  asyncHandler(async (req, res) => {
-  const users = await db.User.findByPk(req.params.userId);
+  const {
+    username,
+    email,
+    biography,
+    password,
+  } = req.body;
 
-  
-}))
+  const user = await db.User.findByPk(req.params.userId);
+  await user.update({
+    username: username,
+    email: email,
+    biography: biography,
+    password: password
+  })
 
+  await user.save();
+
+}));
+
+//TO DO: test code below
 router.delete('/:userId(\\d+)',
 asyncHandler(async(req, res)=>{
   const user = await db.User.findByPk(req.params.userId)
@@ -135,10 +150,20 @@ asyncHandler(async(req, res)=>{
   res.json({message: 'Your account has been successfully deleted'})
 }));
 
-// router.get('/:userId(\\d+)/climb-list', requireAuth,
-// asyncHandler(async(req, res)=>{
-// const climbList = await db.ClimbList.findOne
-// })
-// )
+//TO DO: test code below
+router.get('/:userId(\\d+)/climb-list', requireAuth,
+asyncHandler(async(req, res)=>{
+const userId = req.body.userId
+const climbListRoutes = await db.ClimbList.findAll({
+  where: {userId},
+  include:[{
+    model: Route,
+    attributes: ['name']
+  }]
+})
+
+res.render('/climb-list', { climbListRoutes})
+})
+);
 
 module.exports = router;
