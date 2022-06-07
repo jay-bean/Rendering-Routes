@@ -19,4 +19,12 @@ router.get('/:cragId(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     res.render('crag', { crag });
 }));
 
+router.get('/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+    const crag = db.Crag.build();
+    res.render('new-crag', {
+      crag,
+      csrfToken: req.csrfToken(),
+    });
+}));
+
 module.exports = router;
