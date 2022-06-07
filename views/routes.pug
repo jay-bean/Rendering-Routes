@@ -3,7 +3,22 @@ extends layout.pug
 block content
   h1 Routes
   h2 What will you climb today?
-
-  ul
-    each route in routes
-      li= a(href=`routes/${route.id}`) route.name
+  div
+    a(href='/routes/route/add') Add Route
+  table
+    thead
+      tr
+        th(scope='col') Name
+        th(scope='col') Difficulty
+        th(scope='col') Height
+        th(scope='col') Protection
+        th(scope='col') Type
+    tbody
+      each route in routes
+        tr
+          td
+            a(href=`routes/${route.id}`)= route.name
+          td= route.difficulty
+          td= route.height
+          td= route.protection
+          td= route.type
