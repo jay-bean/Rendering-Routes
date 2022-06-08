@@ -99,7 +99,7 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
     }
 }));
 
-router.post('/reviews', requireAuth, reviewValidators, csrfProtection, asyncHandler(async(req, res) => {
+router.post('/reviews', requireAuth, reviewValidators, asyncHandler(async(req, res) => {
   const {
     title,
     description,
@@ -109,8 +109,10 @@ router.post('/reviews', requireAuth, reviewValidators, csrfProtection, asyncHand
   const review = db.Review.build({
     title,
     description,
-    rating
+    rating: parseInt(rating, 10)
   });
+
+  console.log(review);
 
   const validatorErrors = validationResult(req);
 

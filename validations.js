@@ -137,7 +137,7 @@ const routeEditValidators = [
     .withMessage('Type must not be more than 50 characters long')
 ];
 
-reviewValidators = [
+const reviewValidators = [
   check('title')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a title')
@@ -148,28 +148,7 @@ reviewValidators = [
     .withMessage('Review must have a description'),
   check('rating')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a rating for your review')
-    .isInt({ checkFalsy: true })
-    .withMessage('Please provide an integer for the rating')
-    .custom((value) => {
-      return (value < 1)
-        .then((res) => {
-          if (res) {
-            return Promise.reject('Review cannot be rated less than 1');
-          }
-        })
-    .custom((value) => {
-      return (value > 5)
-        .then((res) => {
-          if (res) {
-            return Promise.reject('Review cannot be rated greater than 5');
-          }
-        });
-    })
-    }),
-  check('climber')
-    .exists({ checkFalsy: true })
-    .withMessage('Please log in to post a review')
+    .withMessage('Please provide a rating for your review'),
 ]
 
 module.exports = {
