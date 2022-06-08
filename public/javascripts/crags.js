@@ -49,6 +49,7 @@ if (editButton) {
             locationEle.innerHTML = data.crag.location;
             descriptionEle.innerHTML = data.crag.description;
             errorContainer.innerHTML = ``;
+            editButton.innerText = 'Edit';
 
             postInfo.classList.remove('hidden');
             formInfo.classList.add('hidden');
