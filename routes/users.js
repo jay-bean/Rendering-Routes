@@ -7,7 +7,7 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
 const { loginUser, logoutUser, requireAuth } = require('../auth');
-const { userValidators, loginValidators } = require('../validations');
+const { userValidators, loginValidators, userEditValidators } = require('../validations');
 
 const router = express.Router();
 router.use(express.urlencoded())
@@ -128,17 +128,28 @@ router.get('/:userId(\\d+)', requireAuth,
     res.render('user-profile', { user, loggedInUser })
   }));
 
-router.patch('/:userId(\\d+)', csrfProtection, requireAuth,
+router.patch('/:userId(\\d+)', requireAuth, userEditValidators,
  asyncHandler(async (req, res) => {
   const user = await db.User.findByPk(req.params.userId);
   user.username = req.body.username;
   user.biography = req.body.biography;
   user.email = req.body.email;
-  password = req.body.password;
+  password = req.body.password
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+  await user.save();
 
   res.json({message: 'Success!', user})
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    res.status(400);
+    res.json({ message: 'Unsuccessful!', user, errors});
+  }
 
-  //TO DO: ADD PASSWORD AND VALIDATORS
+
 }));
 
 
