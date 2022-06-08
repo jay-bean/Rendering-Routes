@@ -55,7 +55,7 @@ submitBtn.addEventListener('click', async(submitEvent) => {
     }
     else {
        data.errors.forEach(error => {
-        errorContainer.innerHTML += `<li>${error}</li>`;
+        errorContainer.innerText += `<li>${error}</li>`;
        })
     }
 

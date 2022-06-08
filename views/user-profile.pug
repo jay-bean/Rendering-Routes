@@ -24,7 +24,7 @@ block content
                 th list of all users reviews
 
     if loggedInUser === user.id
-        //- div(id='user-error-container')
+        div(id='user-error-container')
         form(class='hidden' id=`edit-form-${user.id}`)
             label Username:
             input(type='text' name='username' value=user.username id=`edit-username-user${user.id}`)
@@ -32,7 +32,7 @@ block content
             input(type='text' name='biography' value=user.biography id=`edit-bio-user${user.id}`)
             label Email:
             input(type='email' name='email' value=user.email id=`edit-email-user${user.id}`)
-            //- label Password:
-            //- input(type='password' name='password' value=user.password id=`edit-password-user${user.id}`)
+            label Password:
+            input(type='password' name='password' value='' id=`edit-password-user${user.id}`)
             button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit
         button(class='edit-user-btn' id=`edit-user-${user.id}`) Edit Profile
