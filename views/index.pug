@@ -9,21 +9,6 @@ append head
 block content
   h1= title
   p Welcome to Rendering Routes!
-    h2= buttons
-    div
-      a(href='/routes') Routes
-      a(href='/crags') Crags
-      a(href='/users') People
-      a(href='/contact-us') Contact Us
-
-  if locals.authenticated
-    p Welcome #{user.username}!
-    form(action='/users/log-out' method='post')
-      button(type='submit') Logout
-  else
-    div
-      a(href='/users/log-in') Login
-      a(href='/users/sign-up') Sign Up
 
   div
     img(src="https://cdn2.apstatic.com/photos/climb/106946462_medium_1494153250.jpg")
