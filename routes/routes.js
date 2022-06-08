@@ -33,7 +33,7 @@ router.get('/:routeId(\\d+)', csrfProtection,
     }
     const seshAuth = req.session.auth;
 
-    res.render('route', { route, user, reviews, seshAuth });
+    res.render('route', { route, user, reviews, seshAuth, routeId });
 }));
 
 router.get('/add', csrfProtection, requireAuth,

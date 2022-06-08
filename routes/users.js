@@ -10,6 +10,7 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 const { userValidators, loginValidators } = require('../validations');
 
 const router = express.Router();
+router.use(express.urlencoded())
 
 router.get('/', requireAuth,
   asyncHandler(async (req, res) => {
@@ -109,6 +110,9 @@ router.post('/log-out', (req, res) => {
 router.get('/:userId(\\d+)', requireAuth,
   asyncHandler(async (req, res) => {
     const user = await db.User.findByPk(req.params.userId)
+
+    if (!user) res.redirect('/404');
+
     let loggedInUser
     if(req.session.auth) {
       loggedInUser = req.session.auth.userId
@@ -116,8 +120,7 @@ router.get('/:userId(\\d+)', requireAuth,
     res.render('user-profile', { user, loggedInUser })
   }));
 
-//TO DO: test code below
-router.patch('/:userId(\\d+)', requireAuth,
+router.patch('/:userId(\\d+)', csrfProtection, requireAuth,
  asyncHandler(async (req, res) => {
   const user = await db.User.findByPk(req.params.userId);
   user.username = req.body.username;
@@ -128,31 +131,42 @@ router.patch('/:userId(\\d+)', requireAuth,
 
   res.json({message: 'Success!', user})
 
+  //TO DO: ADD PASSWORD AND VALIDATORS
 }));
 
 
-//TO DO: test code below
 router.get('/:userId(\\d+)/climb-list', requireAuth,
 asyncHandler(async(req, res)=>{
-const userId = req.body.userId
+const userId = req.params.userId
+
 const climbListRoutes = await db.ClimbList.findAll({
   where: {userId},
   include:[{
     model: db.Route,
-    attributes: ['name', 'haveClimbed']
   }]
 })
-console.log(climbListRoutes)
-res.render('/climb-list', { climbListRoutes})
+res.render('climb-list', { climbListRoutes})
 })
 );
 
-// router.post('/:userId(\\d+)/climb-list', requireAuth,
-// asyncHandler(async(req, res)=>{
+router.post('/:userId(\\d+)/climb-list', requireAuth,
+asyncHandler(async(req, res)=>{
+ 
+  const userId = res.locals.user.id
+  const {climbStatus} = req.body
+  const splitClimbStatus = climbStatus.split('-')
+  const status = splitClimbStatus[0]
+  const routeId = splitClimbStatus[1]
 
-//   const {}
-// })
-// );
+
+  const climbListRoute = db.ClimbList.create({
+    haveClimbed: status,
+    routeId: routeId,
+    userId: userId
+  })
+  console.log(JSON.stringify(climbListRoute))
+})
+);
 
 // // router.patch('/:userId(\\d+)/climb-list', requireAuth,
 // // asyncHandler(async(req, res)=>{
