@@ -7,17 +7,15 @@ const { requireAuth } = require('../auth');
 const db = require('../db/models');
 
 router.get('/', asyncHandler(async (req, res) => {
-  const displayRoutes = await db.Routes.findAll({
-    include: { image },
-    limit: 5
-   });
-  const cycleRoutes = await db.Routes.findAll({ limit: 3});
+  /* TODO: need to cycle through 3-5 routes on one card
 
-  // TODO: do we want to list a few states in the div where we can view some of the states and their routes??
-  // const listRoutes = await db.Routes.findAll({
-  //   where: {}
-  // })
-  res.render('index', { title: 'Rendering Routes', displayRoutes});
+  List for the card:
+    image
+    route.name
+    route.description
+
+  */
+  res.render('index', { title: 'Rendering Routes'});
 }));
 
 router.get('/404', function(req, res, next) {
