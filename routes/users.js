@@ -136,14 +136,6 @@ router.patch('/:userId(\\d+)', csrfProtection, requireAuth,
   user.email = req.body.email;
   password = req.body.password;
 
-  const validatorErrors = validationResult(req);
-
-  if (validatorErrors.isEmpty()) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      user.password = hashedPassword;
-      await user.save();
-  }
-
   res.json({message: 'Success!', user})
 
   //TO DO: ADD PASSWORD AND VALIDATORS
