@@ -113,10 +113,12 @@ router.get('/:userId(\\d+)', requireAuth,
 
     if (!user) res.redirect('/404');
 
+    // YOU CAN DO THIS INSTEAD OF having seshAuth
     let loggedInUser
     if(req.session.auth) {
       loggedInUser = req.session.auth.userId
     }
+
     res.render('user-profile', { user, loggedInUser })
   }));
 
@@ -151,20 +153,30 @@ res.render('climb-list', { climbListRoutes})
 
 router.post('/:userId(\\d+)/climb-list', requireAuth,
 asyncHandler(async(req, res)=>{
- 
   const userId = res.locals.user.id
   const {climbStatus} = req.body
   const splitClimbStatus = climbStatus.split('-')
   const status = splitClimbStatus[0]
   const routeId = splitClimbStatus[1]
 
+  const currentClimbList = await db.ClimbList.findOne({
+    where: {userId, routeId},
 
-  const climbListRoute = db.ClimbList.create({
-    haveClimbed: status,
-    routeId: routeId,
-    userId: userId
   })
-  console.log(JSON.stringify(climbListRoute))
+
+  if(currentClimbList === null) {
+    const climbListRoute = db.ClimbList.create({
+      haveClimbed: status,
+      routeId: routeId,
+      userId: userId
+    })
+  } else {
+    if(currentClimbList.haveClimbed === false) {
+      await currentClimbList.update({haveClimbed: true})
+    } else {
+      await currentClimbList.update({haveClimbed: false})
+    }
+  }
 })
 );
 
