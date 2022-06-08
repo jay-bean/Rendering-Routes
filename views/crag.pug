@@ -12,12 +12,13 @@ block content
       p(id=`crag-${crag.id}-description`) #{crag.description}
     if seshAuth
       if crag.userId === seshAuth.userId
+        div(id='crag-error-container')
         form(class='hidden' id=`crag-edit-form-${crag.id}`)
           label Name:
           input(type="text" name="name" value=crag.name id=`crag-${crag.id}-edit-name`)
           label Location:
           input(type="text" name="location" value=crag.location id=`crag-${crag.id}-edit-location`)
           label Description:
-          input(type="text" name="description" value=crag.description id=`crag-${crag.id}-edit-description`)
+          textarea(name="description", cols="30", rows="5" value=crag.description id=`crag-${crag.id}-edit-description`)
           button(class="edit-submit" id=`crag-edit-submit-${crag.id}`) Submit Edit
         button(id='crag-edit-button') Edit

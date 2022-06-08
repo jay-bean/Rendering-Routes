@@ -11,9 +11,11 @@ if (editButton) {
         if (postInfo.classList.contains('hidden')) {
             postInfo.classList.remove('hidden');
             formInfo.classList.add('hidden');
+            editButton.innerText = 'Edit';
         } else {
             postInfo.classList.add('hidden');
             formInfo.classList.remove('hidden');
+            editButton.innerText = 'Cancel';
         }
     });
 
@@ -37,6 +39,7 @@ if (editButton) {
         });
 
         const data = await res.json();
+        const errorContainer = document.querySelector('#crag-error-container');
         if (data.message === 'Success!') {
             const nameEle = document.querySelector(`#crag-${cragId}-name`);
             const locationEle = document.querySelector(`#crag-${cragId}-location`);
@@ -45,11 +48,14 @@ if (editButton) {
             nameEle.innerHTML = data.crag.name;
             locationEle.innerHTML = data.crag.location;
             descriptionEle.innerHTML = data.crag.description;
+            errorContainer.innerHTML = ``;
 
             postInfo.classList.remove('hidden');
             formInfo.classList.add('hidden');
         } else {
-            // TODO: create elements with error message
+            data.errors.forEach(error => {
+                errorContainer.innerHTML += `<li>${error}</li>`;
+            });
         }
     });
 
