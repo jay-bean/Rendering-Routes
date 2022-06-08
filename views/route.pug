@@ -23,5 +23,11 @@ block content
       if route.userId === seshAuth.userId
         button Edit Route
   div
-    button Add to Climb List
+    form(method='POST' action=`/users/${user.id}/climb-list`)
+      select(name='climbList' class='climb-status')
+        option(value = "") Add to Climb List
+        option(value = "false") Want to climb
+        option(value = "true") Have climbed
+      input(type='submit' value ='Add to List' class='save-climb-status')
+
   include reviews.pug

@@ -14,6 +14,7 @@ const router = express.Router();
 router.get('/', requireAuth,
   asyncHandler(async (req, res) => {
     const users = await db.User.findAll();
+
     res.render('all-users', { users })
   }));
 
@@ -107,27 +108,17 @@ router.post('/log-out', (req, res) => {
 
 router.get('/:userId(\\d+)', requireAuth,
   asyncHandler(async (req, res) => {
-    const user = await db.User.findByPk(req.params.userId
-      // ,{
-      //   include: [{
-      //     model: Review
-      //   }, {
-      //     model: Route
-      //   }]  //how to include multiple models??
-      // }
-    )
-    res.render('user-profile', { user })
+    const user = await db.User.findByPk(req.params.userId)
+    let loggedInUser
+    if(req.session.auth) {
+      loggedInUser = req.session.auth.userId
+    }
+    res.render('user-profile', { user, loggedInUser })
   }));
 
 //TO DO: test code below
 router.patch('/:userId(\\d+)', requireAuth,
  asyncHandler(async (req, res) => {
-  const {
-    username,
-    email,
-    biography,
-    password,
-  } = req.body;
 
   const user = await db.User.findByPk(req.params.userId);
   await user.update({
@@ -141,36 +132,27 @@ router.patch('/:userId(\\d+)', requireAuth,
 
 }));
 
+
 //TO DO: test code below
-router.delete('/:userId(\\d+)',
+router.get('/:userId(\\d+)/climb-list', requireAuth,
 asyncHandler(async(req, res)=>{
-  const user = await db.User.findByPk(req.params.userId)
-  await user.destroy()
-
-  res.status(204).end()
-  res.json({message: 'Your account has been successfully deleted'})
-
-}));
-
-// //TO DO: test code below
-// router.get('/:userId(\\d+)/climb-list', requireAuth,
-// asyncHandler(async(req, res)=>{
-// const userId = req.body.userId
-// const climbListRoutes = await db.ClimbList.findAll({
-//   where: {userId},
-//   include:[{
-//     model: Route,
-//     attributes: ['name', 'haveClimbed']
-//   }]
-// })
-
-// res.render('/climb-list', { climbListRoutes})
-// })
-// );
+const userId = req.body.userId
+const climbListRoutes = await db.ClimbList.findAll({
+  where: {userId},
+  include:[{
+    model: db.Route,
+    attributes: ['name', 'haveClimbed']
+  }]
+})
+console.log(climbListRoutes)
+res.render('/climb-list', { climbListRoutes})
+})
+);
 
 // router.post('/:userId(\\d+)/climb-list', requireAuth,
 // asyncHandler(async(req, res)=>{
-// // const climbStatus = await
+
+//   const {}
 // })
 // );
 

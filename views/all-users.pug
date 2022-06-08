@@ -5,9 +5,9 @@ block content
         thead
             tr
                 th Avatar
-                th Profile Link
+                th User
         tbody
             each user in users
                 tr
                     td
-                    td: a(href=`/users/${user.id}`) #{user.username}'s profile
+                    td: a(href=`/users/${user.id}`) #{user.username}
