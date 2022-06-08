@@ -119,16 +119,14 @@ router.get('/:userId(\\d+)', requireAuth,
 //TO DO: test code below
 router.patch('/:userId(\\d+)', requireAuth,
  asyncHandler(async (req, res) => {
-
   const user = await db.User.findByPk(req.params.userId);
-  await user.update({
-    username: username,
-    email: email,
-    biography: biography,
-    password: password
-  })
+  user.username = req.body.username;
+  user.biography = req.body.biography;
+  user.email = req.body.email;
 
   await user.save();
+
+  res.json({message: 'Success!', user})
 
 }));
 
