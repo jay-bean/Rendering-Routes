@@ -24,7 +24,6 @@ submitBtn.addEventListener('click', async(submitEvent) => {
     const biography = document.querySelector(`#edit-bio-user${userId}`).value
     const email = document.querySelector(`#edit-email-user${userId}`).value
     const password = document.querySelector(`#edit-password-user${userId}`).value
-    const confirmPassword = document.querySelector(`#edit-confirmPassword-user${userId}`).value
 
     const res = await fetch(`/users/${userId}`, {
         method: 'PATCH',
