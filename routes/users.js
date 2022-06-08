@@ -134,7 +134,7 @@ router.patch('/:userId(\\d+)', csrfProtection, requireAuth,
   user.username = req.body.username;
   user.biography = req.body.biography;
   user.email = req.body.email;
-
+  password = req.body.password;
   await user.save();
 
   res.json({message: 'Success!', user})
