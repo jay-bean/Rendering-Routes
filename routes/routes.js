@@ -5,7 +5,7 @@ const router = express.Router();
 
 const db = require('../db/models');
 const { asyncHandler, csrfProtection } = require('./utils');
-const { routeValidators } = require('../validations');
+const { routeValidators, routeEditValidators } = require('../validations');
 const { requireAuth } = require('../auth');
 
 router.get('/',
@@ -22,6 +22,9 @@ router.get('/:routeId(\\d+)', csrfProtection,
     const routeId = parseInt(req.params.routeId, 10);
     const route = await db.Route.findByPk(routeId);
     const user = await db.User.findByPk(route.userId);
+    const crags = await db.Crag.findAll();
+    const currentCrag = await db.Crag.findByPk(route.cragId);
+    const cragName = currentCrag.name;
     const reviews = await db.Review.findAll({
       where: {
         routeId
@@ -33,7 +36,7 @@ router.get('/:routeId(\\d+)', csrfProtection,
     }
     const seshAuth = req.session.auth;
 
-    res.render('route', { route, user, reviews, seshAuth, routeId });
+    res.render('route', { route, user, crags, reviews, cragName, seshAuth });
 }));
 
 router.get('/add', csrfProtection, requireAuth,
@@ -93,10 +96,35 @@ console.log(req.body)
     }
 }));
 
-router.patch('/:routeId(\\d+)', csrfProtection, requireAuth,
+router.patch('/:routeId(\\d+)', requireAuth, routeEditValidators,
   asyncHandler(async (req, res) => {
     const routeId = parseInt(req.params.routeId, 10);
     const route = await db.Route.findByPk(routeId);
+    const crags = await db.Crag.findAll();
+    console.log(req.body)
+    route.name = req.body.name;
+    route.description = req.body.description;
+    route.height = req.body.height;
+    route.difficulty = req.body.difficulty;
+    route.type = req.body.type;
+    route.protection = req.body.protection;
+    route.cragId = req.body.cragId;
+    const currentCrag = await db.Crag.findByPk(route.cragId);
+    const cragName = currentCrag.name;
+
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+      await route.save();
+      res.status(200);
+      res.json({ message: 'Success!', route, crags, cragName });
+    }
+    else {
+      const errors = validatorErrors.array().map((error => error.msg));
+      res.status(400);
+      res.json({ message: 'Unsuccessful!', route, crags, errors});
+    }
+
 }));
 
 module.exports = router;
