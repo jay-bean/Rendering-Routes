@@ -57,7 +57,6 @@ module.exports = (sequelize, DataTypes) => {
     Route.belongsTo(models.Crag, {
       foreignKey: 'cragId'
     });
-    // Optional
     Route.belongsTo(models.User, {
       foreignKey: 'userId'
     });

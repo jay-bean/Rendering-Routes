@@ -3,7 +3,28 @@ html
   head
       block head
         title="Rendering Routes"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/main.css')
   body
+    div(id='nav-bar-container')
+      a(href='/')
+        img(src='../images/rendering-routes-logo.png')
+      div(id='nav-bar-navigations')
+        a(href='/routes' class='navbar-navigations') Routes
+        p(class='bar') |
+        a(href='/crags' class='navbar-navigations') Crags
+        p(class='bar') |
+        a(href='/users' class='navbar-navigations') People
+        p(class='bar') |
+        a(href='/contact-us' class='navbar-navigations') Contact Us
+      if locals.authenticated
+        div(id='nav-bar-profile-info')
+          p(id='nav-welcome') Welcome #{user.username}!
+          form(action='/users/log-out' method='post')
+            button(type='submit' id='nav-logout-button') Logout
+          a(href=`/users/${user.id}` id='nav-profile-button') My Profile
+      else
+        div(id='nav-bar-login-signup')
+          a(href='/users/log-in' id='nav-login-button') Login
+          a(href='/users/sign-up' id='nav-signup-button') Sign Up
+
     block content

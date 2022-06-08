@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   ClimbList.associate = function(models) {
-    // associations can be defined here
+    ClimbList.belongsTo(models.User, {foreignKey: 'userId'})
+    ClimbList.belongsTo(models.Route, {foreignKey: 'routeId'})
   };
   return ClimbList;
 };

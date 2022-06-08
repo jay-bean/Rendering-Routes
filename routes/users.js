@@ -10,10 +10,12 @@ const { loginUser, logoutUser, requireAuth } = require('../auth');
 const { userValidators, loginValidators } = require('../validations');
 
 const router = express.Router();
+router.use(express.urlencoded())
 
 router.get('/', requireAuth,
   asyncHandler(async (req, res) => {
     const users = await db.User.findAll();
+
     res.render('all-users', { users })
   }));
 
@@ -113,72 +115,74 @@ router.post('/demo/log-in', asyncHandler(async (req, res) => {
 
 router.get('/:userId(\\d+)', requireAuth,
   asyncHandler(async (req, res) => {
-    const user = await db.User.findByPk(req.params.userId
-      // ,{
-      //   include: [{
-      //     model: Review
-      //   }, {
-      //     model: Route
-      //   }]  //how to include multiple models??
-      // }
-    )
-    res.render('user-profile', { user })
+    const user = await db.User.findByPk(req.params.userId)
+
+    if (!user) res.redirect('/404');
+
+    // YOU CAN DO THIS INSTEAD OF having seshAuth
+    let loggedInUser
+    if(req.session.auth) {
+      loggedInUser = req.session.auth.userId
+    }
+
+    res.render('user-profile', { user, loggedInUser })
   }));
 
-//TO DO: test code below
-router.patch('/:userId(\\d+)', requireAuth,
+router.patch('/:userId(\\d+)', csrfProtection, requireAuth,
  asyncHandler(async (req, res) => {
-  const {
-    username,
-    email,
-    biography,
-    password,
-  } = req.body;
-
   const user = await db.User.findByPk(req.params.userId);
-  await user.update({
-    username: username,
-    email: email,
-    biography: biography,
-    password: password
+  user.username = req.body.username;
+  user.biography = req.body.biography;
+  user.email = req.body.email;
+  password = req.body.password;
+
+  res.json({message: 'Success!', user})
+
+  //TO DO: ADD PASSWORD AND VALIDATORS
+}));
+
+
+router.get('/:userId(\\d+)/climb-list', requireAuth,
+asyncHandler(async(req, res)=>{
+const userId = req.params.userId
+
+const climbListRoutes = await db.ClimbList.findAll({
+  where: {userId},
+  include:[{
+    model: db.Route,
+  }]
+})
+res.render('climb-list', { climbListRoutes})
+})
+);
+
+router.post('/:userId(\\d+)/climb-list', requireAuth,
+asyncHandler(async(req, res)=>{
+  const userId = res.locals.user.id;
+  const {climbStatus} = req.body;
+  const splitClimbStatus = climbStatus.split('-');
+  const status = splitClimbStatus[0];
+  const routeId = splitClimbStatus[1];
+
+  const currentClimbList = await db.ClimbList.findOne({
+    where: {userId, routeId},
   })
 
-  await user.save();
-
-}));
-
-//TO DO: test code below
-router.delete('/:userId(\\d+)',
-asyncHandler(async(req, res)=>{
-  const user = await db.User.findByPk(req.params.userId)
-  await user.destroy()
-
-  res.status(204).end()
-  res.json({message: 'Your account has been successfully deleted'})
-
-}));
-
-// //TO DO: test code below
-// router.get('/:userId(\\d+)/climb-list', requireAuth,
-// asyncHandler(async(req, res)=>{
-// const userId = req.body.userId
-// const climbListRoutes = await db.ClimbList.findAll({
-//   where: {userId},
-//   include:[{
-//     model: Route,
-//     attributes: ['name', 'haveClimbed']
-//   }]
-// })
-
-// res.render('/climb-list', { climbListRoutes})
-// })
-// );
-
-// router.post('/:userId(\\d+)/climb-list', requireAuth,
-// asyncHandler(async(req, res)=>{
-// // const climbStatus = await
-// })
-// );
+  if(currentClimbList === null) {
+    const climbListRoute = db.ClimbList.create({
+      haveClimbed: status,
+      routeId: parseInt(routeId, 10),
+      userId: userId
+    })
+  } else {
+    if(currentClimbList.haveClimbed === false) {
+      await currentClimbList.update({haveClimbed: true})
+    } else {
+      await currentClimbList.update({haveClimbed: false})
+    }
+  }
+})
+);
 
 // // router.patch('/:userId(\\d+)/climb-list', requireAuth,
 // // asyncHandler(async(req, res)=>{
