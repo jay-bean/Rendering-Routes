@@ -13,4 +13,20 @@ table
         td= review.description
         td= review.rating
         td= review.climber
+
+  form(action='/routes/reviews' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    label Title:
+    input(type='text' name='title' value=review.title)
+    label Description:
+    textarea(rows='5' cols='30' name='description' value=review.description)
+    label Rating:
+    select(name='rating' id='ratingScale' value=review.rating)
+      min 1
+      max 5
+    button(class='review-submit' id='review-post-button') Submit
+    button(id='review-edit-button') Edit
+
+
+
 button Add Review

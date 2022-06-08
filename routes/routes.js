@@ -5,7 +5,7 @@ const router = express.Router();
 
 const db = require('../db/models');
 const { asyncHandler, csrfProtection } = require('./utils');
-const { routeValidators, routeEditValidators } = require('../validations');
+const { routeValidators, routeEditValidators, reviewValidators } = require('../validations');
 const { requireAuth } = require('../auth');
 
 router.get('/',
@@ -31,12 +31,15 @@ router.get('/:routeId(\\d+)', csrfProtection,
       }
     });
 
+    // console.log(routeId);
+    const review = db.Review.build();
+
     if (!route) {
       res.redirect('/404');
     }
     const seshAuth = req.session.auth;
 
-    res.render('route', { route, user, crags, reviews, cragName, seshAuth });
+    res.render('route', { route, user, crags, reviews, cragName, seshAuth, review });
 }));
 
 router.get('/add', csrfProtection, requireAuth,
@@ -96,6 +99,32 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
     }
 }));
 
+router.post('/reviews', requireAuth, reviewValidators, csrfProtection, asyncHandler(async(req, res) => {
+  const {
+    title,
+    description,
+    rating
+  } = req.body;
+
+  const review = db.Review.build({
+    title,
+    description,
+    rating
+  });
+
+  const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+        await review.save();
+        res.status(200);
+        res.json({message: 'Success!', review })
+    } else {
+        const errors = validatorErrors.array().map((error) => error.msg);
+        res.status(400);
+        res.json({message: 'Failed to post', errors, review })
+    }
+}))
+
 router.patch('/:routeId(\\d+)', requireAuth, routeEditValidators,
   asyncHandler(async (req, res) => {
     const routeId = parseInt(req.params.routeId, 10);
@@ -124,7 +153,6 @@ router.patch('/:routeId(\\d+)', requireAuth, routeEditValidators,
       res.status(400);
       res.json({ message: 'Unsuccessful!', route, crags, errors});
     }
-
 }));
 
 module.exports = router;
