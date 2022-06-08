@@ -26,7 +26,13 @@ block content
     div
       p Crag:
       p(id=`route-${route.id}-crag`)= cragName
-    button Add to Climb List
+    div
+      form(method='POST' action=`/users/${user.id}/climb-list`)
+        select(name='climbStatus' class='climb-status')
+          option(value = "") Add to Climb List
+          option(value = `false-${routeId}`) Want to climb
+          option(value = `true-${routeId}`) Have climbed
+        input(type='submit' value ='Add to List' class='save-climb-status')
     include reviews.pug
   if seshAuth
     if route.userId === seshAuth.userId
