@@ -14,6 +14,7 @@ if (editButton) {
     else {
       postInfo.classList.add('hidden');
       formInfo.classList.remove('hidden');
+      editButton.innerHTML = 'Cancel';
     }
   });
   const cancelButton = document.querySelector(`#route-edit-cancel-${routeId}`);
@@ -48,6 +49,31 @@ if (editButton) {
           type,
           protection,
           description
-    })
+      })
+    });
   });
+
+  const data = await res.json();
+  if (data.message === 'Success!') {
+    const nameChange = document.querySelector(`#route-${routeId}-name`).value;
+    const difficultyChange = document.querySelector(`#route-${routeId}-difficulty`).value;
+    const heightChange = document.querySelector(`#route-${routeId}-height`).value;
+    const typeChange = document.querySelector(`#route-${routeId}-type`).value;
+    const protectionChange = document.querySelector(`#route-${routeId}-protection`).value;
+    const descriptionChange = document.querySelector(`#route-${routeId}-description`).value;
+
+    nameChange.innerHTML = data.route.name;
+    difficultyChange.innerHTML = data.route.difficulty;
+    heightChange.innerHTML = data.route.height;
+    typeChange.innerHTML = data.route.type;
+    protectionChange.innerHTML = data.route.protection;
+    descriptionChange.innerHTML = data.route.description;
+
+
+    postInfo.classList.remove('hidden');
+    formInfo.classList.add('hidden');
+  }
+  else {
+
+  }
 }

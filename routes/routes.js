@@ -93,7 +93,7 @@ console.log(req.body)
     }
 }));
 
-router.patch('/:routeId(\\d+)',
+router.patch('/:routeId(\\d+)', routeValidators,
   asyncHandler(async (req, res) => {
     const routeId = parseInt(req.params.routeId, 10);
     const route = await db.Route.findByPk(routeId);
