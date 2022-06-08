@@ -1,27 +1,51 @@
 extends layout.pug
 
+append head
+  script(src="/javascripts/routeEdit.js" type="module" defer)
+
 block content
-  h1= route.name
-  h2 Created by: #{user.username}
-  div
-    p Difficulty
-    p= route.difficulty
-  div
-    p Height
-    p #{route.height} ft.
-  div
-    p Type of Climb
-    p= route.type
-  div
-    p Protection
-    p= route.protection
-  div
-    p Description
-    p= route.description
-  div
-    if seshAuth
-      if route.userId === seshAuth.userId
-        button Edit Route
-  div
+  div(id=`route-post-${route.id}` class='')
+    h1(id=`route-${route.id}-name`)= route.name
+    h2 Created by: #{user.username}
+    div
+      p Difficulty:
+      p(id=`route-${route.id}-difficulty`)= route.difficulty
+    div
+      p Height:
+      p(id=`route-${route.id}-height`) #{route.height} ft.
+    div
+      p Type of Climb:
+      p(id=`route-${route.id}-type`)= route.type
+    div
+      p Protection:
+      p(id=`route-${route.id}-protection`)= route.protection
+    div
+      p Description:
+      p(id=`route-${route.id}-description`)= route.description
+      div
+    div
+      p Crag:
+      p(id=`route-${route.id}-crag`)= cragName
     button Add to Climb List
-  include reviews.pug
+    include reviews.pug
+  if seshAuth
+    if route.userId === seshAuth.userId
+      div(id='route-error-container')
+      form(class='hidden' id=`route-edit-form-${route.id}`)
+        label Name:
+        input(type='text' name='name' value=route.name id=`route-${route.id}-edit-name`)
+        label Difficulty:
+        input(type='text' name='difficulty' value=route.difficulty id=`route-${route.id}-edit-difficulty`)
+        label Height:
+        input(type='number' name='height' value=route.height id=`route-${route.id}-edit-height`)
+        label Type of Climb:
+        input(type='text' name='type' value=route.type id=`route-${route.id}-edit-type`)
+        label Protection:
+        input(type='text' name='protection' value=route.protection id=`route-${route.id}-edit-protection`)
+        label Description:
+        textarea(rows='5' cols='30' name="description" value=route.description id=`route-${route.id}-edit-description`)= route.description
+        select(name='cragId' id=`route-${route.id}-edit-crag`)
+          each crag in crags
+            option(value=`${crag.id}-${cragName}`) #{crag.name}
+      button(class="edit-submit" id=`route-edit-submit-${route.id}`) Submit
+      button(id='route-edit-button') Edit
