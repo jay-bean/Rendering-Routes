@@ -64,4 +64,14 @@ router.post('/', csrfProtection, requireAuth, cragValidators,
     }
 }));
 
+router.patch('/:cragId(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+  const crag = await db.Crag.findByPk(req.params.cragId);
+  crag.name = req.body.name;
+  crag.location = req.body.location;
+  crag.description = req.body.description;
+  await crag.save();
+
+  res.json({message: 'Success!', crag})
+}));
+
 module.exports = router;
