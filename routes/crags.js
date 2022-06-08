@@ -64,14 +64,25 @@ router.post('/', csrfProtection, requireAuth, cragValidators,
     }
 }));
 
-router.patch('/:cragId(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+router.patch('/:cragId(\\d+)', requireAuth, cragValidators,
+ asyncHandler(async (req, res) => {
   const crag = await db.Crag.findByPk(req.params.cragId);
+
   crag.name = req.body.name;
   crag.location = req.body.location;
   crag.description = req.body.description;
-  await crag.save();
 
-  res.json({message: 'Success!', crag})
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    await crag.save();
+    res.status(200);
+    res.json({message: 'Success!', crag});
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    res.status(400);
+    res.json({message: 'Fail!', crag, errors});
+  }
 }));
 
 module.exports = router;
