@@ -28,8 +28,12 @@ block content
             label Username:
             input(type='text' name='username' value=user.username id=`edit-username-user${user.id}`)
             label Biography:
-            input(type='biography' name='biography' value=user.biography id=`edit-bio-user${user.id}`)
+            input(type='text' name='biography' value=user.biography id=`edit-bio-user${user.id}`)
             label Email:
             input(type='email' name='email' value=user.email id=`edit-email-user${user.id}`)
+            label Password:
+            input(type='password' name='password' value=user.password id=`edit-password-user${user.id}`)
+            label Confirm Password:
+            input(type='confirmPassword' name='confirmPassword' value='' id=`edit-confirmPassword-user${user.id}`)
             button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit
         button(class='edit-user-btn' id=`edit-user-${user.id}`) Edit Profile
