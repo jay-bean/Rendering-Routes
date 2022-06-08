@@ -1,0 +1,16 @@
+h1 Reviews
+table
+  thead
+    tr
+      th(scope='col') Title
+      th(scope='col') Description
+      th(scope='col') Rating
+      th(scope='col') Climber
+  tbody
+    each review in reviews
+      tr
+        td= review.title
+        td= review.description
+        td= review.rating
+        td= review.climber
+button Add Review

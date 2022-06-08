@@ -1,0 +1,25 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+  h1 Create A Route
+  +validationErrorSummary(errors)
+  form(action='/routes' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    +field('Name', 'name', route.name)
+    label Crag the route belongs to:
+    select(name='cragId')
+      each crag in crags
+        option(value=crag.id) #{crag.name}
+    label If the crag you are looking for isn't listed.
+      a(href='/crags/new') Click Here
+    +field('Description', 'description', route.description, 'textarea')
+    +field('Image URL', 'image', route.image)
+    +field('Difficulty', 'difficulty', route.difficulty)
+    +field('Height', 'height', route.height)
+    +field('Protection', 'protection', route.protection)
+    +field('Type of Climb', 'type', route.type)
+    div
+      button(type='submit') Create
+      a(href='/routes' ) Cancel

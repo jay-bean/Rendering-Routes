@@ -67,8 +67,116 @@ const cragValidators = [
     .withMessage('Please provide a value for Description'),
 ];
 
+const routeValidators = [
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Name')
+    .isLength({ max: 255 })
+    .withMessage('Route Name must not be more than 255 characters long')
+    .custom((value) => {
+      return db.Route.findOne({ where: { name: value } })
+        .then((route) => {
+          if (route) {
+            return Promise.reject('The provided Route already exists.');
+          }
+        });
+    }),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Description'),
+  check('difficulty')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Difficulty')
+    .isLength({ max: 255 })
+    .withMessage('Difficulty must not be more than 255 characters long'),
+  check('height')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Height')
+    .isInt()
+    .withMessage('Please provide a number value for Height'),
+  check('protection')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Protection')
+    .isLength({ max: 255 })
+    .withMessage('Protection must not be more than 255 characters long'),
+  check('type')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Type')
+    .isLength({ max: 50 })
+    .withMessage('Type must not be more than 50 characters long')
+];
+
+const routeEditValidators = [
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Name')
+    .isLength({ max: 255 })
+    .withMessage('Route Name must not be more than 255 characters long'),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Description'),
+  check('difficulty')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Difficulty')
+    .isLength({ max: 255 })
+    .withMessage('Difficulty must not be more than 255 characters long'),
+  check('height')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Height')
+    .isInt()
+    .withMessage('Please provide a number value for Height'),
+  check('protection')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Protection')
+    .isLength({ max: 255 })
+    .withMessage('Protection must not be more than 255 characters long'),
+  check('type')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Type')
+    .isLength({ max: 50 })
+    .withMessage('Type must not be more than 50 characters long')
+];
+
+reviewValidators = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a title')
+    .isLength({ max: 64 })
+    .withMessage('Title must be no more than 64 characters'),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Review must have a description'),
+  check('rating')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a rating for your review')
+    .isInt({ checkFalsy: true })
+    .withMessage('Please provide an integer for the rating')
+    .custom((value) => {
+      return (value < 1)
+        .then((res) => {
+          if (res) {
+            return Promise.reject('Review cannot be rated less than 1');
+          }
+        })
+    .custom((value) => {
+      return (value > 5)
+        .then((res) => {
+          if (res) {
+            return Promise.reject('Review cannot be rated greater than 5');
+          }
+        });
+    })
+    }),
+  check('climber')
+    .exists({ checkFalsy: true })
+    .withMessage('Please log in to post a review')
+]
+
 module.exports = {
     userValidators,
     loginValidators,
     cragValidators,
+    routeValidators,
+    routeEditValidators,
+    reviewValidators
 };
