@@ -88,3 +88,26 @@
     color: white;
     font-size: 32px;
 }
+
+#nav-bar-login-signup {
+    margin-right: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nav-login-button {
+    margin-right: 10px;
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+}
+#nav-signup-button {
+    margin-left: 10px;
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+}
+
+#nav-signup-button:hover {
+    color: #CFEE9E;
+}
+#nav-login-button:hover {
+    color: #CFEE9E;
+}
