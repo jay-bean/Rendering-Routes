@@ -16,11 +16,14 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
 router.get('/:cragId(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const cragId = parseInt(req.params.cragId, 10);
     const crag = await db.Crag.findByPk(cragId);
-    const user = await db.User.findByPk(crag.userId);
 
     if (!crag) res.redirect('/404');
 
-    res.render('crag', { crag, user });
+    const user = await db.User.findByPk(crag.userId);
+
+    const seshAuth = req.session.auth;
+
+    res.render('crag', { crag, user, seshAuth });
 }));
 
 router.get('/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
@@ -59,6 +62,16 @@ router.post('/', csrfProtection, requireAuth, cragValidators,
         csrfToken: req.csrfToken(),
       });
     }
+}));
+
+router.patch('/:cragId(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+  const crag = await db.Crag.findByPk(req.params.cragId);
+  crag.name = req.body.name;
+  crag.location = req.body.location;
+  crag.description = req.body.description;
+  await crag.save();
+
+  res.json({message: 'Success!', crag})
 }));
 
 module.exports = router;
