@@ -1,5 +1,7 @@
 extends layout.pug
 
+include utils.pug
+
 block content
   h1= route.name
   h2 Created by: #{user.username}
@@ -23,5 +25,5 @@ block content
       if route.userId === seshAuth.userId
         button Edit Route
   div
-    button Add to Climb List
+    button#route-edit-btn Add to Climb List
   include reviews.pug

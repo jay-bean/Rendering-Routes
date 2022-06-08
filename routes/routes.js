@@ -93,10 +93,20 @@ console.log(req.body)
     }
 }));
 
-router.patch('/:routeId(\\d+)', csrfProtection, requireAuth,
+router.patch('/:routeId(\\d+)',
   asyncHandler(async (req, res) => {
     const routeId = parseInt(req.params.routeId, 10);
     const route = await db.Route.findByPk(routeId);
+    route.name = req.body.name;
+    route.description = req.body.description;
+    route.height = req.body.height;
+    route.difficulty = req.body.difficulty;
+    route.type = req.body.type;
+    route.protection = req.body.protection;
+    route.cragId = req.body.crag;
+    await route.save();
+
+    res.json({ message: 'Succes!', route });
 }));
 
 module.exports = router;
