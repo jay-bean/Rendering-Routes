@@ -158,11 +158,11 @@ res.render('climb-list', { climbListRoutes})
 
 router.post('/:userId(\\d+)/climb-list', requireAuth,
 asyncHandler(async(req, res)=>{
-  const userId = res.locals.user.id
-  const {climbStatus} = req.body
-  const splitClimbStatus = climbStatus.split('-')
-  const status = splitClimbStatus[0]
-  const routeId = splitClimbStatus[1]
+  const userId = res.locals.user.id;
+  const {climbStatus} = req.body;
+  const splitClimbStatus = climbStatus.split('-');
+  const status = splitClimbStatus[0];
+  const routeId = splitClimbStatus[1];
 
   const currentClimbList = await db.ClimbList.findOne({
     where: {userId, routeId},
