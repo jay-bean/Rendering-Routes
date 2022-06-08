@@ -3,7 +3,20 @@ html
   head
       block head
         title="Rendering Routes"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/main.css')
   body
+    div(id='nav-bar-container')
+      a(href='/')
+        img(src='../images/rendering-routes-logo.png')
+      if locals.authenticated
+        div(id='nav-bar-profile-info')
+          p(id='nav-welcome') Welcome #{user.username}!
+          form(action='/users/log-out' method='post')
+            button(type='submit' id='nav-logout-button') Logout
+          a(href=`/users/${user.id}` id='nav-profile-button') My Profile
+      else
+        div(id='nav-bar-login-signup')
+          a(href='/users/log-in') Login
+          a(href='/users/sign-up') Sign Up
+
     block content
