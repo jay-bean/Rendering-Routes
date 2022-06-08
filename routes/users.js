@@ -166,13 +166,12 @@ asyncHandler(async(req, res)=>{
 
   const currentClimbList = await db.ClimbList.findOne({
     where: {userId, routeId},
-
   })
 
   if(currentClimbList === null) {
     const climbListRoute = db.ClimbList.create({
       haveClimbed: status,
-      routeId: routeId,
+      routeId: parseInt(routeId, 10),
       userId: userId
     })
   } else {

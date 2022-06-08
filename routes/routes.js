@@ -66,7 +66,7 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       type,
       cragId
     } = req.body;
-console.log(req.body)
+
     const route = db.Route.build({
       name,
       description,

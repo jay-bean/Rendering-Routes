@@ -29,9 +29,9 @@ block content
     div
       form(method='POST' action=`/users/${user.id}/climb-list`)
         select(name='climbStatus' class='climb-status')
-          option(value = "") Add to Climb List
-          option(value = `false-${routeId}`) Want to climb
-          option(value = `true-${routeId}`) Have climbed
+          option(value="") Add to Climb List
+          option(value=`false-${route.id}`) Want to climb
+          option(value=`true-${route.id}`) Have climbed
         input(type='submit' value ='Add to List' class='save-climb-status')
     include reviews.pug
   if seshAuth
