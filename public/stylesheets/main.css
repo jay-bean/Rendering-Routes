@@ -8,6 +8,11 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 
 .hidden {

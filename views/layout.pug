@@ -8,6 +8,14 @@ html
     div(id='nav-bar-container')
       a(href='/')
         img(src='../images/rendering-routes-logo.png')
+      div(id='nav-bar-navigations')
+        a(href='/routes' class='navbar-navigations') Routes
+        p(class='bar') |
+        a(href='/crags' class='navbar-navigations') Crags
+        p(class='bar') |
+        a(href='/users' class='navbar-navigations') People
+        p(class='bar') |
+        a(href='/contact-us' class='navbar-navigations') Contact Us
       if locals.authenticated
         div(id='nav-bar-profile-info')
           p(id='nav-welcome') Welcome #{user.username}!
