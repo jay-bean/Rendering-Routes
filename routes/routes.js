@@ -35,8 +35,11 @@ router.get('/:routeId(\\d+)', csrfProtection,
       res.redirect('/404');
     }
     const seshAuth = req.session.auth;
-
-    res.render('route', { route, user, crags, reviews, cragName, seshAuth });
+    console.log(seshAuth)
+    const currentUser = req.session.auth.userId;
+    console.log('user', user);
+    console.log('currentU', currentUser);
+    res.render('route', { route, user, crags, reviews, cragName, seshAuth, currentUser });
 }));
 
 router.get('/add', csrfProtection, requireAuth,
