@@ -9,7 +9,7 @@ const db = require('../db/models');
 const { cragValidators } = require('../validations');
 
 router.get('/', csrfProtection, asyncHandler(async (req, res) => {
-    const allCrags = await db.Crag.findAll({ limit: 20 });
+    const allCrags = await db.Crag.findAll({ order: ['name'] });
     res.render('all-crags', { allCrags });
 }));
 

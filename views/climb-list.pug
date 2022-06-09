@@ -3,6 +3,10 @@ append head
     script(src="/javascripts/climbList.js" type="module" defer)
 
 block content
+    h1 Climb List
+    p Below is a list of your climbs, conquered and unconquered!
+    button
+      a(href='/routes') Add Climbs
     h2 Want to Climb
     each route in climbListRoutes
         if route.haveClimbed === false

@@ -25,6 +25,11 @@ if (addButton) {
         })
 
         const data = await res.json();
+
+        if (data.message === 'Created!') {
+            const form = document.querySelector('#climb-list-form');
+            form.classList.add('hidden');
+        }
     })
 }
 
