@@ -6,7 +6,7 @@
 
 ### Tabel of Contents
 * [Introduction](#introduction)
-* [Technologies User](#technologies-used)
+* [Technologies Used](#technologies-used)
 * [Technical implementaion details](#technical-implementation-details)
 * [Index](#index)
 * [Future Features](#future-features)
@@ -23,7 +23,11 @@ Users can locate climbs near them, add them to their climb list, and conquer the
 * CSS
 * Express
 
-### Screenshot of Home Page Other Shots
+### Screenshot
+
+##### Home Page
+##### Routes Page
+##### Profile Page
 
 ### Technical implementation details
 
