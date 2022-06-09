@@ -177,6 +177,8 @@ res.render('climb-list', { climbListRoutes, loggedInUser, userId})
 router.post('/:userId(\\d+)/climb-list', requireAuth,
 asyncHandler(async(req, res)=>{
   const userId = res.locals.user.id;
+  console.log(userId, 'userId');
+  console.log(req.body);
   const {climbStatus} = req.body;
   const splitClimbStatus = climbStatus.split('-');
   const status = splitClimbStatus[0];

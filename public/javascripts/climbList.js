@@ -3,26 +3,29 @@ const userId = splitURL[3];
 const editListBtns = document.querySelectorAll(`#update-route-${userId}`)
 const deleteBtns = document.querySelectorAll('.delete-btn')
 
-for (let i = 0; i < deleteBtns.length; i++) {
-    const btn = deleteBtns[i];
+if(deleteBtns) {
 
-    btn.addEventListener('click', async(e) => {
-        e.preventDefault()
-        btn.innerHTML = "Remove"
-        // const routeId = e.target.id.split('-')[2]
+    for (let i = 0; i < deleteBtns.length; i++) {
+        const btn = deleteBtns[i];
 
-        // const res = await fetch(`/${userId}/climb-list`, {
-        //     method: 'DELETE'
-        // })
+        btn.addEventListener('click', async(e) => {
+            e.preventDefault()
+            btn.innerHTML = "Remove"
+            // const routeId = e.target.id.split('-')[2]
 
-        // const data = await res.json()
-        // if (data.message = "Success!") {
-        //     const container = document.getElementById(`route-container-${routeId}`)
-        //     container.remove()
-        // } else {
+            // const res = await fetch(`/${userId}/climb-list`, {
+            //     method: 'DELETE'
+            // })
 
-        // }
-    })
+            // const data = await res.json()
+            // if (data.message = "Success!") {
+            //     const container = document.getElementById(`route-container-${routeId}`)
+            //     container.remove()
+            // } else {
+
+            // }
+        })
+    }
 }
 // for (let i =0; i< editListBtns.length; i++) {
 //     const btn = editBtns[i];
