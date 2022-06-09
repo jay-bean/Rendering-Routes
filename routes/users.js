@@ -124,7 +124,7 @@ router.get('/:userId(\\d+)', requireAuth,
     if (!user) res.redirect('/404');
 
     let loggedInUser
-    if(req.session.auth) {
+    if (req.session.auth) {
       loggedInUser = req.session.auth.userId
     }
 
@@ -132,111 +132,122 @@ router.get('/:userId(\\d+)', requireAuth,
   }));
 
 router.patch('/:userId(\\d+)', requireAuth, userEditValidators,
- asyncHandler(async (req, res) => {
-  const user = await db.User.findByPk(req.params.userId);
+  asyncHandler(async (req, res) => {
+    const user = await db.User.findByPk(req.params.userId);
 
-  user.username = req.body.username;
-  user.biography = req.body.biography;
-  user.email = req.body.email;
-  password = req.body.password
-  confirmPassword = req.body.confirmPassword
-
-  console.log("VALUEEEEEEEEEEE", confirmPassword)
-  const validatorErrors = validationResult(req);
-
-  if (validatorErrors.isEmpty()) {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    user.password = hashedPassword;
-  await user.save();
-    res.status(200);
-  res.json({message: 'Success!', user})
-  } else {
-    const errors = validatorErrors.array().map((error) => error.msg);
-    res.status(400);
-    res.json({ message: 'Unsuccessful!', user, errors});
-  }
+    user.username = req.body.username;
+    user.biography = req.body.biography;
+    user.email = req.body.email;
+    password = req.body.password
+    confirmPassword = req.body.confirmPassword
 
 
-}));
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+      await user.save();
+      res.status(200);
+      res.json({ message: 'Success!', user })
+    } else {
+      const errors = validatorErrors.array().map((error) => error.msg);
+      res.status(400);
+      res.json({ message: 'Unsuccessful!', user, errors });
+    }
+
+
+  }));
 
 
 router.get('/:userId(\\d+)/climb-list', requireAuth,
-asyncHandler(async(req, res)=>{
-const userId = parseInt(req.params.userId, 10)
+  asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10)
 
-const climbListRoutes = await db.ClimbList.findAll({
-  where: {userId},
-  include:[{
-    model: db.Route,
-  }]
-})
+    const climbListRoutes = await db.ClimbList.findAll({
+      where: { userId },
+      include: [{
+        model: db.Route,
+      }]
+    })
 
-let loggedInUser
-    if(req.session.auth) {
+    let loggedInUser
+    if (req.session.auth) {
       loggedInUser = req.session.auth.userId
     }
-res.render('climb-list', { climbListRoutes, loggedInUser, userId})
-})
+    res.render('climb-list', { climbListRoutes, loggedInUser, userId })
+  })
 );
 
 router.post('/:userId(\\d+)/climb-list', requireAuth,
-asyncHandler(async(req, res)=>{
-  const userId = res.locals.user.id;
-  console.log(userId, 'userId');
-  console.log(req.body);
-  const {climbStatus} = req.body;
-  const splitClimbStatus = climbStatus.split('-');
-  const status = splitClimbStatus[0];
-  const routeId = splitClimbStatus[1];
+  asyncHandler(async (req, res) => {
+    const userId = res.locals.user.id;
+    console.log(userId, 'userId');
+    console.log(req.body);
+    const { climbStatus } = req.body;
+    const splitClimbStatus = climbStatus.split('-');
+    const status = splitClimbStatus[0];
+    const routeId = splitClimbStatus[1];
 
-  const currentClimbListRoute = await db.ClimbList.findOne({
-    where: {userId, routeId},
-  })
-
-  if(currentClimbListRoute === null) {
-    const newClimbListRoute = db.ClimbList.create({
-      haveClimbed: status,
-      routeId: parseInt(routeId, 10),
-      userId: userId
+    const currentClimbListRoute = await db.ClimbList.findOne({
+      where: { userId, routeId },
     })
-  } else {
-    if(currentClimbListRoute.haveClimbed === false) {
-      await currentClimbListRoute.update({haveClimbed: true})
+
+    if (currentClimbListRoute === null) {
+      const newClimbListRoute = db.ClimbList.create({
+        haveClimbed: status,
+        routeId: parseInt(routeId, 10),
+        userId: userId
+      })
     } else {
-      await currentClimbListRoute.update({haveClimbed: false})
+      if (currentClimbListRoute.haveClimbed === false) {
+        await currentClimbListRoute.update({ haveClimbed: true })
+      } else {
+        await currentClimbListRoute.update({ haveClimbed: false })
+      }
     }
-  }
-})
+  })
 );
 
 router.patch('/:userId(\\d+)/climb-list', requireAuth,
-asyncHandler(async(req, res)=>{
-  const userId = parseInt(req.params.userId, 10)
-  const routeId = req.body.routeId
-  const currentClimbListRoute = await db.ClimbList.findOne({
-    where: {userId, routeId},
-  })
-  if (currentClimbListRoute.haveClimbed === false) {
-    await currentClimbListRoute.update({haveClimbed: true})
-  res.json({message: 'Success!'})
-  }
+  asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10)
+    const routeId = req.body.routeId
+    const currentClimbListRoute = await db.ClimbList.findOne({
+      where: { userId, routeId },
+    })
+    if (currentClimbListRoute.haveClimbed === false) {
+      await currentClimbListRoute.update({ haveClimbed: true })
+      res.json({ message: 'Success!' })
+    }
 
-})
+  })
 );
 
 router.delete('/:userId(\\d+)/climb-list',
-asyncHandler(async(req, res)=>{
-  const userId = parseInt(req.params.userId, 10)
-  const routeId = req.body.routeId
-  const currentClimbListRoute = await db.ClimbList.findOne({
-    where: {userId, routeId},
+  asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10)
+    const routeId = req.body.routeId
+    const currentClimbListRoute = await db.ClimbList.findOne({
+      where: { userId, routeId },
+    })
+    await currentClimbListRoute.destroy()
+
+    res.json({ message: 'Success!' })
+
   })
-  await currentClimbListRoute.destroy()
-
-  res.json({message: 'Success!'})
-
-})
 
 );
+
+router.get('/:userId(\\d+)/reviews', requireAuth,
+  asyncHandler(async (req, res) => {
+  const userId = req.params.userId
+  const user = await db.User.findByPk(userId)
+  const userReviews = await db.Review.findAll({
+    where: {userId}
+  })
+
+  res.render('user-all-reviews', {userReviews, userId, user})
+  }))
 
 module.exports = router;
