@@ -29,13 +29,20 @@ if (addAReviewButton) {
         if (data.message === 'Success!') {
             const newReview = document.createElement('div');
             newReview.innerHTML = `
-                <p>${data.review.title}</p>
-                <p>${data.review.rating}</p>
-                <p>${data.review.description}</p>
+            <p>${data.review.title}</p>
+            <p>${data.review.rating}</p>
+            <p>${data.review.description}</p>
             `
 
             const reviewContainer = document.querySelector('#review-container');
-            reviewContainer.appendChild(newReview);
+            reviewContainer.prepend(newReview);
+
+
+            const titleEle = document.querySelector(`#title-of-review`);
+            const descriptionEle = document.querySelector(`#description-of-review`);
+            errorContainer.innerHTML = ``;
+            titleEle.value = '';
+            descriptionEle.value = '';
         } else {
             data.errors.forEach((error) => {
                 errorContainer.innerHTML += `<li>${error}</li>`

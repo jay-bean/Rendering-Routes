@@ -7,7 +7,7 @@ append head
 block content
   div(id=`route-post-${route.id}` class='')
     h1(id=`route-${route.id}-name`)= route.name
-    h2 Created by: #{user.username}
+    h2 Created by: #{postUser.username}
     div
       p Difficulty:
       p(id=`route-${route.id}-difficulty`)= route.difficulty
@@ -28,7 +28,7 @@ block content
       p Crag:
       p(id=`route-${route.id}-crag`)= cragName
     div
-      form(method='POST' action=`/users/${user.id}/climb-list`)
+      form(method='POST' action=`/users/${postUser.id}/climb-list`)
         select(name='climbStatus' class='climb-status')
           option(value="") Add to Climb List
           option(value=`false-${route.id}`) Want to climb
