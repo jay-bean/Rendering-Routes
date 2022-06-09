@@ -244,10 +244,32 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
   const userId = req.params.userId
   const user = await db.User.findByPk(userId)
   const userReviews = await db.Review.findAll({
-    where: {userId}
+    where: {userId},
+    include: [{
+      model: db.Route
+    }]
   })
 
   res.render('user-all-reviews', {userReviews, userId, user})
   }))
 
+
+  router.patch('/:userId(\\d+)/reviews', requireAuth,
+  asyncHandler(async (req, res) => {
+
+    console.log("REQBODY!!!!!!!!", req.body)
+    const reviewId = parseInt(req.body.reviewId, 10)
+    console.log("REQBODY.REVIEW!!!!!!!!", reviewId)
+    const reviewInstance = await db.Review.findbyPk(reviewId)
+    console.log("INSTANCE!!!!!!!!!!!!", reviewInstance)
+
+    // reviewInstance.title = req.body.title
+    // reviewInstance.description = req.body.description
+    // reviewInstance.rating = req.body.rating
+
+    // await reviewInstance.save()
+    // res.status(200)
+    // res.json({message: 'Success!'})
+
+  }))
 module.exports = router;
