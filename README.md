@@ -9,7 +9,7 @@
 
 
 ### Visit our live site here:
-#### [Rendering Routes](https://rendering-routes.herokuapp.com/)
+[Rendering Routes](https://rendering-routes.herokuapp.com/)
 
 ### Summary
 Rendering Routes is a good reads clone with a rock climbing twist.
