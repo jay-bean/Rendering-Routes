@@ -1,6 +1,14 @@
 extends layout.pug
 
 block content
-    h1 Welcome to the crags page!
+  h1 Crags
+  h2 Where will you climb today?
+  div
+    a(href='/crags/new')
+      button Add Crag
+  div(id='crag-container')
     each crag in allCrags
-        p #{crag.name}
+        div(class='crag-div')
+            p= crag.name
+            p= crag.location
+            div(class='crag-desc-container')= crag.description
