@@ -6,7 +6,7 @@ append head
 block content
     h1 TODO: Add dynamic title
     div(id=`crag-post-${crag.id}` class='')
-      p Created by: #{user.username}
+      p Created by: #{postUser.username}
       p(id=`crag-${crag.id}-name`) #{crag.name}
       p(id=`crag-${crag.id}-location`) #{crag.location}
       p(id=`crag-${crag.id}-description`) #{crag.description}
