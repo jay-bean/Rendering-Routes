@@ -137,10 +137,25 @@ const routeEditValidators = [
     .withMessage('Type must not be more than 50 characters long')
 ];
 
+const reviewValidators = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a title')
+    .isLength({ max: 64 })
+    .withMessage('Title must be no more than 64 characters'),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Review must have a description'),
+  check('rating')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a rating for your review'),
+]
+
 module.exports = {
     userValidators,
     loginValidators,
     cragValidators,
     routeValidators,
-    routeEditValidators
+    routeEditValidators,
+    reviewValidators
 };
