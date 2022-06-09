@@ -1,0 +1,11 @@
+@import "./navbar.css";
+
+* {
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+a[href] {
+    width: 100px;
+    height: 100px
+}
