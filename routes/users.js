@@ -182,46 +182,48 @@ asyncHandler(async(req, res)=>{
   const status = splitClimbStatus[0];
   const routeId = splitClimbStatus[1];
 
-  const currentClimbList = await db.ClimbList.findOne({
+  const currentClimbListRoute = await db.ClimbList.findOne({
     where: {userId, routeId},
   })
 
-  if(currentClimbList === null) {
-    const climbListRoute = db.ClimbList.create({
+  if(currentClimbListRoute === null) {
+    const newClimbListRoute = db.ClimbList.create({
       haveClimbed: status,
       routeId: parseInt(routeId, 10),
       userId: userId
     })
   } else {
-    if(currentClimbList.haveClimbed === false) {
-      await currentClimbList.update({haveClimbed: true})
+    if(currentClimbListRoute.haveClimbed === false) {
+      await currentClimbListRoute.update({haveClimbed: true})
     } else {
-      await currentClimbList.update({haveClimbed: false})
+      await currentClimbListRoute.update({haveClimbed: false})
     }
   }
 })
 );
 
-router.patch('/:userId(\\d+)/climb-list', requireAuth,
+// router.patch('/:userId(\\d+)/climb-list', requireAuth,
+// asyncHandler(async(req, res)=>{
+//   const userId = parseInt(req.params.userId, 10)
+
+//   console.log("REQ BODY!!!!!!!!!!!!", req.body)
+//   const climbListRoute = await db.ClimbList.findOne({
+//     where: {userId},
+//     include:[{
+//       model: db.Route,
+//     }]
+//   })
+//   res.json({message: 'Success!'})
+
+// })
+// );
+
+router.delete('/:userId(\\d+)/climb-list', requireAuth,
 asyncHandler(async(req, res)=>{
   const userId = parseInt(req.params.userId, 10)
 
-  console.log("REQ BODY!!!!!!", req.body)
-  const climbListRoute = await db.ClimbList.findOne({
-    where: {userId},
-    include:[{
-      model: db.Route,
-    }]
-  })
-  res.json({message: 'Success!'})
-
+  const climbListRoute = await ClimbList.findOne
 })
 );
-
-// // router.delete('/:userId(\\d+)/climb-list', requireAuth,
-// // asyncHandler(async(req, res)=>{
-
-// // })
-// // );
 
 module.exports = router;
