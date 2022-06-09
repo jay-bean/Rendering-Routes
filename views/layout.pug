@@ -18,7 +18,7 @@ html
         a(href='/contact-us' class='navbar-navigations') Contact Us
       if locals.authenticated
         div(id='nav-bar-profile-info')
-          p(id='nav-welcome') Welcome #{user.username}!
+          p(id='nav-welcome') Welcome #{locals.user.username}!
           form(action='/users/log-out' method='post')
             button(type='submit' id='nav-logout-button') Logout
           a(href=`/users/${user.id}` id='nav-profile-button') My Profile

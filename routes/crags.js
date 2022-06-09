@@ -19,11 +19,11 @@ router.get('/:cragId(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
 
     if (!crag) res.redirect('/404');
 
-    const user = await db.User.findByPk(crag.userId);
+    const postUser = await db.User.findByPk(crag.userId);
 
     const seshAuth = req.session.auth;
 
-    res.render('crag', { crag, user, seshAuth });
+    res.render('crag', { crag, postUser, seshAuth });
 }));
 
 router.get('/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {

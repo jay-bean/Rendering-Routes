@@ -21,7 +21,7 @@ router.get('/:routeId(\\d+)', csrfProtection,
   asyncHandler(async (req, res) => {
     const routeId = parseInt(req.params.routeId, 10);
     const route = await db.Route.findByPk(routeId);
-    const user = await db.User.findByPk(route.userId);
+    const postUser = await db.User.findByPk(route.userId);
     const crags = await db.Crag.findAll();
     const currentCrag = await db.Crag.findByPk(route.cragId);
     const cragName = currentCrag.name;
@@ -35,11 +35,8 @@ router.get('/:routeId(\\d+)', csrfProtection,
       res.redirect('/404');
     }
     const seshAuth = req.session.auth;
-    console.log(seshAuth)
-    const currentUser = req.session.auth.userId;
-    console.log('user', user);
-    console.log('currentU', currentUser);
-    res.render('route', { route, user, crags, reviews, cragName, seshAuth, currentUser });
+
+    res.render('route', { route, postUser, reviews, cragName, seshAuth });
 }));
 
 router.get('/add', csrfProtection, requireAuth,
