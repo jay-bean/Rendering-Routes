@@ -49,14 +49,15 @@ submitBtn.addEventListener('click', async(submitEvent) => {
         usernameEle.innerHTML = data.user.username;
         emailEle.innerHTML = data.user.email;
         bioEle.innerHTML = data.user.biography
+        errorContainer.innerHTML = '';
 
         profileInfo.classList.remove('hidden');
         form.classList.add('hidden');
     }
     else {
        data.errors.forEach(error => {
-        errorContainer.innerText += `<li>${error}</li>`;
-       })
+        errorContainer.innerHTML += `<li>${error}</li>`
+       });
     }
 
 })

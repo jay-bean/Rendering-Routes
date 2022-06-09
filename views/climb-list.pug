@@ -1,13 +1,19 @@
 extends layout.pug
 
 block content
-    h2 Have Climbed
-    ul
-    each route in climbListRoutes
-        if route.haveClimbed === true
-            li= route.Route.name
     h2 Want to Climb
-    ul
     each route in climbListRoutes
         if route.haveClimbed === false
-            li= route.Route.name
+            div(class="single-route-container" id=`route-container-${route.Route.id}`)
+                p(id=`route-${route.Route.id}`)= route.Route.name
+                if loggedInUser === userId
+                    button(class='delete-btn' id=`delete-route-${userId}`) Delete
+                    button(class="edit-list-btn" id=`update-route-${userId}`) Add to have climbed
+
+    h2 Have Climbed
+    each route in climbListRoutes
+        if route.haveClimbed === true
+             div(class="single-route-container" id=`route-container-${route.Route.id}`)
+                p(id=`route-${route.Route.id}`)= route.Route.name
+                if loggedInUser === userId
+                    button(class='delete-btn' id=`delete-route-${userId}`) Delete

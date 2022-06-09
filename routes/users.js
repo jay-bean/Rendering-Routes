@@ -131,18 +131,19 @@ router.get('/:userId(\\d+)', requireAuth,
 router.patch('/:userId(\\d+)', requireAuth, userEditValidators,
  asyncHandler(async (req, res) => {
   const user = await db.User.findByPk(req.params.userId);
+
   user.username = req.body.username;
   user.biography = req.body.biography;
   user.email = req.body.email;
   password = req.body.password
-  
+
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.password = hashedPassword;
   await user.save();
-
+    res.status(200);
   res.json({message: 'Success!', user})
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
@@ -156,7 +157,7 @@ router.patch('/:userId(\\d+)', requireAuth, userEditValidators,
 
 router.get('/:userId(\\d+)/climb-list', requireAuth,
 asyncHandler(async(req, res)=>{
-const userId = req.params.userId
+const userId = parseInt(req.params.userId, 10)
 
 const climbListRoutes = await db.ClimbList.findAll({
   where: {userId},
@@ -164,7 +165,12 @@ const climbListRoutes = await db.ClimbList.findAll({
     model: db.Route,
   }]
 })
-res.render('climb-list', { climbListRoutes})
+
+let loggedInUser
+    if(req.session.auth) {
+      loggedInUser = req.session.auth.userId
+    }
+res.render('climb-list', { climbListRoutes, loggedInUser, userId})
 })
 );
 
@@ -196,11 +202,21 @@ asyncHandler(async(req, res)=>{
 })
 );
 
-// // router.patch('/:userId(\\d+)/climb-list', requireAuth,
-// // asyncHandler(async(req, res)=>{
+router.patch('/:userId(\\d+)/climb-list', requireAuth,
+asyncHandler(async(req, res)=>{
+  const userId = parseInt(req.params.userId, 10)
 
-// // })
-// // );
+  console.log("REQ BODY!!!!!!", req.body)
+  const climbListRoute = await db.ClimbList.findOne({
+    where: {userId},
+    include:[{
+      model: db.Route,
+    }]
+  })
+  res.json({message: 'Success!'})
+
+})
+);
 
 // // router.delete('/:userId(\\d+)/climb-list', requireAuth,
 // // asyncHandler(async(req, res)=>{
