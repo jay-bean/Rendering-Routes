@@ -34,5 +34,7 @@ block content
             input(type='email' name='email' value=user.email id=`edit-email-user${user.id}`)
             label Password:
             input(type='password' name='password' value='' id=`edit-password-user${user.id}`)
+            label Confirm Password:
+            input(type='password' name='confirmPassword' value='' id=`confirm-password-user${user.id}`)
             button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit
         button(class='edit-user-btn' id=`edit-user-${user.id}`) Edit Profile

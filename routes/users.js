@@ -135,6 +135,7 @@ router.patch('/:userId(\\d+)', requireAuth, userEditValidators,
   user.biography = req.body.biography;
   user.email = req.body.email;
   password = req.body.password
+  
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
