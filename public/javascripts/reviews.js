@@ -87,7 +87,7 @@ const submitEditReview = document.querySelector(`.edit-review-submit`)
         const reviewIdDiv = document.querySelector('div.hidden').id
         const reviewId = reviewIdDiv.split('-')[2]
 
-        console.log(userId)
+        console.log("USERID!!!!!!", userId)
         const res = await fetch(`/users/${userId}/reviews`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},

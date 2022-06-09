@@ -271,5 +271,5 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
     // res.status(200)
     // res.json({message: 'Success!'})
 
-  }))
+  }));
 module.exports = router;
