@@ -23,7 +23,7 @@ Users can locate climbs near them, add them to their climb list, and conquer the
 * CSS
 * Express
 
-### Screenshot
+### Visual Overview
 
 ##### Home Page
 ##### Routes Page
