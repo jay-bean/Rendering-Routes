@@ -101,6 +101,22 @@ const submitEditReview = document.querySelector(`.edit-review-submit`)
 
         const data = await res.json()
         const errorContainer = document.querySelector('review-error-container')
+        if(data.message === 'Success!') {
+            const titleEle = document.querySelector(`#edit-review-title`)
+            const descriptionEle = document.querySelector(`#edit-review-description`)
+            const ratingEle = document.querySelector(`#edit-review-rating`)
+
+            titleEle.innerHTML = data.review.title;
+            descriptionEle.innerHTML = data.review.desription;
+            ratingEle.innerHTML = data.review.rating;
+            errorContainer.innerHTML = ""
+
+            form.classList.add('hidden')
+        } else {
+            data.errors.forEach(error => {
+                errorContainer.innerHTML += `<li>${error}</li>`
+               });
+        }
 
     })
 }

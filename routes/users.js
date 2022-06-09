@@ -7,7 +7,7 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
 const { loginUser, logoutUser, requireAuth } = require('../auth');
-const { userValidators, loginValidators, userEditValidators } = require('../validations');
+const { userValidators, loginValidators, userEditValidators, reviewValidators } = require('../validations');
 
 const router = express.Router();
 router.use(express.urlencoded())
@@ -251,25 +251,29 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
   })
 
   res.render('user-all-reviews', {userReviews, userId, user})
-  }))
+  }));
 
 
-  router.patch('/:userId(\\d+)/reviews', requireAuth,
+  router.patch('/:userId(\\d+)/reviews', requireAuth, reviewValidators,
   asyncHandler(async (req, res) => {
-
-    console.log("REQBODY!!!!!!!!", req.body)
+    const userId = req.params.userId
     const reviewId = parseInt(req.body.reviewId, 10)
-    console.log("REQBODY.REVIEW!!!!!!!!", reviewId)
-    const reviewInstance = await db.Review.findbyPk(reviewId)
-    console.log("INSTANCE!!!!!!!!!!!!", reviewInstance)
 
-    // reviewInstance.title = req.body.title
-    // reviewInstance.description = req.body.description
-    // reviewInstance.rating = req.body.rating
+    const review = await db.Review.findByPk(reviewId)
 
-    // await reviewInstance.save()
-    // res.status(200)
-    // res.json({message: 'Success!'})
+    review.title = req.body.title
+    review.description = req.body.description
+    review.rating = req.body.rating
+
+    const validateErrors = validationResult(req);
+    if(validateErrors.isEmpty()) {
+      await review.save()
+      res.status(200)
+      res.json({message: 'Success!'}, review)
+    } else {
+      const errors = validatorErrors.array().map((error) => error.msg);
+      res.status(400);
+      res.json({ message: 'Unsuccessful!', review, errors });    }
 
   }));
 module.exports = router;
