@@ -10,11 +10,9 @@ editBtn.addEventListener('click', e =>{
     if(form.classList.contains('hidden')) {
         form.classList.remove('hidden');
         profileInfo.classList.add('hidden');
-        editBtn.innerText = "Cancel"
     } else {
         form.classList.add('hidden');
         profileInfo.classList.remove('hidden');
-        editBtn.innerText = "Edit"
     }
 });
 
@@ -25,8 +23,6 @@ submitBtn.addEventListener('click', async(submitEvent) => {
     const username = document.querySelector(`#edit-username-user${userId}`).value
     const biography = document.querySelector(`#edit-bio-user${userId}`).value
     const email = document.querySelector(`#edit-email-user${userId}`).value
-    const password = document.querySelector(`#edit-password-user${userId}`).value
-    const confirmPassword = document.querySelector(`#confirm-password-user${userId}`).value
 
     const res = await fetch(`/users/${userId}`, {
         method: 'PATCH',
@@ -34,32 +30,24 @@ submitBtn.addEventListener('click', async(submitEvent) => {
         body: JSON.stringify({
             username,
             biography,
-            email,
-            password,
-            confirmPassword
+            email
         })
     });
 
     const data = await res.json()
-    const errorContainer = document.querySelector('#user-error-container');
     if(data.message === 'Success!') {
-        const usernameEle = document.querySelector(`#edit-username-user${userId}`)
-        const emailEle = document.querySelector(`#edit-email-user${userId}`)
-        const bioEle = document.querySelector(`#edit-bio-user${userId}`)
+        const usernameEle = document.querySelector(`#user-${userId}-username`)
+        const emailEle = document.querySelector(`#user-${userId}-email`)
+        const bioEle = document.querySelector(`#user-${userId}-bio`)
 
         usernameEle.innerHTML = data.user.username;
         emailEle.innerHTML = data.user.email;
-        bioEle.innerHTML = data.user.biography;
-        errorContainer.innerHTML = '';
+        bioEle.innerHTML = data.user.biography
 
         profileInfo.classList.remove('hidden');
         form.classList.add('hidden');
-    }
-    else {
-       data.errors.forEach(error => {
-        errorContainer.innerHTML += `<li>${error}</li>`
-       });
-
+    } else {
+        //TO DO: create error
     }
 
 })

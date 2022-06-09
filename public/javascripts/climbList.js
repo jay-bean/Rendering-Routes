@@ -10,8 +10,7 @@ if (deleteBtns) {
         const btn = deleteBtns[i];
 
         btn.addEventListener('click', async (e) => {
-            e.preventDefault()
-            btn.innerHTML = "Remove"
+            e.preventDefault();
             const routeId = e.target.id.split('-')[2]
             const res = await fetch(`/users/${userId}/climb-list`, {
                 method: 'DELETE',

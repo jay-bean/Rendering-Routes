@@ -1,13 +1,14 @@
 extends layout.pug
 
+append head
+    script(src="/javascripts/index.js" type="module" defer)
+
 block content
-    table
-        thead
-            tr
-                th Avatar
-                th User
-        tbody
-            each user in users
-                tr
-                    td
-                    td: a(href=`/users/${user.id}`) #{user.username}
+    h2 Check out what other members are climbing!
+    .all-users-container
+        each user in users
+            img(class="profile" src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="80px" width="80px")
+            p See #{user.username}'s
+            div: a(href=`/users/${user.id}`) profile
+            div: a(href=`/users/${user.id}/climb-list`) climb lists
+            div: a(href=`/users/${user.id}/reviews`) recent reviews
