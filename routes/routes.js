@@ -37,8 +37,17 @@ router.get('/:routeId(\\d+)', csrfProtection,
       res.redirect('/404');
     }
     const seshAuth = req.session.auth;
-
-    res.render('route', { route, postUser, crags, reviews, cragName, seshAuth, review });
+    let currentClimbListRoute;
+    if (seshAuth) {
+      const check = await db.ClimbList.findOne({
+        where: {
+          userId: seshAuth.userId,
+          routeId
+        },
+      })
+      if (check) currentClimbListRoute = true;
+    }
+    res.render('route', { route, postUser, crags, reviews, cragName, seshAuth, review, currentClimbListRoute});
 }));
 
 router.get('/add', csrfProtection, requireAuth,
@@ -133,7 +142,6 @@ router.patch('/:routeId(\\d+)', requireAuth, routeEditValidators,
     const routeId = parseInt(req.params.routeId, 10);
     const route = await db.Route.findByPk(routeId);
     const crags = await db.Crag.findAll();
-    console.log(req.body)
     route.name = req.body.name;
     route.description = req.body.description;
     route.height = req.body.height;
@@ -157,5 +165,29 @@ router.patch('/:routeId(\\d+)', requireAuth, routeEditValidators,
       res.json({ message: 'Unsuccessful!', route, crags, errors});
     }
 }));
+
+router.post('/:routeId(\\d+)', requireAuth,
+  asyncHandler(async (req, res) => {
+    const {
+      status,
+      userId,
+      routeId
+    } = req.body;
+
+    const currentClimbListRoute = await db.ClimbList.findOne({
+      where: { userId, routeId },
+    })
+
+    if (currentClimbListRoute === null) {
+      await db.ClimbList.create({
+        haveClimbed: status,
+        routeId: parseInt(routeId, 10),
+        userId: userId
+      });
+      res.status(200);
+      res.json({ message: 'Created!'});
+    }
+  })
+);
 
 module.exports = router;

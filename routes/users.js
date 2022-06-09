@@ -179,36 +179,6 @@ router.get('/:userId(\\d+)/climb-list', requireAuth,
   })
 );
 
-router.post('/:userId(\\d+)/climb-list', requireAuth,
-  asyncHandler(async (req, res) => {
-    const userId = res.locals.user.id;
-    console.log(userId, 'userId');
-    console.log(req.body);
-    const { climbStatus } = req.body;
-    const splitClimbStatus = climbStatus.split('-');
-    const status = splitClimbStatus[0];
-    const routeId = splitClimbStatus[1];
-
-    const currentClimbListRoute = await db.ClimbList.findOne({
-      where: { userId, routeId },
-    })
-
-    if (currentClimbListRoute === null) {
-      const newClimbListRoute = db.ClimbList.create({
-        haveClimbed: status,
-        routeId: parseInt(routeId, 10),
-        userId: userId
-      })
-    } else {
-      if (currentClimbListRoute.haveClimbed === false) {
-        await currentClimbListRoute.update({ haveClimbed: true })
-      } else {
-        await currentClimbListRoute.update({ haveClimbed: false })
-      }
-    }
-  })
-);
-
 router.patch('/:userId(\\d+)/climb-list', requireAuth,
   asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10)

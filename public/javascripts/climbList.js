@@ -1,8 +1,32 @@
-
 const splitURL = document.URL.split('/');
 const userId = splitURL[4];
 const editListBtns = document.querySelectorAll('.edit-list-btn')
 const deleteBtns = document.querySelectorAll('.list-delete-btn')
+const addButton = document.querySelector('#climb-list-add-button');
+
+if (addButton) {
+    const id = document.querySelector('#list-hidden-user').value;
+    const curRoute = document.querySelector('#list-hidden-route').value;
+    addButton.addEventListener("click", async (e) => {
+        const status = document.querySelector('#climb-status-dropdown').value;
+        e.preventDefault();
+
+        const res = await fetch(`/routes/${curRoute}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                status,
+                userId: id,
+                routeId: curRoute
+            })
+        })
+
+        const data = await res.json();
+    })
+}
 
 if (deleteBtns) {
 
