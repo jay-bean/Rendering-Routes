@@ -14,6 +14,7 @@
 ### Tabel of Contents
 * [Introduction](#introduction)
 * [Future Features](#future-features)
+* []()
 
 ### Introduction
 
@@ -21,6 +22,13 @@ Rendering Routes is a good reads clone with a rock climbing twist.
 Users can locate climbs near them, add them to their climb list, and conquer them. Users also have the ability to add crags and routes, not yet established, for others to explore. Users can leave reviews with any tips or comments on each individual route. Rendering Routes is here to share the love for climbing, and encourage growth within the climbing community.
 
 ### Screenshot of Home Page Other Shots
+
+### Technical implementation details
+    * Anything you had to stop and think about before building
+    * Descriptions of particular challenges
+    * Snippets or links to see code for these
+* Deciding what we wanted the user to be able to create, update, and delete without interfering with other users climb list and routes they have created.
+* Updating a route provided for some challenges. Implementing the update with a hidden form, while staying on the page without a redirect/refresh, took some trial and error.
 
 ### Index
 * [Feature List](https://github.com/jay-bean/Rendering-Routes/wiki/feature-list)
