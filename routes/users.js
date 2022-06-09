@@ -116,10 +116,13 @@ router.post('/demo/log-in', asyncHandler(async (req, res) => {
 router.get('/:userId(\\d+)', requireAuth,
   asyncHandler(async (req, res) => {
     const user = await db.User.findByPk(req.params.userId)
+    const reviews = await db.Review.findAll({
+      where: { userId: req.params.userId}
+    })
+    
 
     if (!user) res.redirect('/404');
 
-    // YOU CAN DO THIS INSTEAD OF having seshAuth
     let loggedInUser
     if(req.session.auth) {
       loggedInUser = req.session.auth.userId
@@ -136,7 +139,9 @@ router.patch('/:userId(\\d+)', requireAuth, userEditValidators,
   user.biography = req.body.biography;
   user.email = req.body.email;
   password = req.body.password
+  confirmPassword = req.body.confirmPassword
 
+  console.log("VALUEEEEEEEEEEE", confirmPassword)
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
@@ -220,12 +225,19 @@ asyncHandler(async(req, res)=>{
 // })
 // );
 
-router.delete('/:userId(\\d+)/climb-list', requireAuth,
+router.delete('/:userId(\\d+)/climb-list',
 asyncHandler(async(req, res)=>{
   const userId = parseInt(req.params.userId, 10)
 
-  const climbListRoute = await ClimbList.findOne
+  const currentClimbListRoute = await db.ClimbList.findOne({
+    where: {userId, routeId},
+  })
+  await currentClimbListRoute.destroy()
+
+  res.json({message: 'Success!'})
+
 })
+
 );
 
 module.exports = router;

@@ -1,7 +1,8 @@
+
 const splitURL = document.URL.split('/');
 const userId = splitURL[3];
 const editListBtns = document.querySelectorAll(`#update-route-${userId}`)
-const deleteBtns = document.querySelectorAll('.delete-btn')
+const deleteBtns = document.querySelectorAll('.list-delete-btn')
 
 if(deleteBtns) {
 
@@ -13,7 +14,7 @@ if(deleteBtns) {
             btn.innerHTML = "Remove"
             // const routeId = e.target.id.split('-')[2]
 
-            // const res = await fetch(`/${userId}/climb-list`, {
+            // const res = await fetch(`/users/${userId}/climb-list`, {
             //     method: 'DELETE'
             // })
 

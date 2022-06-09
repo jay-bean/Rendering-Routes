@@ -7,7 +7,7 @@ block content
             div(class="single-route-container" id=`route-container-${route.Route.id}`)
                 p(id=`route-${route.Route.id}`)= route.Route.name
                 if loggedInUser === userId
-                    button(class='delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete
+                    button(class='list-delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete
                     button(class='edit-list-btn' id=`update-route-${userId}`) Add to have climbed
 
     h2 Have Climbed
@@ -16,4 +16,4 @@ block content
              div(class="single-route-container" id=`route-container-${route.Route.id}-${route.id}`)
                 p(id=`route-${route.Route.id}`)= route.Route.name
                 if loggedInUser === userId
-                    button(class='delete-btn' id=`delete-route-${userId}`) Delete
+                    button(class='list-delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete
