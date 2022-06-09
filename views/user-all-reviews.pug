@@ -1,0 +1,10 @@
+extends layout.pug
+
+
+block content
+    h2 All of #{user.username}'s Reviews
+    each review in userReviews
+        div
+            h3= review.title
+            p= review.description
+            div= review.rating

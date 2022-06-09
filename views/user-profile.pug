@@ -9,17 +9,11 @@ block content
         thead
             tr
                 th #{user.username}'s Profile
-                th Email
                 th Biography
-                th Climb Lists
-                th Reviews
         tbody
             tr
                 th: img(src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="250px" width="230px")
-                th(id=`user-${user.id}-email`) #{user.email}
                 th(id=`user-${user.id}-bio`) #{user.biography}
-                th: a(href=`/users/${user.id}/climb-list`) View Climb Lists
-                th list of all users reviews
 
     if loggedInUser === user.id
         div(id='user-error-container')
@@ -31,8 +25,15 @@ block content
             label Email:
             input(type='email' name='email' value=user.email id=`edit-email-user${user.id}`)
             label Password:
-            input(type='password' name='password' value='' id=`edit-password-user${user.id}`)
+            input(type='text' name='password' value='' id=`edit-password-user${user.id}`)
             label Confirm Password:
-            input(type='password' name='confirmPassword' value='Abc123' id=`confirm-password-user${user.id}`)
+            input(type='text' name='confirmPassword' value='' id=`confirm-password-user${user.id}`)
             button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit
         button(class='edit-user-btn' id=`edit-user-${user.id}`) Edit Profile
+
+    div
+        a(href=`/users/${user.id}/climb-list`) View Climb Lists
+    div
+        a(href=`/users/${user.id}/reviews`) Go to all your Reviews
+    //- div
+    //-     a(href=`/users/${user.id}/climb-list`) View Climb Lists

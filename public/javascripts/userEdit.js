@@ -26,6 +26,7 @@ submitBtn.addEventListener('click', async(submitEvent) => {
     const biography = document.querySelector(`#edit-bio-user${userId}`).value
     const email = document.querySelector(`#edit-email-user${userId}`).value
     const password = document.querySelector(`#edit-password-user${userId}`).value
+    const confirmPassword = document.querySelector(`#confirm-password-user${userId}`).value
 
     const res = await fetch(`/users/${userId}`, {
         method: 'PATCH',
@@ -34,17 +35,17 @@ submitBtn.addEventListener('click', async(submitEvent) => {
             username,
             biography,
             email,
-            password
+            password,
+            confirmPassword
         })
     });
 
     const data = await res.json()
-    console.log(data)
     const errorContainer = document.querySelector('#user-error-container');
     if(data.message === 'Success!') {
-        const usernameEle = document.querySelector(`#user-${userId}-username`)
-        const emailEle = document.querySelector(`#user-${userId}-email`)
-        const bioEle = document.querySelector(`#user-${userId}-bio`)
+        const usernameEle = document.querySelector(`#edit-username-user${userId}`)
+        const emailEle = document.querySelector(`#edit-email-user${userId}`)
+        const bioEle = document.querySelector(`#edit-bio-user${userId}`)
 
         usernameEle.innerHTML = data.user.username;
         emailEle.innerHTML = data.user.email;
