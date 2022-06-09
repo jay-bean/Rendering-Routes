@@ -2,8 +2,7 @@
 ### Possible logo here
 ###### Connecting climbers to the climb.
 
-### Visit our site here:
-[Rendering Routes](https://rendering-routes.herokuapp.com/)
+##### Visit our site here: [Rendering Routes](https://rendering-routes.herokuapp.com/)
 
 ### Technologies Used/ maybe a strip format?
 * Javascript
