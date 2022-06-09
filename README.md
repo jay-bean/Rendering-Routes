@@ -2,10 +2,10 @@
 ###### Connecting climbers to the climb.
 
 ### Technologies Used
-##### Javascript
-##### PUG
-##### CSS
-##### Express
+* Javascript
+* PUG
+* CSS
+* Express
 
 
 ### Visit our live site here:
