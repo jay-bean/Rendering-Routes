@@ -2,12 +2,13 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Lato', 'sans-serif';
 }
 
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'Lato', sans-serif;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -17,4 +18,16 @@ body::-webkit-scrollbar {
 
 .hidden {
     display: none
+}
+
+#footer-bar {
+    width: 100%;
+    height: var(--nav-height);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+    background-color: #3B4E4C;
+    font-size: 24px;
+    font-weight: 500;
+    align-items: center;
 }
