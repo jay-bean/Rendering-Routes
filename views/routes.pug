@@ -1,11 +1,14 @@
 extends layout.pug
 
 block content
-  h1 Routes
-  h2 What will you climb today?
-  div
-    a(href='/routes/add')
-      button Add Route
+  h1#h1-routes Routes
+  hr
+  h2#h2-routes What will you climb today?
+  div#h3-btn-div
+    h3#h3-routes Click on a name to explore that route
+    div#div-btn
+      a(href='/routes/add')
+        button#routes-btn Add Route
   table
     thead
       tr
@@ -16,10 +19,10 @@ block content
         th(scope='col') Type
     tbody
       each route in routes
-        tr
-          td
-            a(href=`routes/${route.id}`)= route.name
-          td= route.difficulty
-          td= route.height
-          td= route.protection
-          td= route.type
+          tr(id='row-highlight')
+            td
+              a(class='route-links' href=`routes/${route.id}`)= route.name
+            td= route.difficulty
+            td= route.height
+            td= route.protection
+            td= route.type
