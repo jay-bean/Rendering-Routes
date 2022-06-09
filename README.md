@@ -13,7 +13,7 @@
 
 ### Tabel of Contents
 * [Introduction](#introduction)
-* [Future Features](#futurefeatures)
+* [Future Features](#future-features)
 
 ### Introduction
 
