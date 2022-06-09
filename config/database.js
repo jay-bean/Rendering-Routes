@@ -12,3 +12,4 @@ module.exports = {
     seederStorage: 'sequelize',
   },
 };
+// pushing to fix main
