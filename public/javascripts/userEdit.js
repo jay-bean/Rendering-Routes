@@ -10,9 +10,11 @@ editBtn.addEventListener('click', e =>{
     if(form.classList.contains('hidden')) {
         form.classList.remove('hidden');
         profileInfo.classList.add('hidden');
+        editBtn.innerText = "Cancel"
     } else {
         form.classList.add('hidden');
         profileInfo.classList.remove('hidden');
+        editBtn.innerText = "Edit"
     }
 });
 
@@ -37,6 +39,8 @@ submitBtn.addEventListener('click', async(submitEvent) => {
     });
 
     const data = await res.json()
+    console.log(data)
+    const errorContainer = document.querySelector('#user-error-container');
     if(data.message === 'Success!') {
         const usernameEle = document.querySelector(`#user-${userId}-username`)
         const emailEle = document.querySelector(`#user-${userId}-email`)
@@ -45,11 +49,16 @@ submitBtn.addEventListener('click', async(submitEvent) => {
         usernameEle.innerHTML = data.user.username;
         emailEle.innerHTML = data.user.email;
         bioEle.innerHTML = data.user.biography
+        errorContainer.innerHTML = '';
 
         profileInfo.classList.remove('hidden');
         form.classList.add('hidden');
-    } else {
-        //TO DO: create error
+    }
+    else {
+       data.errors.forEach(error => {
+        errorContainer.innerHTML += `<li>${error}</li>`
+       });
+
     }
 
 })

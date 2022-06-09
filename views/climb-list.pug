@@ -1,13 +1,24 @@
 extends layout.pug
+append head
+    script(src="/javascripts/climbList.js" type="module" defer)
 
 block content
-    h2 Have Climbed
-    ul
-    each route in climbListRoutes
-        if route.haveClimbed === true
-            li= route.Route.name
     h2 Want to Climb
-    ul
     each route in climbListRoutes
         if route.haveClimbed === false
-            li= route.Route.name
+            div(id=`route-container-${route.Route.id}`)
+                div(class="single-route-container" id=`false-${route.Route.id}`)
+                    p(id=`route-${route.Route.id}`)= route.Route.name
+                    if loggedInUser === userId
+                        button(class='list-delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete
+                        button(class='edit-list-btn' id=`update-route-${userId}-${route.Route.id}`) Add to have climbed
+
+    h2 Have Climbed
+    each route in climbListRoutes
+        if route.haveClimbed === true
+            div(class="add-here-container")
+                div(id=`route-container-${route.Route.id}`)
+                    div(class="single-route-container" id=`true-${route.Route.id}`)
+                        p(id=`route-${route.Route.id}`)= route.Route.name
+                        if loggedInUser === userId
+                            button(class='list-delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete

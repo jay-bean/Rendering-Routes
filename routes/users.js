@@ -7,7 +7,7 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
 const { loginUser, logoutUser, requireAuth } = require('../auth');
-const { userValidators, loginValidators } = require('../validations');
+const { userValidators, loginValidators, userEditValidators } = require('../validations');
 
 const router = express.Router();
 router.use(express.urlencoded())
@@ -116,10 +116,13 @@ router.post('/demo/log-in', asyncHandler(async (req, res) => {
 router.get('/:userId(\\d+)', requireAuth,
   asyncHandler(async (req, res) => {
     const user = await db.User.findByPk(req.params.userId)
+    // const reviews = await db.Review.findAll({
+    //   where: { userId: req.params.userId}
+    // })
+
 
     if (!user) res.redirect('/404');
 
-    // YOU CAN DO THIS INSTEAD OF having seshAuth
     let loggedInUser
     if(req.session.auth) {
       loggedInUser = req.session.auth.userId
@@ -128,23 +131,38 @@ router.get('/:userId(\\d+)', requireAuth,
     res.render('user-profile', { user, loggedInUser })
   }));
 
-router.patch('/:userId(\\d+)', csrfProtection, requireAuth,
+router.patch('/:userId(\\d+)', requireAuth, userEditValidators,
  asyncHandler(async (req, res) => {
   const user = await db.User.findByPk(req.params.userId);
+
   user.username = req.body.username;
   user.biography = req.body.biography;
   user.email = req.body.email;
-  password = req.body.password;
+  password = req.body.password
+  confirmPassword = req.body.confirmPassword
 
+  console.log("VALUEEEEEEEEEEE", confirmPassword)
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+  await user.save();
+    res.status(200);
   res.json({message: 'Success!', user})
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    res.status(400);
+    res.json({ message: 'Unsuccessful!', user, errors});
+  }
 
-  //TO DO: ADD PASSWORD AND VALIDATORS
+
 }));
 
 
 router.get('/:userId(\\d+)/climb-list', requireAuth,
 asyncHandler(async(req, res)=>{
-const userId = req.params.userId
+const userId = parseInt(req.params.userId, 10)
 
 const climbListRoutes = await db.ClimbList.findAll({
   where: {userId},
@@ -152,7 +170,12 @@ const climbListRoutes = await db.ClimbList.findAll({
     model: db.Route,
   }]
 })
-res.render('climb-list', { climbListRoutes})
+
+let loggedInUser
+    if(req.session.auth) {
+      loggedInUser = req.session.auth.userId
+    }
+res.render('climb-list', { climbListRoutes, loggedInUser, userId})
 })
 );
 
@@ -166,36 +189,54 @@ asyncHandler(async(req, res)=>{
   const status = splitClimbStatus[0];
   const routeId = splitClimbStatus[1];
 
-  const currentClimbList = await db.ClimbList.findOne({
+  const currentClimbListRoute = await db.ClimbList.findOne({
     where: {userId, routeId},
   })
 
-  if(currentClimbList === null) {
-    const climbListRoute = db.ClimbList.create({
+  if(currentClimbListRoute === null) {
+    const newClimbListRoute = db.ClimbList.create({
       haveClimbed: status,
       routeId: parseInt(routeId, 10),
       userId: userId
     })
   } else {
-    if(currentClimbList.haveClimbed === false) {
-      await currentClimbList.update({haveClimbed: true})
+    if(currentClimbListRoute.haveClimbed === false) {
+      await currentClimbListRoute.update({haveClimbed: true})
     } else {
-      await currentClimbList.update({haveClimbed: false})
+      await currentClimbListRoute.update({haveClimbed: false})
     }
   }
 })
 );
 
-// // router.patch('/:userId(\\d+)/climb-list', requireAuth,
-// // asyncHandler(async(req, res)=>{
+router.patch('/:userId(\\d+)/climb-list', requireAuth,
+asyncHandler(async(req, res)=>{
+  const userId = parseInt(req.params.userId, 10)
+  const routeId = req.body.routeId
+  const currentClimbListRoute = await db.ClimbList.findOne({
+    where: {userId, routeId},
+  })
+  if (currentClimbListRoute.haveClimbed === false) {
+    await currentClimbListRoute.update({haveClimbed: true})
+  res.json({message: 'Success!'})
+  }
 
-// // })
-// // );
+})
+);
 
-// // router.delete('/:userId(\\d+)/climb-list', requireAuth,
-// // asyncHandler(async(req, res)=>{
+router.delete('/:userId(\\d+)/climb-list',
+asyncHandler(async(req, res)=>{
+  const userId = parseInt(req.params.userId, 10)
+  const routeId = req.body.routeId
+  const currentClimbListRoute = await db.ClimbList.findOne({
+    where: {userId, routeId},
+  })
+  await currentClimbListRoute.destroy()
 
-// // })
-// // );
+  res.json({message: 'Success!'})
+
+})
+
+);
 
 module.exports = router;
