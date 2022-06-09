@@ -9,4 +9,4 @@
 
 
 ### Visit our live site here:
-###### [Rendering Routes](https://dashboard.heroku.com/apps/rendering-routes)
+#### [Rendering Routes](https://rendering-routes.herokuapp.com/)
