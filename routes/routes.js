@@ -21,7 +21,7 @@ router.get('/:routeId(\\d+)', csrfProtection,
   asyncHandler(async (req, res) => {
     const routeId = parseInt(req.params.routeId, 10);
     const route = await db.Route.findByPk(routeId);
-    const user = await db.User.findByPk(route.userId);
+    const postUser = await db.User.findByPk(route.userId);
     const reviews = await db.Review.findAll({
       where: {
         routeId
@@ -33,7 +33,7 @@ router.get('/:routeId(\\d+)', csrfProtection,
     }
     const seshAuth = req.session.auth;
 
-    res.render('route', { route, user, reviews, seshAuth });
+    res.render('route', { route, postUser, reviews, seshAuth });
 }));
 
 router.get('/add', csrfProtection, requireAuth,
