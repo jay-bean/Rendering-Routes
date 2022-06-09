@@ -31,7 +31,6 @@ router.get('/:routeId(\\d+)', csrfProtection,
       }
     });
 
-    // console.log(routeId);
     const review = db.Review.build();
 
     if (!route) {
@@ -103,16 +102,18 @@ router.post('/reviews', requireAuth, reviewValidators, asyncHandler(async(req, r
   const {
     title,
     description,
-    rating
+    rating,
+    userId,
+    routeId
   } = req.body;
 
   const review = db.Review.build({
     title,
     description,
-    rating: parseInt(rating, 10)
+    rating: parseInt(rating, 10),
+    userId: parseInt(userId, 10),
+    routeId: parseInt(routeId, 10)
   });
-
-  console.log(review);
 
   const validatorErrors = validationResult(req);
 

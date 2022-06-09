@@ -1,11 +1,13 @@
 const addAReviewButton = document.querySelector('#review-post-button')
-
+console.log(addAReviewButton)
 if (addAReviewButton) {
     addAReviewButton.addEventListener("click", async (e) => {
         e.preventDefault();
         const title = document.querySelector('#title-of-review').value;
         const description = document.querySelector('#description-of-review').value;
         const rating = document.querySelector('#rating-of-review').value;
+        const userId = document.querySelector('#reviews-hidden-user').value;
+        const routeId = document.querySelector('#reviews-hidden-route').value;
 
         const res = await fetch('/routes/reviews', {
             method: 'POST',
@@ -16,7 +18,9 @@ if (addAReviewButton) {
             body: JSON.stringify({
                 title,
                 description,
-                rating
+                rating,
+                userId,
+                routeId
             })
         })
 
@@ -31,7 +35,7 @@ if (addAReviewButton) {
             `
 
             const reviewContainer = document.querySelector('#review-container');
-            reviewContainer.innerHTML += newReview;
+            reviewContainer.appendChild(newReview);
         } else {
             data.errors.forEach((error) => {
                 errorContainer.innerHTML += `<li>${error}</li>`
