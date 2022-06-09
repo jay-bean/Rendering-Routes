@@ -13,8 +13,9 @@
 
 ### Tabel of Contents
 * [Introduction](#introduction)
+* [Technical implementaion details](#technical-implementation-details)
+* [Index](#index)
 * [Future Features](#future-features)
-* []()
 
 ---
 ### Introduction
