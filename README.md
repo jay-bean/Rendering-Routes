@@ -6,6 +6,7 @@
 
 ### Tabel of Contents
 * [Introduction](#introduction)
+* [Technologies User](#technologies-used)
 * [Technical implementaion details](#technical-implementation-details)
 * [Index](#index)
 * [Future Features](#future-features)
