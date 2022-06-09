@@ -28,7 +28,9 @@ if (addButton) {
 
         if (data.message === 'Created!') {
             const form = document.querySelector('#climb-list-form');
+            const div = document.querySelector('#climb-list-div');
             form.classList.add('hidden');
+            div.innerHTML += `This route is now in your climb list! Visit your profile to change its climb status.`
         }
     })
 }
