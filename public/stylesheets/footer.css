@@ -8,5 +8,15 @@
     font-size: 24px;
     font-weight: 500;
     align-items: center;
-    position: absolute bottom;
+    position: absolute;
+    bottom: 0;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: var(--nav-height);
 }
