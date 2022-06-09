@@ -1,34 +1,37 @@
-extends layout 
+extends layout
 
-append head 
+append head
+    link(rel="stylesheet" href="/stylesheets/index.css")
+    block content
+    h1= title
+        div
+        h2 Jay Hutts
+            p
+                a(href="https://github.com/jay-bean")
+                    img(src="https://cdn-icons-png.flaticon.com/512/25/25231.png" id="jay-gh")
+                a(href="https://www.linkedin.com/in/jay-hutts-300ab9180/")
+                    img(src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png" id="jay-li")
 
-    block content 
-    h1= title 
         div
-        h2 Jay Hutts 
-            p 
-            a(href="https://github.com/jay-bean")
-                img(src="https://cdn-icons-png.flaticon.com/512/25/25231.png")
-            a(href="https://www.linkedin.com/in/jay-hutts-300ab9180/")
-                img(src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png")
-        div
-        h2 Lynn Luong 
-            p 
-            a(href="https://github.com/lynnluong04")
-                img(src="https://cdn-icons-png.flaticon.com/512/25/25231.png")
-            a(href="http://www.linkedin.com/in/lynn-luong-905740139")
-                img(src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png")
-        div
-        h2 Brandon Flores 
+        h2 Lynn Luong
             p
-            a(href="https://github.com/brandonflores647")
-                img(src="https://cdn-icons-png.flaticon.com/512/25/25231.png") 
-            a(href="https://www.linkedin.com/in/brandon-flores-798b98239/")
-                img(src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png")
+                a(href="https://github.com/lynnluong04")
+                    img(src="https://cdn-icons-png.flaticon.com/512/25/25231.png" id="lynn-gh")
+                a(href="http://www.linkedin.com/in/lynn-luong-905740139")
+                    img(src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png" id="lynn-li")
+
         div
-        h2 Zeke Hashimoto 
+        h2 Brandon Flores
             p
-            a(href="https://github.com/e-hashimoto")
-                img(src="https://cdn-icons-png.flaticon.com/512/25/25231.png")
-            a(href="https://www.linkedin.com/in/exequiel-hashimoto/")    
-                img(src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png")
+                a(href="https://github.com/brandonflores647")
+                    img(src="https://cdn-icons-png.flaticon.com/512/25/25231.png" id="brandon-gh")
+                a(href="https://www.linkedin.com/in/brandon-flores-798b98239/")
+                    img(src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png" id="brandon-li")
+
+        div
+        h2 Zeke Hashimoto
+            p
+                a(href="https://github.com/e-hashimoto")
+                    img(src="https://cdn-icons-png.flaticon.com/512/25/25231.png" id="zeke-gh")
+                a(href="https://www.linkedin.com/in/exequiel-hashimoto/")
+                    img(src="https://logos-world.net/wp-content/uploads/2020/04/Linkedin-Logo.png" id="zeke-li")

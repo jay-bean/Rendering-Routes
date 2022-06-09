@@ -18,6 +18,10 @@ router.get('/', asyncHandler(async (req, res) => {
   res.render('index', { title: 'Rendering Routes'});
 }));
 
+router.get('/contact-us', asyncHandler(async (req, res) => {
+  res.render('contact-us', {title: 'Contact the Development Team'});
+}))
+
 router.get('/404', function(req, res, next) {
   res.render('404');
 });
