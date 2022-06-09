@@ -1,0 +1,102 @@
+#h1-routes {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #3B4E4C;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-shadow:
+  2px 2px 0px #d5d5d5,
+  2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+hr {
+  margin: auto;
+  border: 0;
+  border-top: thin solid #ccc;
+  height: 1px;
+  width: 43%;
+  align-content: center;
+}
+
+#h2-routes {
+  margin-bottom: 60px;
+  text-align: center;
+  color: #3B4E4C;
+  font-weight: 400;
+}
+
+#h3-btn-div {
+  margin: 0px 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#h3-routes {
+  color: #575757;
+  font-style: italic;
+}
+
+#routes-btn {
+  background-color: #808080;
+  border-radius: 5px;
+  border: thin double #ffffff;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+}
+
+#routes-btn:hover {
+  background-color: #587B7F;
+  color: #ffffff;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 20px 120px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.10);
+}
+
+thead {
+  background-color: #C0CDB8;
+  color: #000000;
+  text-align: left;
+}
+
+th, td {
+  padding: 20px;
+}
+
+#row-highlight:hover {
+  background-color: #C0CDB8;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #eee;
+}
+
+.route-links {
+  text-decoration: none;
+  color: #000000;
+}
+
+table tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+
+table tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}

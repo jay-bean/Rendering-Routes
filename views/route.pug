@@ -28,9 +28,9 @@ block content
       p Crag:
       p(id=`route-${route.id}-crag`)= cragName
     div
+      p Add this climb to your list!
       form(method='POST' action=`/users/${postUser.id}/climb-list`)
         select(name='climbStatus' class='climb-status')
-          option(value="") Add to Climb List
           option(value=`false-${route.id}`) Want to climb
           option(value=`true-${route.id}`) Have climbed
         input(type='submit' value ='Add to List' class='save-climb-status')
