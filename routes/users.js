@@ -269,9 +269,9 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
     if(validateErrors.isEmpty()) {
       await review.save()
       res.status(200)
-      res.json({message: 'Success!'}, review)
+      res.json({ message: 'Success!', review })
     } else {
-      const errors = validatorErrors.array().map((error) => error.msg);
+      const errors = validateErrors.array().map((error) => error.msg);
       res.status(400);
       res.json({ message: 'Unsuccessful!', review, errors });    }
 
