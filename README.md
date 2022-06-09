@@ -16,7 +16,7 @@
 
 Rendering Routes is a good reads clone with a rock climbing twist.
 
-Our app allows users to locate climbs near them, add them to their climb list, and conquer them. Users also have the ability to add crags and routes, not yet established, for others to explore. Users can leave reviews with any tips or comments on each individual route. 
+Our application allows users to locate climbs near them, add them to their climb list, and conquer them. Users also have the ability to add crags and routes, not yet established, for others to explore. Users can leave reviews with any tips or comments on each individual route. 
 
 Above all, Rendering Routes was created to share the love for climbing, and encourage growth within the climbing community.
 
