@@ -1,19 +1,37 @@
 extends layout.pug
 
+append head
+    script(src="/javascripts/userEdit.js" type="module" defer)
+
+
 block content
-    table
+    table(id=`profile-user-${user.id}`)
         thead
             tr
                 th Avatar
                 th Username
+                th Email
                 th Biography
                 th Climb Lists
                 th Reviews
         tbody
             tr
                 th
-                th= user.username
-                th= user.biography
-                th: a(href=`/users/${user.id}/climb-list`)
+                th(id=`user-${user.id}-username`) #{user.username}
+                th(id=`user-${user.id}-email`) #{user.email}
+                th(id=`user-${user.id}-bio`) #{user.biography}
+                th: a(href=`/users/${user.id}/climb-list`) Link
                 th list of all users reviews
-    a(typeclass='delete-user-btn' id=`delete-user-${user.id}`) Delete Account
+
+    if loggedInUser === user.id
+        form(class='hidden' id=`edit-form-${user.id}`)
+            label Username:
+            input(type='text' name='username' value=user.username id=`edit-username-user${user.id}`)
+            label Biography:
+            input(type='text' name='biography' value=user.biography id=`edit-bio-user${user.id}`)
+            label Email:
+            input(type='email' name='email' value=user.email id=`edit-email-user${user.id}`)
+            label Password:
+            input(type='password' name='password' value=user.password id=`edit-password-user${user.id}`)
+            button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit
+        button(class='edit-user-btn' id=`edit-user-${user.id}`) Edit Profile
