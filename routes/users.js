@@ -116,10 +116,10 @@ router.post('/demo/log-in', asyncHandler(async (req, res) => {
 router.get('/:userId(\\d+)', requireAuth,
   asyncHandler(async (req, res) => {
     const user = await db.User.findByPk(req.params.userId)
-    const reviews = await db.Review.findAll({
-      where: { userId: req.params.userId}
-    })
-    
+    // const reviews = await db.Review.findAll({
+    //   where: { userId: req.params.userId}
+    // })
+
 
     if (!user) res.redirect('/404');
 
@@ -209,26 +209,25 @@ asyncHandler(async(req, res)=>{
 })
 );
 
-// router.patch('/:userId(\\d+)/climb-list', requireAuth,
-// asyncHandler(async(req, res)=>{
-//   const userId = parseInt(req.params.userId, 10)
+router.patch('/:userId(\\d+)/climb-list', requireAuth,
+asyncHandler(async(req, res)=>{
+  const userId = parseInt(req.params.userId, 10)
+  const routeId = req.body.routeId
+  const currentClimbListRoute = await db.ClimbList.findOne({
+    where: {userId, routeId},
+  })
+  if (currentClimbListRoute.haveClimbed === false) {
+    await currentClimbListRoute.update({haveClimbed: true})
+  res.json({message: 'Success!'})
+  }
 
-//   console.log("REQ BODY!!!!!!!!!!!!", req.body)
-//   const climbListRoute = await db.ClimbList.findOne({
-//     where: {userId},
-//     include:[{
-//       model: db.Route,
-//     }]
-//   })
-//   res.json({message: 'Success!'})
-
-// })
-// );
+})
+);
 
 router.delete('/:userId(\\d+)/climb-list',
 asyncHandler(async(req, res)=>{
   const userId = parseInt(req.params.userId, 10)
-
+  const routeId = req.body.routeId
   const currentClimbListRoute = await db.ClimbList.findOne({
     where: {userId, routeId},
   })
