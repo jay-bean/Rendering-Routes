@@ -49,7 +49,7 @@ submitBtn.addEventListener('click', async(submitEvent) => {
 
         usernameEle.innerHTML = data.user.username;
         emailEle.innerHTML = data.user.email;
-        bioEle.innerHTML = data.user.biography
+        bioEle.innerHTML = data.user.biography;
         errorContainer.innerHTML = '';
 
         profileInfo.classList.remove('hidden');

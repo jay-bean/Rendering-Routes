@@ -9,21 +9,28 @@ block content
         div(class = "individual-review-container")
             div(class="hidden" id=`individual-review-${review.id}`)
             h3 #{review.Route.name} Route
-            p: a(href=`/routes/${review.Route.id}`) Go to Route
-            h4 Title: #{review.title}
-            div Rating: #{review.rating}
-            p= review.description
+            div
+                p: a(href=`/routes/${review.Route.id}`) Go to Route
+            div
+                p Title
+                p(id=`title-${review.id}`) #{review.title}
+            div
+                p Rating:
+                p(id=`rating-${review.id}`) #{review.rating}
+            div
+                p Details:
+                p(id=`description-${review.id}`) #{review.description}
         if loggedInUser === userId
         div(id='review-error-container')
         button(class='review-delete-btn' id=`deleteReview-${userId}-${review.id}`) Delete
         button(class='edit-review-btn' id=`edit-review-${review.id}`) Edit Review
         form(class='hidden' id=`edit-review-form-${userId}`)
             label Title:
-            input(type='text' name='title' value=review.title id='edit-review-title')
+            input(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
             label Description:
-            textarea(rows='5' cols='30' name='description' id='edit-review-description')
+            textarea(rows='5' cols='30' name='description' id=`edit-review-description-${review.id}`)
             label Rating
-            select(name='rating' id='edit-review-rating')
+            select(name='rating' id=`edit-review-rating-${review.id}`)
                 option(value='1') 1
                 option(value='2') 2
                 option(value='3') 3
