@@ -28,8 +28,12 @@ block content
       p Crag:
       p(id=`route-${route.id}-crag`)= cragName
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     div
 <<<<<<< HEAD
+=======
+    div(id='climb-list-form-div')
+>>>>>>> Stashed changes
 =======
     div(id='climb-list-form-div')
 >>>>>>> Stashed changes
@@ -43,6 +47,7 @@ block content
             option(value=`true`) Have climbed
           input(type='submit' value ='Add to List' class='save-climb-status' id='climb-list-add-button')
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
       p Add this climb to your list!
       form(method='POST' action=`/users/${postUser.id}/climb-list`)
@@ -51,6 +56,10 @@ block content
           option(value=`true-${route.id}`) Have climbed
         input(type='submit' value ='Add to List' class='save-climb-status')
 >>>>>>> main
+=======
+      else
+        p(id='climb-list-form-info') This route is on your climb list! Click to change its status.
+>>>>>>> Stashed changes
 =======
       else
         p(id='climb-list-form-info') This route is on your climb list! Click to change its status.
