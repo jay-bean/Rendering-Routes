@@ -4,12 +4,25 @@ append head
   script(src="/javascripts/crags.js" type="module" defer)
 
 block content
-    h1 TODO: Add dynamic title
-    div(id=`crag-post-${crag.id}` class='')
-      p Created by: #{postUser.username}
-      p(id=`crag-${crag.id}-name`) #{crag.name}
-      p(id=`crag-${crag.id}-location`) #{crag.location}
-      p(id=`crag-${crag.id}-description`) #{crag.description}
+    h1(id='crag-title') #{crag.name}
+    div(id=`crag-post-${crag.id}` class='cragPostContainer')
+      p(class='cragPostTitle' id='cragPostedBy') Posted by: #{postUser.username}
+      p(class='cragPostTitle') Name:
+      p(id=`crag-${crag.id}-name` class='cragPostInfo') #{crag.name}
+      p(class='cragPostTitle') Location:
+      p(id=`crag-${crag.id}-location` class='cragPostInfo') #{crag.location}
+      p(class='cragPostTitle') Description:
+      p(id=`crag-${crag.id}-description` class='cragPostInfo') #{crag.description}
+      if routeLength > 0
+        p(class='cragPostTitle') Route's connected to this Crag:
+        p(id='clickOneText') Click one to check it out!
+        ul(id='cragRouteUL')
+          each route in routes
+            li(class='cragIndividualRoute')
+              a(href=`/routes/${route.id}`) #{route.name}
+      else
+        p It doesnt look like this Crag has any Routes.
+          a(href='/routes/add')  Post one here!
     if seshAuth
       if crag.userId === seshAuth.userId
         div(id='crag-error-container')
