@@ -105,11 +105,26 @@ if (editReviewButtons) {
                 const form = document.querySelector(`#edit-review-form-${reviewId}`);
 
                 const data = await res.json()
-                const errorContainer = document.querySelector(`review-error-container-${reviewId}`);
+                const errorContainer = document.querySelector(`#review-error-container-${reviewId}`);
 
                 if (data.message === 'Success!') {
+                    const titleEle = document.querySelector(`#title-${reviewId}`);
+                    const descriptionEle = document.querySelector(`#description-${reviewId}`);
+                    const rating = document.querySelector(`#rating-${reviewId}`);
+                    const editBtn = document.querySelector(`#edit-review-${reviewId}`);
+
+                    titleEle.innerHTML = data.review.title;
+                    descriptionEle.innerHTML = data.review.description;
+                    rating.innerHTML = data.review.rating;
+                    errorContainer.innerHTML = '';
+                    editBtn.innerText = "Edit Review"
+
                     reviewContainer.classList.remove('hidden');
                     form.classList.add('hidden');
+                } else {
+                    data.errors.forEach(error => {
+                        errorContainer.innerHTML += `<li>${error}</li>`;
+                    });
                 }
             });
         }

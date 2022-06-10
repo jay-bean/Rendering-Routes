@@ -7,12 +7,8 @@ block content
     h2 All of #{user.username}'s Reviews
     each review in userReviews
         div(class="individual-review-container")
+            h3 #{review.Route.name} Route
             div(id=`individual-review-${review.id}`)
-                h3 #{review.Route.name} Route
-                p: a(href=`/routes/${review.Route.id}`) Go to Route
-                h4 Title: #{review.title}
-                div Rating: #{review.rating}
-                p= review.description
                 div
                     p: a(href=`/routes/${review.Route.id}`) Go to Route
                 div
