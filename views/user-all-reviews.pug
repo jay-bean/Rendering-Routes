@@ -25,7 +25,7 @@ block content
                     p Details:
                     p(id=`description-${review.id}`) #{review.description}
             if loggedInUser === userId
-                div(id='review-error-container')
+                div(id=`review-error-container-${review.id}`)
                 form(class='hidden' id=`edit-review-form-${review.id}`)
                     label Title:
                     input(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)

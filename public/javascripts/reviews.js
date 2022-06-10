@@ -78,30 +78,41 @@ if (editReviewButtons) {
         });
     }
 
-    const submitEditReview = document.querySelector(`.edit-review-submit`)
+    const submitEditReview = document.querySelectorAll(`.edit-review-submit`)
 
     if (submitEditReview) {
-        submitEditReview.addEventListener('click', async (e) => {
-            e.preventDefault();
-            const reviewId = e.target.id.split('-')[3];
-            const title = document.querySelector(`#edit-review-title-${reviewId}`).value
-            const description = document.querySelector(`#edit-review-description-${reviewId}`).value
-            const rating = document.querySelector(`#edit-review-rating-${reviewId}`).value
+        for (let i = 0; i < submitEditReview.length; i++) {
+            const btn = submitEditReview[i];
+            btn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const reviewId = e.target.id.split('-')[3];
+                const title = document.querySelector(`#edit-review-title-${reviewId}`).value
+                const description = document.querySelector(`#edit-review-description-${reviewId}`).value
+                const rating = document.querySelector(`#edit-review-rating-${reviewId}`).value
 
-            const res = await fetch(`/users/${userId}/reviews`, {
-                method: 'PATCH',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    title,
-                    description,
-                    rating,
-                    reviewId
-                })
+                const res = await fetch(`/users/${userId}/reviews`, {
+                    method: 'PATCH',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        title,
+                        description,
+                        rating,
+                        reviewId
+                    })
+                });
+
+                const reviewContainer = document.querySelector(`#individual-review-${reviewId}`);
+                const form = document.querySelector(`#edit-review-form-${reviewId}`);
+
+                const data = await res.json()
+                const errorContainer = document.querySelector(`review-error-container-${reviewId}`);
+
+                if (data.message === 'Success!') {
+                    reviewContainer.classList.remove('hidden');
+                    form.classList.add('hidden');
+                }
             });
-
-            const data = await res.json()
-            const errorContainer = document.querySelector('review-error-container')
-        });
+        }
     }
 }
 
