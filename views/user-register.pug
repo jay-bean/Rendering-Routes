@@ -10,18 +10,18 @@ block content
   +validationErrorSummary(errors)
   .form-container
     form(action='/users/sign-up' method='post')
-      input(type='hidden' name='_csrf' value=csrfToken)
+      input(type='hidden' class="signup" name='_csrf' value=csrfToken)
       p.create-account Create Account
-      label Username
-      input(type="text" name="username" value=user.username)
-      label Email Address
-      input(type="email" name="email" value=user.email)
-      label Biography
-      input(type="textarea" name="biography" value=user.biography)
-      label Password
-      input(type="password" name="password" value=user.password)
-      label Confirm Password
-      input(type="password" name="confirmPassword" value = "")
+      label.signup Username
+      input(type="text" class="signup" name="username" value=user.username)
+      label.signup Email Address
+      input(type="email" class="signup" name="email" value=user.email)
+      label.signup Biography
+      input(type="textarea" class="signup" name="biography" value=user.biography)
+      label.signup Password
+      input(type="password" class="signup" name="password" value=user.password)
+      label.signup Confirm Password
+      input(type="password" class="signup" name="confirmPassword" value = "")
       div.options
         button(type='submit' class="register") Register
         a(href='/' class="cancel") Cancel
