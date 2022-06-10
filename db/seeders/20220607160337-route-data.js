@@ -90,6 +90,9 @@ module.exports = {
       { name: 'Forearm Smash', description: 'This traditional climb starts out wide hands to fists. A good climb for the competent 5.8 crack climber, solid protection to the bolted anchors. Follow the crack and protect early and often, the crux is the wide crack start with awkward footing.', difficulty: '5.8', height: 70, type: 'Trad', protection: 'cams, nuts, hexes', userId: 1, cragId: 38,  createdAt: new Date(), updatedAt: new Date() },
       { name: 'Work Ethic', description: 'One of the top classic Red Wing routes, Work Ethic offers the motivated rock jock a brilliant stretch of thin, technical face climbing that is surprisingly sustained for such a short length. Even though it goes higher, the climb is effectively over at the major ledge at 25 feet.', difficulty: '5.12a', height: 30, type: 'Sport', protection: 'Bolts to anchor.', userId: 1, cragId: 38,  createdAt: new Date(), updatedAt: new Date() },
       { name: 'Sleeping Bat in a Ziplock Bag', description: 'Start a little left of the first bolt and a somewhat bouldery start leads up and right to the first bolt. Continue on the right on large holds on a somewhat hollow sounding flake. Once atop the ledge walk to the left, clip a bolt and then continue to the top working back to the right. A direct finish is also possible (5.11a) by continuing straight up from the ledge. Fun and varied climbing.', difficulty: '5.10a/b', height: 60, type: 'Sport', protection: '8 bolts to anchor.', userId: 1, cragId: 38,  createdAt: new Date(), updatedAt: new Date() },
+
+      // YOSEMITE VALLEY
+      {}
     ], {});
   },
 
