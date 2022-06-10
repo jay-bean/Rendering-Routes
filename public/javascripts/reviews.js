@@ -56,7 +56,6 @@ const editReviewButtons = document.querySelectorAll('.edit-review-btn');
 if (editReviewButtons) {
     const splitURL = document.URL.split('/');
     const userId = splitURL[4];
-    const reviewsInfo = document.querySelectorAll('.individual-review-container')
 
     for (let i = 0; i < editReviewButtons.length; i++) {
         const btn = editReviewButtons[i];
@@ -137,11 +136,10 @@ for (let i = 0; i < deleteReviewBtns.length; i++) {
     const btn = deleteReviewBtns[i];
 
     btn.addEventListener('click', async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const splitURL = document.URL.split('/');
         const userId = splitURL[4];
-        const reviewIdDiv = document.querySelector('div.hidden').id
-        const reviewId = reviewIdDiv.split('-')[2]
+        const reviewId = e.target.id.split('-')[2];
 
         const res = await fetch(`/users/${userId}/reviews`, {
             method: 'DELETE',
@@ -151,7 +149,7 @@ for (let i = 0; i < deleteReviewBtns.length; i++) {
 
         const data = await res.json();
         if(data.message = "Success!") {
-            const container = document.getElementById(`single-review-container-${reviewId}`)
+            const container = document.getElementById(`individual-review-container-id-${reviewId}`)
             container.remove()
         }
     })

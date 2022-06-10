@@ -6,7 +6,7 @@ append head
 block content
     h2 All of #{user.username}'s Reviews
     each review in userReviews
-        div(class="individual-review-container")
+        div(class="individual-review-container" id=`individual-review-container-id-${review.id}`)
             h3 #{review.Route.name} Route
             div(id=`individual-review-${review.id}`)
                 div

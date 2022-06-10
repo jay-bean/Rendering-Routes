@@ -197,10 +197,8 @@ router.delete('/:userId(\\d+)/climb-list',
     const currentClimbListRoute = await db.ClimbList.findOne({
       where: { userId, routeId },
     })
-    await currentClimbListRoute.destroy()
-
-    res.json({ message: 'Success!' })
-
+    await currentClimbListRoute.destroy();
+    res.json({ message: 'Success!' });
   })
 
 );
