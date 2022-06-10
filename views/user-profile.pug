@@ -8,12 +8,12 @@ block content
     table(id=`profile-user-${user.id}`)
         thead
             tr
-                th #{user.username}'s Profile
+                th(id=`username-users-${user.id}`) #{user.username}'s Profile
                 th Biography
         tbody
             tr
                 th: img(src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="250px" width="230px")
-                th(id=`user-${user.id}-bio`) #{user.biography}
+                th(id=`bio-user-${user.id}`) #{user.biography}
 
     if loggedInUser === user.id
         div(id='user-error-container')
