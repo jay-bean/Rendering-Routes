@@ -166,12 +166,26 @@ router.get('/:userId(\\d+)/climb-list', requireAuth,
         model: db.Route,
       }]
     })
+    const wantToClimbList = await await db.ClimbList.findAll({
+      where: {
+        userId,
+        haveClimbed: false
+      },
+    });
+    const wantToClimbCount = wantToClimbList.length;
+    const haveClimbedList = await await db.ClimbList.findAll({
+      where: {
+        userId,
+        haveClimbed: true
+      },
+    });
+    const haveClimbedCount = haveClimbedList.length;
 
     let loggedInUser
     if (req.session.auth) {
       loggedInUser = req.session.auth.userId
     }
-    res.render('climb-list', { climbListRoutes, loggedInUser, userId })
+    res.render('climb-list', { climbListRoutes, loggedInUser, userId, wantToClimbCount, haveClimbedCount })
   })
 );
 
