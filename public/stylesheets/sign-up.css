@@ -53,25 +53,27 @@ label {
 .cancel {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 
 }
 
 .create-account {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 36px;
-    margin: 26px auto;
+    margin: 36px auto;
     font-weight: bold;
     display: flex;
     justify-content: center;
 }
 
 /* .bottom{
-    display: inline-block;
-} */
+    margin-bottom: 10px;
+ } */
 
 .text {
     display: inline-block;
     margin-left: 55px;
+    margin-bottom: 40px;
 }
 .sign-in {
     display: inline-block;
