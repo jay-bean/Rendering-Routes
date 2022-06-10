@@ -1,30 +1,29 @@
 div(id='review-error-container')
-h2 Post a Review
-form(action='/routes/reviews' method='post')
-  input(type='hidden' name='_csrf' value=csrfToken)
-  if seshAuth
-    input(type='hidden' name='userId' value=`${seshAuth.userId}` id='reviews-hidden-user')
-    input(type='hidden' name='routeId' value=`${route.id}` id='reviews-hidden-route')
-  label Title:
-  input(type='text' name='title' value=review.title id='title-of-review')
-  label Description:
-  textarea(rows='5' cols='30' name='description' value=review.description id='description-of-review')
-  label Rating:
-  select(name='rating' id='rating-of-review')
-    option(value='1') 1
-    option(value='2') 2
-    option(value='3') 3
-    option(value='4') 4
-    option(value='5') 5
-  button(class='review-submit' id='review-post-button') Submit
-
-h2 Reviews
-
-div(id='review-container')
-  if reviews
-    each ele in reviews
-      div
-        h4= ele.title
-        div: a(href=`/users/${postUser.id}`) #{postUser.username}
-        p Rated it #{ele.rating}/5
-        p= ele.description
+div#review-form
+  h2 Post a Review
+  form(action='/routes/reviews' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    if seshAuth
+      input(type='hidden' name='userId' value=`${seshAuth.userId}` id='reviews-hidden-user')
+      input(type='hidden' name='routeId' value=`${route.id}` id='reviews-hidden-route')
+    label Title:
+    input(type='text' name='title' value=review.title id='title-of-review')
+    label Description:
+    textarea(rows='5' cols='30' name='description' value=review.description id='description-of-review')
+    label Rating:
+    select(name='rating' id='rating-of-review')
+      option(value='1') 1
+      option(value='2') 2
+      option(value='3') 3
+      option(value='4') 4
+      option(value='5') 5
+    button(class='review-submit' id='review-post-button') Submit
+  h2#h2-review Reviews
+  div(id='review-container')
+    if reviews
+      each ele in reviews
+        div#single-review
+          h4= ele.title
+          div: a(href=`/users/${postUser.id}`) #{postUser.username}
+          p Rated it #{ele.rating}/5
+          p= ele.description

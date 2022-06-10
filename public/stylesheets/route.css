@@ -1,15 +1,17 @@
-/* #route-page-div {
-  margin: 30px 70px;
+#grid-route {
+  margin: 10px 70px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 10% 40% 50%;
-} */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  align-items: center;
+}
+#h1-hr {
+  grid-column: 1 / 9;
+}
 
 .h1-route {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   text-align: center;
   color: #3B4E4C;
   font-family: 'Abhaya Libre', serif;
@@ -21,10 +23,78 @@
   2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
+.route-hr {
+  margin: auto;
+  border: 0;
+  border-top: thin solid #ccc;
+  height: 1px;
+  width: 43%;
+}
+
 #h2-route {
   color: #3B4E4C;
-  font-family: 'Abhaya Libre', serif;
   font-size: 20px;
+}
+
+.h3-route {
+  /* font-family: 'Abhaya Libre', serif; */
+  font-size: 23px;
+}
+
+#difficulty-route {
+  grid-row: 4 / 5;
+  grid-column: 3 / 4;
+}
+
+#height-route {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+#type-route {
+  grid-row: 4 / 5;
+  grid-column: 2 / 3;
+}
+#protection-route {
+  grid-row: 3 / 4;
+  grid-column: 3 / 4;
+}
+#description-route {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+}
+#crag-route {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+#review-form {
+  grid-row: 6 / 7;
+  grid-column: 1 / 5;
+}
+#h2-review {
+  grid-row: 7;
+  grid-column: 1/ 2;
+  text-align: left;
+  margin-left: 10%;
+}
+#review-container {
+  grid-row: 7 / 9;
+  grid-column: 1 / 5;
+  border: thin solid rgb(122, 121, 121);
+  border-radius: 4px;
+  max-height: 290px;
+  overflow-y: scroll;
+  text-align: center;
+}
+
+#single-review {
+  margin-left: 20px;
+  margin-right: 20px;
+  grid-column: 1 / 5;
+  display: flex;
+  flex-direction: row;
+  max-width: 800px;
+  justify-content: space-around;
 }
 
 #route-edit-button {
@@ -35,4 +105,54 @@
   color: #ffffff;
   text-align: center;
   font-size: 20px;
+}
+
+#route-edit-button:hover {
+  background-color: #587B7F;
+  color: #ffffff;
+}
+
+.edit-submit {
+  background-color: #808080;
+  border-radius: 5px;
+  border: thin double #ffffff;
+  padding: 4px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+}
+
+.edit-submit:hover {
+  background-color: #587B7F;
+  color: #ffffff;
+}
+
+.review-submit  {
+  background-color: #808080;
+  border-radius: 5px;
+  border: thin double #ffffff;
+  padding: 4px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+}
+
+.review-submit:hover {
+  background-color: #587B7F;
+  color: #ffffff;
+}
+
+.save-climb-status  {
+  background-color: #808080;
+  border-radius: 5px;
+  border: thin double #ffffff;
+  padding: 4px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+}
+
+.save-climb-status:hover {
+  background-color: #587B7F;
+  color: #ffffff;
 }
