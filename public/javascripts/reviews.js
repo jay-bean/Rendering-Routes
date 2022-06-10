@@ -148,4 +148,3 @@ const submitEditReview = document.querySelector(`.edit-review-submit`)
         }
 
     })
-}

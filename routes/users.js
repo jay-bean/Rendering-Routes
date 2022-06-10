@@ -231,22 +231,6 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
 
     const review = await db.Review.findByPk(reviewId)
 
-  router.patch('/:userId(\\d+)/reviews', requireAuth,
-  asyncHandler(async (req, res) => {
-
-    console.log("REQBODY!!!!!!!!", req.body)
-    const reviewId = parseInt(req.body.reviewId, 10)
-    console.log("REQBODY.REVIEW!!!!!!!!", reviewId)
-    const reviewInstance = await db.Review.findbyPk(reviewId)
-    console.log("INSTANCE!!!!!!!!!!!!", reviewInstance)
-
-    // reviewInstance.title = req.body.title
-    // reviewInstance.description = req.body.description
-    // reviewInstance.rating = req.body.rating
-
-    // await reviewInstance.save()
-    // res.status(200)
-    // res.json({message: 'Success!'})
     review.title = req.body.title
     review.description = req.body.description
     review.rating = req.body.rating
@@ -259,6 +243,7 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
     } else {
       const errors = validateErrors.array().map((error) => error.msg);
       res.status(400);
-      res.json({ message: 'Unsuccessful!', review, errors });    }
+      res.json({ message: 'Unsuccessful!', review, errors });
+    }
   }));
 module.exports = router;
