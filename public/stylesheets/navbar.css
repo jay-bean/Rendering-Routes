@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
 }
-#nav-bar-login-signup > a {
+#nav-bar-login-signup > a, button {
     color: white;
     text-decoration: none;
     font-weight: 600;
@@ -37,7 +37,16 @@
 }
 
 #nav-profile-button {
-    margin-left: 10px;
+    margin-left: 15px;
+    text-decoration: none;
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: 600;
+}
+
+#nav-climblist-button {
+    margin-right: 15px;
+    margin-left: 15px;
     text-decoration: none;
     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
     color: white;
@@ -45,7 +54,7 @@
 }
 
 #nav-logout-button {
-    margin-right: 10px;
+    margin-right: 15px;
     text-decoration: none;
     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
     background: none;
@@ -61,6 +70,9 @@
     color: #CFEE9E;
 }
 #nav-logout-button:hover {
+    color: #CFEE9E;
+}
+#nav-climblist-button:hover {
     color: #CFEE9E;
 }
 
@@ -98,10 +110,21 @@
 
 #nav-login-button {
     margin-right: 10px;
+    margin-left: 25px;
     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
 }
 #nav-signup-button {
-    margin-left: 10px;
+    margin-left: 25px;
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+}
+#nav-demo-login {
+    margin-right: 10px;
+    margin-left: 25px;
+
+    background: none;
+    border: none;
+
+    font-size: inherit;
     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -109,5 +132,9 @@
     color: #CFEE9E;
 }
 #nav-login-button:hover {
+    color: #CFEE9E;
+}
+#nav-demo-login:hover {
+    cursor: pointer;
     color: #CFEE9E;
 }
