@@ -89,7 +89,6 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       userId: res.locals.user.id,
       cragId: parseInt(cragId, 10)
     });
-
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {

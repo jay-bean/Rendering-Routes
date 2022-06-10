@@ -129,7 +129,7 @@
   grid-column: 1 / 5;
   border: 2px solid rgb(146, 146, 146);
   border-radius: 6px;
-  max-height: 290px;
+  height: 290px;
   overflow-y: scroll;
   text-align: center;
 }
@@ -174,7 +174,7 @@
 
 #climb-list-div {
   grid-row: 2;
-  grid-column: 4 / 5;
+  grid-column: 3 / 4;
 }
 
 #button-edit {
