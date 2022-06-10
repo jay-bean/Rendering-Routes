@@ -5,15 +5,20 @@ append head
 
 
 block content
-    table(id=`profile-user-${user.id}`)
-        thead
-            tr
-                th(id=`username-users-${user.id}`) #{user.username}'s Profile
-                th Biography
-        tbody
-            tr
-                th: img(src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="250px" width="230px")
-                th(id=`bio-user-${user.id}`) #{user.biography}
+    div(id=`profile-user-${user.id}`)
+        table
+            thead
+                tr
+                    th(id=`username-users-${user.id}`) #{user.username}'s Profile
+                    th Biography
+            tbody
+                tr
+                    th: img(src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="250px" width="230px")
+                    th(id=`bio-user-${user.id}`) #{user.biography}
+        div
+            a(href=`/users/${user.id}/climb-list`) View Climb Lists
+        div
+            a(href=`/users/${user.id}/reviews`) Go to all your Reviews
 
     if loggedInUser === user.id
         div(id='user-error-container')
@@ -30,10 +35,3 @@ block content
             input(type='text' name='confirmPassword' value='' id=`confirm-password-user${user.id}`)
             button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit
         button(class='edit-user-btn' id=`edit-user-${user.id}`) Edit Profile
-
-    div
-        a(href=`/users/${user.id}/climb-list`) View Climb Lists
-    div
-        a(href=`/users/${user.id}/reviews`) Go to all your Reviews
-    //- div
-    //-     a(href=`/users/${user.id}/climb-list`) View Climb Lists
