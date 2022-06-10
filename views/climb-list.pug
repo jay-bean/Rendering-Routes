@@ -3,26 +3,37 @@ append head
     script(src="/javascripts/climbList.js" type="module" defer)
 
 block content
-    h1 Climb List
-    p Below is a list of your climbs, conquered and unconquered!
-    button
-      a(href='/routes') Add Climbs
-    h2 Want to Climb
-    each route in climbListRoutes
-        if route.haveClimbed === false
-            div(id=`route-container-${route.Route.id}`)
-                div(class="single-route-container" id=`false-${route.Route.id}`)
-                    p(id=`route-${route.Route.id}`)= route.Route.name
-                    if loggedInUser === userId
-                        button(class='list-delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete
-                        button(class='edit-list-btn' id=`update-route-${userId}-${route.Route.id}`) Add to have climbed
-
-    h2 Have Climbed
-    each route in climbListRoutes
-        if route.haveClimbed === true
-            div(class="add-here-container")
-                div(id=`route-container-${route.Route.id}`)
-                    div(class="single-route-container" id=`true-${route.Route.id}`)
-                        p(id=`route-${route.Route.id}`)= route.Route.name
-                        if loggedInUser === userId
-                            button(class='list-delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete
+    div(id='climb-list-info-container')
+        h1(id='climb-list-info-h1') Climb List:
+        p(id='climb-list-info-p') Below is a list of your climbs, conquered and unconquered!
+        a(href='/routes')
+            button(id='climb-list-info-button') Add Climbs
+    div(id='climb-lists-container')
+        div(id='want-to-climb-container')
+            h2(class='climb-list-title') Want to Climb
+            if wantToClimbCount > 0
+                each route in climbListRoutes
+                    if route.haveClimbed === false
+                        div(id=`route-container-${route.Route.id}`)
+                            div(class="single-route-container" id=`false-${route.Route.id}`)
+                                ul
+                                    li(id=`route-${route.Route.id}`)= route.Route.name
+                                    if loggedInUser === userId
+                                        button(class='edit-list-btn' id=`update-route-${userId}-${route.Route.id}`) Add to have climbed
+                                        button(class='list-delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete
+            else
+                p(class='nothing-in-list-tag') Nothing in this list.
+        div(id='have-climbed-container')
+            h2(class='climb-list-title') Have Climbed
+            if haveClimbedCount > 0
+                each route in climbListRoutes
+                    if route.haveClimbed === true
+                        div(class="add-here-container")
+                            div(id=`route-container-${route.Route.id}`)
+                                div(class="single-route-container" id=`true-${route.Route.id}`)
+                                    ul
+                                        li(id=`route-${route.Route.id}`)= route.Route.name
+                                        if loggedInUser === userId
+                                            button(class='list-delete-btn' id=`deleteRoute-${userId}-${route.Route.id}`) Delete
+            else
+                p(class='nothing-in-list-tag') Nothing in this list.
