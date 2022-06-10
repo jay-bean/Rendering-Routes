@@ -220,8 +220,14 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
     }]
   })
 
-  res.render('user-all-reviews', {userReviews, userId, user})
-  }));
+  let loggedInUser;
+  if (req.session.auth) {
+    loggedInUser = (req.session.auth.userId).toString();
+  }
+  console.log(userId, loggedInUser)
+
+  res.render('user-all-reviews', { userReviews, userId, user, loggedInUser })
+}));
 
 
   router.patch('/:userId(\\d+)/reviews', requireAuth, reviewValidators,
