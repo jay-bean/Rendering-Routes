@@ -15,7 +15,7 @@ router.get('/', asyncHandler(async (req, res) => {
     route.description
 
   */
-  res.render('index', { title: 'Rendering Routes'});
+  res.render('index', { title: 'Welcome to Rendering Routes!'});
 }));
 
 router.get('/contact-us', asyncHandler(async (req, res) => {

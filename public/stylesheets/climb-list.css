@@ -1,0 +1,90 @@
+#climb-list-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1% 10% 1% 10%;
+}
+#climb-list-info-h1,#climb-list-info-p {
+    font-family: 'Abhaya Libre', serif;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#climb-list-info-h1 {
+    font-weight: 600;
+    font-size: 48px;
+}
+#climb-list-info-p{
+    font-weight: 600;
+    font-size: 32px;
+}
+
+#climb-list-info-button {
+    width: 200px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    font-size: 20px;
+    font-family: inherit;
+    color: white;
+    background-color: #587B7F;
+
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+#climb-list-info-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+#climb-lists-container {
+    display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+#want-to-climb-container,#have-climbed-container {
+    width: 25%;
+    height: fit-content;
+    margin-bottom: 2%;
+
+    border: 1px solid gray;
+    border-radius: 25px;
+}
+.single-route-container > ul > li {
+    font-size: 18px;
+    font-weight: 600;
+    list-style: disc;
+    padding-bottom: 5px;
+}
+
+.climb-list-title {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid gray;
+}
+
+.edit-list-btn,.list-delete-btn {
+    padding: 5px 10px 5px 10px;
+
+    color: white;
+    background-color: #587B7F;
+    border: none;
+    border-radius: 10px;
+
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+.edit-list-btn:hover,.list-delete-btn:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.edit-list-btn {
+    margin-right: 20px;
+}
+
+.nothing-in-list-tag {
+    font-size: 18px;
+    text-align: center;
+}

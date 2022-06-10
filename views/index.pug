@@ -8,13 +8,12 @@ append head
 
 block content
   h1= title
-  p Welcome to Rendering Routes!
+  section(aria-label="Example Crags")
+    div(id="crag-container")
+      div(id="crag-image")
+        a(href="/crags/7")
+          img(src="https://cdn2.apstatic.com/photos/climb/105957832_medium_1558029938.jpg" alt="Alaska > Denali National Park")
 
-  div
-    img(src="https://cdn2.apstatic.com/photos/climb/106946462_medium_1494153250.jpg")
-    img(src="https://cdn2.apstatic.com/photos/climb/105957832_medium_1558029938.jpg")
-    img(src="https://cdn2.apstatic.com/photos/climb/106803988_medium_1494142091.jpg")
-    img(src="https://cdn2.apstatic.com/photos/climb/106111506_medium_1558649460.jpg")
 
 
 
@@ -23,9 +22,10 @@ block content
     //- Are we doing a few states or how many are we deciding to do?
     -//
       ul
-        li random route D
-        li random route E
-        li random route F
+        li: a(href='/routes/1') Random Route
+        li: a(href='/routes/2') Where are we going?
+        li: a(href='/routes/3') Maybe here?
+
   div
     h3 Had fun on a specific route?
       p Leave a review on your most recent route!

@@ -5,6 +5,8 @@
 @import "./index.css";
 @import "./all-crags.css";
 @import "./route.css";
+@import "./climb-list.css";
+@import "./crag.css";
 
 * {
     box-sizing: border-box;

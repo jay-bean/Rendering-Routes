@@ -50,12 +50,20 @@ hr {
   padding: 5px;
   color: #ffffff;
   text-align: center;
+
   font-size: 20px;
+  font-family: inherit;
+  color: white;
+  background-color: #587B7F;
+
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
 #routes-btn:hover {
-  background-color: #587B7F;
-  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
 table {
