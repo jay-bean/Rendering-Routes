@@ -47,6 +47,7 @@ router.get('/:routeId(\\d+)', csrfProtection,
       })
       if (check) currentClimbListRoute = true;
     }
+    console.log(route);
     res.render('route', { route, postUser, crags, reviews, cragName, seshAuth, review, currentClimbListRoute});
 }));
 
@@ -70,7 +71,6 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
     const {
       name,
       description,
-      image,
       difficulty,
       height,
       protection,
@@ -78,10 +78,14 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       cragId
     } = req.body;
 
+    const image = req.file;
+    const imageUrl = image.path;
+    const modifiedName = `${name[0].toUpperCase()}${name.slice(1)}`;
+    console.log(modifiedName);
     const route = db.Route.build({
-      name,
+      name: modifiedName,
       description,
-      image,
+      image: imageUrl,
       difficulty,
       height,
       protection,
@@ -89,6 +93,7 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       userId: res.locals.user.id,
       cragId: parseInt(cragId, 10)
     });
+
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {

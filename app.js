@@ -12,11 +12,46 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const routesRouter = require('./routes/routes');
 const cragsRouter = require('./routes/crags');
-
+// image trial
+const multer = require('multer');
+// ^^^
 const app = express();
 
 // view engine setup
 app.set('view engine', 'pug');
+
+// multer middleware
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'images');
+  },
+  filename: (req, file, cb) => {
+      cb(null, new Date().toISOString() + '-' + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (
+      file.mimetype === 'image/png' ||
+      file.mimetype === 'image/jpg' ||
+      file.mimetype === 'image/jpeg'
+  ) {
+      cb(null, true);
+  } else {
+      cb(null, false);
+  }
+};
+// ^^^^^
+
+// use multer
+app.use(
+  multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
+);
+// ^^^^^^
+
+// set up images directory to find path
+app.use('/images', express.static(path.join(__dirname, 'images')));
+// ^^^^
 
 app.use(logger('dev'));
 app.use(express.json());

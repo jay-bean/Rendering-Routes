@@ -5,7 +5,7 @@ include utils.pug
 block content
   h1 Create A Route
   +validationErrorSummary(errors)
-  form(action='/routes' method='post')
+  form(action='/routes' method='post' enctype="multipart/form-data")
     input(type='hidden' name='_csrf' value=csrfToken)
     +field('Name', 'name', route.name)
     label Crag the route belongs to:
@@ -20,6 +20,8 @@ block content
     +field('Height', 'height', route.height)
     +field('Protection', 'protection', route.protection)
     +field('Type of Climb', 'type', route.type)
+    label Image
+    input(type="file" name="image" id="image" value=route.image)
     div
       button(type='submit') Create
-      a(href='/routes' ) Cancel
+      a(href='/routes') Cancel

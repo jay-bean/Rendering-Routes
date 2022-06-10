@@ -11,7 +11,6 @@ block content
       div#h1-hr
         h1(class='h1-route' id=`route-${route.id}-name`)= route.name
         hr.route-hr
-      h2#h2-route Created by: #{postUser.username}
       div#all-attr
         div#difficulty-route
           h3.h3-route Difficulty:
@@ -31,6 +30,9 @@ block content
         div#crag-route
           h3.h3-route Crag:
           p(id=`route-${route.id}-crag`)= cragName
+      div#route-h2-image
+        img(src=`/${route.image}`, alt="Photo of route")
+        h2#h2-route Route posted by: #{postUser.username}
       div(id='climb-list-div')
         if (currentClimbListRoute !== true)
           form(method='POST' action=`/routes/${route.id}` id='climb-list-form')
