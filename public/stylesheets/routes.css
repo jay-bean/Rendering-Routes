@@ -39,17 +39,23 @@ hr {
 }
 
 #routes-btn {
-  background-color: #808080;
-  border-radius: 5px;
-  border: thin double #ffffff;
-  color: #ffffff;
-  text-align: center;
+  width: 200px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
   font-size: 20px;
+  font-family: inherit;
+  color: white;
+  background-color: #587B7F;
+
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
 #routes-btn:hover {
-  background-color: #587B7F;
-  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
 table {

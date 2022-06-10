@@ -1,0 +1,102 @@
+body {
+    background: url(/images/faded-mountain.png) no-repeat bottom 100px right -40px;
+    background-size: 700px 200px;
+}
+
+.add-crag-container {
+    width: 1060px;
+    height: fit-content;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.add-crag-form-container {
+    width: 500px;
+    height: fit-content;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+form {
+    display: block;
+    margin-top: 60px;
+    margin-bottom: 20px;
+
+}
+
+input {
+    display: grid;
+    height: 42px;
+    width: 400px;
+    border: 1px solid gray;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    margin: 5px auto;
+    padding: 4.4px 16.8px;
+
+}
+label.addcrag {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+div.header {
+    margin: 40px auto;
+}
+h2.title {
+    text-align: center;
+    /* font-family:  */
+    font-size: 36px;
+    font-weight: bold;
+}
+
+p.info {
+margin-left: 30px;
+}
+textarea {
+    display: grid;
+    border-radius: 10px;
+    height: 200px;
+    width: 400px;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 10px 16.8px;
+}
+
+button.button {
+    width: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size: 20px;
+    color: white;
+    background-color: #587B7F;
+
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button.button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.cancel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
