@@ -21,7 +21,7 @@ body {
     width: 354px;
 }
 
-input {
+input.login {
     display: block;
     height: 42px;
     width: 354px;
@@ -31,9 +31,12 @@ input {
     margin: 10px auto;
     padding: 4.4px 16.8px;
     font-size: 100%;
+    transition: background-color 0.5s
 }
-
-label {
+input.login:hover {
+    background-color: #e5e5e5;
+}
+label.login {
     display: block;
     margin: 10px ;
     font-size: 100%;
@@ -50,6 +53,11 @@ label {
     background-color: #587B7F;
     color: white;
     font-size: 20px;
+    transition: background-color 0.5s
+}
+
+.submit:hover {
+    background-color: #3B4E4C;
 }
 .cancel {
     display: block;
