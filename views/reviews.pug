@@ -24,6 +24,7 @@ div(id='review-container')
   if reviews
     each ele in reviews
       div
-        p= ele.title
-        p= ele.rating
+        h4= ele.title
+        div: a(href=`/users/${postUser.id}`) #{postUser.username}
+        p Rated it #{ele.rating}/5
         p= ele.description

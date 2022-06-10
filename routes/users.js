@@ -7,7 +7,7 @@ const db = require('../db/models');
 const { csrfProtection, asyncHandler } = require('./utils');
 
 const { loginUser, logoutUser, requireAuth } = require('../auth');
-const { userValidators, loginValidators, userEditValidators } = require('../validations');
+const { userValidators, loginValidators, userEditValidators, reviewValidators } = require('../validations');
 
 const router = express.Router();
 router.use(express.urlencoded())
@@ -179,36 +179,6 @@ router.get('/:userId(\\d+)/climb-list', requireAuth,
   })
 );
 
-router.post('/:userId(\\d+)/climb-list', requireAuth,
-  asyncHandler(async (req, res) => {
-    const userId = res.locals.user.id;
-    console.log(userId, 'userId');
-    console.log(req.body);
-    const { climbStatus } = req.body;
-    const splitClimbStatus = climbStatus.split('-');
-    const status = splitClimbStatus[0];
-    const routeId = splitClimbStatus[1];
-
-    const currentClimbListRoute = await db.ClimbList.findOne({
-      where: { userId, routeId },
-    })
-
-    if (currentClimbListRoute === null) {
-      const newClimbListRoute = db.ClimbList.create({
-        haveClimbed: status,
-        routeId: parseInt(routeId, 10),
-        userId: userId
-      })
-    } else {
-      if (currentClimbListRoute.haveClimbed === false) {
-        await currentClimbListRoute.update({ haveClimbed: true })
-      } else {
-        await currentClimbListRoute.update({ haveClimbed: false })
-      }
-    }
-  })
-);
-
 router.patch('/:userId(\\d+)/climb-list', requireAuth,
   asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10)
@@ -244,10 +214,36 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
   const userId = req.params.userId
   const user = await db.User.findByPk(userId)
   const userReviews = await db.Review.findAll({
-    where: {userId}
+    where: {userId},
+    include: [{
+      model: db.Route
+    }]
   })
 
   res.render('user-all-reviews', {userReviews, userId, user})
-  }))
+  }));
 
+
+  router.patch('/:userId(\\d+)/reviews', requireAuth, reviewValidators,
+  asyncHandler(async (req, res) => {
+    const userId = req.params.userId
+    const reviewId = parseInt(req.body.reviewId, 10)
+
+    const review = await db.Review.findByPk(reviewId)
+
+    review.title = req.body.title
+    review.description = req.body.description
+    review.rating = req.body.rating
+
+    const validateErrors = validationResult(req);
+    if(validateErrors.isEmpty()) {
+      await review.save()
+      res.status(200)
+      res.json({ message: 'Success!', review })
+    } else {
+      const errors = validateErrors.array().map((error) => error.msg);
+      res.status(400);
+      res.json({ message: 'Unsuccessful!', review, errors });
+    }
+  }));
 module.exports = router;

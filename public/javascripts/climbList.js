@@ -1,8 +1,39 @@
-
 const splitURL = document.URL.split('/');
 const userId = splitURL[4];
 const editListBtns = document.querySelectorAll('.edit-list-btn')
 const deleteBtns = document.querySelectorAll('.list-delete-btn')
+const addButton = document.querySelector('#climb-list-add-button');
+
+if (addButton) {
+    const id = document.querySelector('#list-hidden-user').value;
+    const curRoute = document.querySelector('#list-hidden-route').value;
+    addButton.addEventListener("click", async (e) => {
+        const status = document.querySelector('#climb-status-dropdown').value;
+        e.preventDefault();
+
+        const res = await fetch(`/routes/${curRoute}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                status,
+                userId: id,
+                routeId: curRoute
+            })
+        })
+
+        const data = await res.json();
+
+        if (data.message === 'Created!') {
+            const form = document.querySelector('#climb-list-form');
+            const div = document.querySelector('#climb-list-div');
+            form.classList.add('hidden');
+            div.innerHTML += `This route is now in your climb list! Visit your profile to change its climb status.`
+        }
+    })
+}
 
 if (deleteBtns) {
 
@@ -10,8 +41,7 @@ if (deleteBtns) {
         const btn = deleteBtns[i];
 
         btn.addEventListener('click', async (e) => {
-            e.preventDefault()
-            btn.innerHTML = "Remove"
+            e.preventDefault();
             const routeId = e.target.id.split('-')[2]
             const res = await fetch(`/users/${userId}/climb-list`, {
                 method: 'DELETE',

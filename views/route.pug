@@ -2,40 +2,45 @@ extends layout.pug
 
 append head
   script(src="/javascripts/routeEdit.js" type="module" defer)
+  script(src="/javascripts/climbList.js" type="module" defer)
   script(src="/javascripts/reviews.js" type="module" defer)
 
 block content
-  div#route-page-div
-    div(id=`route-post-${route.id}` class='')
-      h1(id=`route-${route.id}-name` class='h1-route')= route.name
-      h2#h2-route Created by: #{postUser.username}
-      div
-        h3 Difficulty:
-        p(id=`route-${route.id}-difficulty`)= route.difficulty
-      div
-        h3 Height:
-        p(id=`route-${route.id}-height`) #{route.height} ft.
-      div
-        h3 Type of Climb:
-        p(id=`route-${route.id}-type`)= route.type
-      div
-        h3 Protection:
-        p(id=`route-${route.id}-protection`)= route.protection
-      div
-        h3 Description:
-        p(id=`route-${route.id}-description`)= route.description
-        div
-      div
-        h3 Crag:
-        p(id=`route-${route.id}-crag`)= cragName
-      div
-        h3 Add this climb to your list!
-        form(method='POST' action=`/users/${postUser.id}/climb-list`)
-          select(name='climbStatus' class='climb-status')
-            option(value=`false-${route.id}`) Want to climb
-            option(value=`true-${route.id}`) Have climbed
-          input(type='submit' value ='Add to List' class='save-climb-status')
-      include reviews.pug
+  div(id=`route-post-${route.id}` class='')
+    h1(id=`route-${route.id}-name`)= route.name
+    h2 Created by: #{postUser.username}
+    div
+      p Difficulty:
+      p(id=`route-${route.id}-difficulty`)= route.difficulty
+    div
+      p Height:
+      p(id=`route-${route.id}-height`) #{route.height} ft.
+    div
+      p Type of Climb:
+      p(id=`route-${route.id}-type`)= route.type
+    div
+      p Protection:
+      p(id=`route-${route.id}-protection`)= route.protection
+    div
+      p Description:
+      p(id=`route-${route.id}-description`)= route.description
+    div
+      p Crag:
+      p(id=`route-${route.id}-crag`)= cragName
+    div(id='climb-list-div')
+      if (currentClimbListRoute !== true)
+        form(method='POST' action=`/routes/${route.id}` id='climb-list-form')
+          if seshAuth
+            input(type='hidden' name='userId' value=`${seshAuth.userId}` id='list-hidden-user')
+            input(type='hidden' name='routeId' value=`${route.id}` id='list-hidden-route')
+          select(name='climbStatus' class='climb-status' id='climb-status-dropdown')
+            option(value=`false`) Want to climb
+            option(value=`true`) Have climbed
+          input(type='submit' value ='Add to List' class='save-climb-status' id='climb-list-add-button')
+      else
+        if seshAuth
+          p(id='climb-list-form-info') This route is in your climb list! #[a(href=`/users/${seshAuth.userId}/climb-list`) Click here] to change its status.
+    include reviews.pug
   if seshAuth
     if route.userId === seshAuth.userId
       div(id='route-error-container')
