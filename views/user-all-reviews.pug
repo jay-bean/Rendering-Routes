@@ -9,6 +9,10 @@ block content
         div(class = "individual-review-container")
             div(class="hidden" id=`individual-review-${review.id}`)
             h3 #{review.Route.name} Route
+            p: a(href=`/routes/${review.Route.id}`) Go to Route
+            h4 Title: #{review.title}
+            div Rating: #{review.rating}
+            p= review.description
             div
                 p: a(href=`/routes/${review.Route.id}`) Go to Route
             div
@@ -26,6 +30,11 @@ block content
         button(class='edit-review-btn' id=`edit-review-${review.id}`) Edit Review
         form(class='hidden' id=`edit-review-form-${userId}`)
             label Title:
+            input(type='text' name='title' value=review.title id='edit-review-title')
+            label Description:
+            textarea(rows='5' cols='30' name='description' id='edit-review-description')
+            label Rating
+            select(name='rating' id='edit-review-rating')
             input(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
             label Description:
             textarea(rows='5' cols='30' name='description' id=`edit-review-description-${review.id}`)
