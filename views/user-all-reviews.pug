@@ -13,6 +13,17 @@ block content
             h4 Title: #{review.title}
             div Rating: #{review.rating}
             p= review.description
+            div
+                p: a(href=`/routes/${review.Route.id}`) Go to Route
+            div
+                p Title
+                p(id=`title-${review.id}`) #{review.title}
+            div
+                p Rating:
+                p(id=`rating-${review.id}`) #{review.rating}
+            div
+                p Details:
+                p(id=`description-${review.id}`) #{review.description}
         if loggedInUser === userId
         div(id='review-error-container')
         button(class='review-delete-btn' id=`deleteReview-${userId}-${review.id}`) Delete
@@ -24,6 +35,11 @@ block content
             textarea(rows='5' cols='30' name='description' id='edit-review-description')
             label Rating
             select(name='rating' id='edit-review-rating')
+            input(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
+            label Description:
+            textarea(rows='5' cols='30' name='description' id=`edit-review-description-${review.id}`)
+            label Rating
+            select(name='rating' id=`edit-review-rating-${review.id}`)
                 option(value='1') 1
                 option(value='2') 2
                 option(value='3') 3
