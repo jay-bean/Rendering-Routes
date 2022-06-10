@@ -2,11 +2,51 @@ h1 {
     color: white;
 }
 
-.crags-fade::before, .crags-fade::after {
-    box-sizing: border-box;
+#crag-carousel {
+    width: 75vw;
+    height: 75vw;
+    position: relative;
 }
 
+#crag-carousel > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 
-.text {
-    font-size: 24px;
+.crag-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+}
+
+.crag-slide > img {
+    display: block;
+    width: 75%;
+    height: 75%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.crag-slide[data-active] {
+    opacity: 1;
+}
+
+.carousel-button {
+    position: absolute;
+    z-index: 2;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    top: 50%;
+    transform: translateY(-75%);
+    color: rgba(255, 255, 255, .5);
+    cursor: pointer;
+    border-radius: .3rem;
+    padding: 0 0.25rem;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.carousel-button:hover, .carousel-button:focus {
+    
 }

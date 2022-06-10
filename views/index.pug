@@ -10,16 +10,16 @@ block content
   h1= title
   section(aria-label="Example Crags")
     div(id="crag-carousel")
-      button(class='carousel-button prev') Previous
-      button(class='carousel-button next') Next
+      button(class='carousel-button prev') &#8656;
+      button(class='carousel-button next') &#8658;
       ul
-        li
+        li(class='crag-slide' data-active)
           img(src="https://cdn2.apstatic.com/photos/climb/106946462_medium_1494153250.jpg" alt="Anchorage and South Central Alaska Climbing")
-        li
+        li(class='crag-slide')
           img(src="https://cdn2.apstatic.com/photos/climb/105957832_medium_1558029938.jpg" alt="Yosemite Valley")
-        li
+        li(class='crag-slide')
           img(src="https://cdn2.apstatic.com/photos/climb/106803988_medium_1494142091.jpg" alt="Mokule'ia Wall")
-        li
+        li(class='crag-slide')
           img(src="https://cdn2.apstatic.com/photos/climb/106111506_medium_1558649460.jpg" alt="Rockfellow Group")
 
 
