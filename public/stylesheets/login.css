@@ -1,0 +1,83 @@
+body {
+    background-color: #C0CDB8;
+}
+
+.login-container {
+    width: 650px;
+    height: 500px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 70px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    border: 1px rgb(170, 170, 170) solid;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.login-form-container {
+    display: block;
+    width: 354px;
+}
+
+input {
+    display: block;
+    height: 42px;
+    width: 354px;
+    border: 1px solid gray;
+    background-color: #FAFAFA;
+    border-radius: 25px;
+    margin: 10px auto;
+    padding: 4.4px 16.8px;
+    font-size: 100%;
+}
+
+label {
+    display: block;
+    margin: 10px ;
+    font-size: 100%;
+}
+
+.submit {
+    display: block;
+    height: 42px;
+    width: 354px;
+    border: 1px solid gray;
+    border-radius: 25px;
+    margin: 10px auto;
+    padding: 6.4px 12.8px;
+    background-color: #587B7F;
+    color: white;
+    font-size: 20px;
+}
+.cancel {
+    display: block;
+    text-align: center;
+}
+
+.bottom {
+    display: block;
+}
+
+
+.title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.blurb {
+    margin: 30px 0;
+}
+
+.text {
+text-align: center;}
+
+.sign-up {
+    margin-left: 15px;
+}
+
+.demo{
+    text-align: center;
+}
