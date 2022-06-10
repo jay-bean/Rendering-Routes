@@ -103,7 +103,7 @@
   background-color: rgb(149, 178, 178);
   box-shadow: 2px 2px 0px gb(149, 178, 178, .3);
   border: 4px double #587B7F;
-  border-radius: 35px;
+  border-radius: 30px;
   max-width: 480px;
   display: flex;
   flex-direction: column;
