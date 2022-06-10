@@ -21,3 +21,18 @@
 #content-wrap {
     padding-bottom: var(--nav-height);
 }
+
+.footer-info-container {
+    display: flex;
+    align-items: center;
+}
+
+.footer-info-container > p {
+    margin-right: 20px;
+}
+
+.footer-info-container > a > img {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+}
