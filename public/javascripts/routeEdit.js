@@ -10,7 +10,7 @@ if (editButton) {
     if (postInfo.classList.contains('hidden')) {
       postInfo.classList.remove('hidden');
       formInfo.classList.add('hidden');
-      editButton.innerText = 'Edit';
+      editButton.innerText = 'Edit Route';
     }
     else {
       postInfo.classList.add('hidden');
