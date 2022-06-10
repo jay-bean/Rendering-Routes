@@ -24,6 +24,7 @@ html
           p(id='nav-welcome') Welcome #{locals.user.username}!
           form(action='/users/log-out' method='post')
             button(type='submit' id='nav-logout-button') Logout
+          a(href=`/users/${user.id}/climb-list` id='nav-climblist-button') Climb List
           a(href=`/users/${user.id}` id='nav-profile-button') My Profile
       else
         div(id='nav-bar-login-signup')
