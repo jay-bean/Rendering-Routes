@@ -25,6 +25,11 @@ input.signup {
     justify-content: center;
     margin: 10px;
     padding: 6.4px 12.8px;
+    transition: background-color 0.5s
+}
+
+input.signup:hover {
+    background-color: #e5e5e5;
 }
 
 label.signup {
@@ -48,6 +53,11 @@ label.signup {
     color: white;
     margin: 10px;
     font-size: 20px;
+    transition: background-color 0.5s
+}
+
+.register:hover {
+    background-color: #3B4E4C;
 }
 
 .cancel {

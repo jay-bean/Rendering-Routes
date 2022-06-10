@@ -1,15 +1,25 @@
 extends layout.pug
-
+append head
+  link(rel="stylesheet" href="/stylesheets/new-crag.css")
 include utils.pug
 
 block content
-  +validationErrorSummary(errors)
-  +validationErrorSummary(errors)
-  form(action='/crags' method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    +field('Name', 'name', user.name)
-    +field('Location', 'location', user.location, 'text', 'ex: \'Chestnut Hill, Massachusetts\'')
-    +field('Description', 'description', user.description, 'textarea')
-    div
-      a(href='/' ) Cancel
-      button(type='submit') Create
+  .add-crag-container
+    .add-crag-form-container
+      +validationErrorSummary(errors)
+      +validationErrorSummary(errors)
+      div.header
+        h2.title Post a Crag
+        p.info *If a crag does not exist for your route, please create a crag.
+      form(action='/crags' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        label.addcrag Name
+        input(type="text" class="addcrag" name="name" value=crag.name)
+        label.addcrag Location
+        input(type="text" class="addcrag" name="location" value=crag.location placeholder= 'ex: \'Chestnut Hill, Massachusetts\'')
+        label.addcrag Upload an Image
+        input(type="text" class="addcrag" name="image" value=crag.image placeholder= 'Optional')
+        label.addcrag Description
+        textarea(name="description" class="section" rows='5' cols='30')=crag.descriptiom
+        button(type='submit' class="button") Create
+        a(href='/' class="cancel") Cancel

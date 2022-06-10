@@ -13,8 +13,10 @@ block content
       h2.title Sign in to Renderingroutes
       form(action='/users/log-in' method='post')
         input(type='hidden' class="login" name='_csrf' value=csrfToken)
-        +field('Email Address', 'email', email)
-        +field('Password', 'password', null, 'password')
+        label.login Email Address
+        input(type="email" class="login" name="email" value="email")
+        label.login Password
+        input(type="password" class="login" name="password" value="")
         div
           p.blurb Adventure awaits, find your next climb with us, here on Renderingroutes!
           button(type='submit' class="submit") Login
