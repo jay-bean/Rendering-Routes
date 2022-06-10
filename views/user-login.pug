@@ -12,7 +12,7 @@ block content
     div.login-form-container
       h2.title Sign in to Renderingroutes
       form(action='/users/log-in' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
+        input(type='hidden' class="login" name='_csrf' value=csrfToken)
         +field('Email Address', 'email', email)
         +field('Password', 'password', null, 'password')
         div
@@ -21,6 +21,6 @@ block content
       div.bottom
         p.text Don't have an account?
           a(href='/users/sign-up' class="sign-up") Sign up
-        form(action='/users/demo/log-in' method='post')
-          button(type='submit' class="demo") Log in as Demo User
+        //- form(action='/users/demo/log-in' method='post')
+        //-   button(type='submit' class="demo") Log in as Demo User
         a(href='/' class="cancel") Cancel
