@@ -10,15 +10,15 @@ block content
       +validationErrorSummary(errors)
       div.header
         h2.title Post a Crag
-        p.info *If a crag does not exist for your route, please create a crag
+        p.info *If a crag does not exist for your route, please create a crag.
       form(action='/crags' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         label.addcrag Name
-        input(type="text" class="" name="name" value=crag.name)
+        input(type="text" class="addcrag" name="name" value=crag.name)
         label.addcrag Location
-        input(type="text" class="" name="location" value=crag.location placeholder= 'ex: \'Chestnut Hill, Massachusetts\'')
+        input(type="text" class="addcrag" name="location" value=crag.location placeholder= 'ex: \'Chestnut Hill, Massachusetts\'')
         label.addcrag Upload an Image
-        input(type="text" class="" name="image" value=crag.image placeholder= 'Optional')
+        input(type="text" class="addcrag" name="image" value=crag.image placeholder= 'Optional')
         label.addcrag Description
         textarea(name="description" class="section" rows='5' cols='30')=crag.descriptiom
         button(type='submit' class="button") Create

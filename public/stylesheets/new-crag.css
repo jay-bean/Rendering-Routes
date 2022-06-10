@@ -25,7 +25,7 @@ form {
 
 }
 
-input {
+input.addcrag {
     display: grid;
     height: 42px;
     width: 400px;
@@ -34,8 +34,14 @@ input {
     border-radius: 10px;
     margin: 5px auto;
     padding: 4.4px 16.8px;
+    transition: background-color 0.5s
 
 }
+
+input.addcrag:hover {
+    background-color: #e5e5e5;
+}
+
 label.addcrag {
     display: flex;
     margin-left: 30px;
@@ -65,6 +71,12 @@ textarea {
     margin-right: auto;
     margin-bottom: 20px;
     padding: 10px 16.8px;
+    transition: background-color 0.5s
+}
+
+textarea:hover{
+    background-color: #e5e5e5;
+
 }
 
 button.button {
