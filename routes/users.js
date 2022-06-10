@@ -197,10 +197,8 @@ router.delete('/:userId(\\d+)/climb-list',
     const currentClimbListRoute = await db.ClimbList.findOne({
       where: { userId, routeId },
     })
-    await currentClimbListRoute.destroy()
-
-    res.json({ message: 'Success!' })
-
+    await currentClimbListRoute.destroy();
+    res.json({ message: 'Success!' });
   })
 
 );
@@ -216,15 +214,20 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
       }]
     })
 
-    res.render('user-all-reviews', { userReviews, userId, user })
-  }));
+  let loggedInUser;
+  if (req.session.auth) {
+    loggedInUser = (req.session.auth.userId).toString();
+  }
+  console.log(userId, loggedInUser)
+
+  res.render('user-all-reviews', { userReviews, userId, user, loggedInUser })
+}));
 
 
 router.patch('/:userId(\\d+)/reviews', requireAuth, reviewValidators,
   asyncHandler(async (req, res) => {
     const userId = req.params.userId
     const reviewId = parseInt(req.body.reviewId, 10)
-
     const review = await db.Review.findByPk(reviewId)
 
     review.title = req.body.title
@@ -232,10 +235,11 @@ router.patch('/:userId(\\d+)/reviews', requireAuth, reviewValidators,
     review.rating = req.body.rating
 
     const validateErrors = validationResult(req);
-    if (validateErrors.isEmpty()) {
-      await review.save()
-      res.status(200)
-      res.json({ message: 'Success!', review })
+
+    if(validateErrors.isEmpty()) {
+      await review.save();
+      res.status(200);
+      res.json({ message: 'Success!', review });
     } else {
       const errors = validateErrors.array().map((error) => error.msg);
       res.status(400);

@@ -51,85 +51,95 @@ if (addAReviewButton) {
 
 }
 
-// const editReviewButtons = document.querySelectorAll('.edit-review-btn');
+const editReviewButtons = document.querySelectorAll('.edit-review-btn');
 
-// if (editReviewButtons) {
-//     const splitURL = document.URL.split('/');
-//     const userId = splitURL[4];
-//     const reviewsInfo = document.querySelectorAll('.individual-review-container')
-//     const form = document.querySelector(`#edit-review-form-${userId}`)
+if (editReviewButtons) {
+    const splitURL = document.URL.split('/');
+    const userId = splitURL[4];
 
-//     for (let i = 0; i < editReviewButtons.length; i++) {
-//         const btn = editReviewButtons[i];
+    for (let i = 0; i < editReviewButtons.length; i++) {
+        const btn = editReviewButtons[i];
 
-//         btn.addEventListener('click', (e)=> {
-//         if(form.classList.contains('hidden')) {
-//             form.classList.remove('hidden');
-//             btn.innerText = "Cancel"
-//         } else {
-//             form.classList.add('hidden')
-//             btn.innerText = "Edit Review"
-//         }
+        btn.addEventListener('click', (e) => {
+            const postId = e.target.id.split('-')[2]
+            const form = document.querySelector(`#edit-review-form-${postId}`);
+            const reviewContainer = document.querySelector(`#individual-review-${postId}`);
 
+            if(form.classList.contains('hidden')) {
+                form.classList.remove('hidden');
+                reviewContainer.classList.add('hidden');
+                btn.innerText = "Cancel"
+            } else {
+                form.classList.add('hidden')
+                reviewContainer.classList.remove('hidden');
+                btn.innerText = "Edit Review"
+            }
+        });
+    }
 
-//         })
-//     }
+    const submitEditReview = document.querySelectorAll(`.edit-review-submit`)
 
-// const submitEditReview = document.querySelector(`.edit-review-submit`)
-//     submitEditReview.addEventListener('click', async (e) => {
-//         e.preventDefault();
-//         const reviewIdDiv = document.querySelector('div.hidden').id
-//         const reviewId = reviewIdDiv.split('-')[2]
-//         const splitURL = document.URL.split('/');
-//         const userId = splitURL[4];
-//         const form = document.querySelector(`#edit-review-form-${userId}`)
-//         const title = document.querySelector(`#edit-review-title-${reviewId}`).value
-//         const description = document.querySelector(`#edit-review-description-${reviewId}`).value
-//         const rating = document.querySelector(`#edit-review-rating-${reviewId}`).value
+    if (submitEditReview) {
+        for (let i = 0; i < submitEditReview.length; i++) {
+            const btn = submitEditReview[i];
+            btn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const reviewId = e.target.id.split('-')[3];
+                const title = document.querySelector(`#edit-review-title-${reviewId}`).value
+                const description = document.querySelector(`#edit-review-description-${reviewId}`).value
+                const rating = document.querySelector(`#edit-review-rating-${reviewId}`).value
 
-//         const res = await fetch(`/users/${userId}/reviews`, {
-//             method: 'PATCH',
-//             headers: {'Content-Type': 'application/json'},
-//             body: JSON.stringify({
-//                 title,
-//                 description,
-//                 rating,
-//                 reviewId
-//             })
-//         });
+                const res = await fetch(`/users/${userId}/reviews`, {
+                    method: 'PATCH',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        title,
+                        description,
+                        rating,
+                        reviewId
+                    })
+                });
 
-//         const data = await res.json()
-//         const errorContainer = document.querySelector('review-error-container')
-//         if(data.message === 'Success!') {
-//             const titleEle = document.querySelector(`#title-${reviewId}`)
-//             const descriptionEle = document.querySelector(`#description-${reviewId}`)
-//             const ratingEle = document.querySelector(`#rating-${reviewId}`)
+                const reviewContainer = document.querySelector(`#individual-review-${reviewId}`);
+                const form = document.querySelector(`#edit-review-form-${reviewId}`);
 
-//             titleEle.innerHTML = data.review.title;
-//             descriptionEle.value = data.review.desription;
-//             ratingEle.innerHTML = data.review.rating;
-//             // errorContainer.innerHTML = ""
+                const data = await res.json()
+                const errorContainer = document.querySelector(`#review-error-container-${reviewId}`);
 
-//             form.classList.add('hidden')
-//         } else {
-//             data.errors.forEach(error => {
-//                 errorContainer.innerHTML += `<li>${error}</li>`
-//                });
-//         }
+                if (data.message === 'Success!') {
+                    const titleEle = document.querySelector(`#title-${reviewId}`);
+                    const descriptionEle = document.querySelector(`#description-${reviewId}`);
+                    const rating = document.querySelector(`#rating-${reviewId}`);
+                    const editBtn = document.querySelector(`#edit-review-${reviewId}`);
 
-//     })
-// }
+                    titleEle.innerHTML = data.review.title;
+                    descriptionEle.innerHTML = data.review.description;
+                    rating.innerHTML = data.review.rating;
+                    errorContainer.innerHTML = '';
+                    editBtn.innerText = "Edit Review"
+
+                    reviewContainer.classList.remove('hidden');
+                    form.classList.add('hidden');
+                } else {
+                    data.errors.forEach(error => {
+                        errorContainer.innerHTML += `<li>${error}</li>`;
+                    });
+                }
+            });
+        }
+    }
+}
+
 
 const deleteReviewBtns = document.querySelectorAll('.review-delete-btn')
 for (let i = 0; i < deleteReviewBtns.length; i++) {
     const btn = deleteReviewBtns[i];
 
     btn.addEventListener('click', async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const splitURL = document.URL.split('/');
         const userId = splitURL[4];
-        const reviewIdDiv = document.querySelector('div.hidden').id
-        const reviewId = reviewIdDiv.split('-')[2]
+        const reviewId = e.target.id.split('-')[2];
 
         const res = await fetch(`/users/${userId}/reviews`, {
             method: 'DELETE',
@@ -139,9 +149,9 @@ for (let i = 0; i < deleteReviewBtns.length; i++) {
 
         const data = await res.json();
         if(data.message = "Success!") {
-            const container = document.getElementById(`single-review-container-${reviewId}`)
+            const container = document.getElementById(`individual-review-container-id-${reviewId}`)
             container.remove()
-        } 
+        }
     })
 
 }
