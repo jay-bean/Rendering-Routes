@@ -83,9 +83,10 @@ if (editReviewButtons) {
     if (submitEditReview) {
         submitEditReview.addEventListener('click', async (e) => {
             e.preventDefault();
-            const title = document.querySelector(`#edit-review-title`).value
-            const description = document.querySelector(`#edit-review-description`).value
-            const rating = document.querySelector(`#edit-review-rating`).value
+            const reviewId = e.target.id.split('-')[3];
+            const title = document.querySelector(`#edit-review-title-${reviewId}`).value
+            const description = document.querySelector(`#edit-review-description-${reviewId}`).value
+            const rating = document.querySelector(`#edit-review-rating-${reviewId}`).value
 
             const res = await fetch(`/users/${userId}/reviews`, {
                 method: 'PATCH',
@@ -94,8 +95,7 @@ if (editReviewButtons) {
                     title,
                     description,
                     rating,
-                    userId,
-                    routeId
+                    reviewId
                 })
             });
 

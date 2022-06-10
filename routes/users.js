@@ -234,7 +234,6 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
   asyncHandler(async (req, res) => {
     const userId = req.params.userId
     const reviewId = parseInt(req.body.reviewId, 10)
-
     const review = await db.Review.findByPk(reviewId)
 
     review.title = req.body.title
@@ -242,10 +241,11 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
     review.rating = req.body.rating
 
     const validateErrors = validationResult(req);
+
     if(validateErrors.isEmpty()) {
-      await review.save()
-      res.status(200)
-      res.json({ message: 'Success!', review })
+      await review.save();
+      res.status(200);
+      res.json({ message: 'Success!', review });
     } else {
       const errors = validateErrors.array().map((error) => error.msg);
       res.status(400);

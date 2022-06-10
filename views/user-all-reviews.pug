@@ -28,7 +28,7 @@ block content
                 div(id='review-error-container')
                 form(class='hidden' id=`edit-review-form-${review.id}`)
                     label Title:
-                    input(type='text' name='title' value=review.title id='edit-review-title')
+                    input(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
                     label Description:
                     textarea(rows='5' cols='30' name='description' value=review.description id=`edit-review-description-${review.id}`) #{review.description}
                     label Rating
