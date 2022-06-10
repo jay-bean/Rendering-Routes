@@ -48,7 +48,7 @@ submitBtn.addEventListener('click', async(submitEvent) => {
 
         usernameEle.innerHTML = `${data.user.username}'s Profile`;
         bioEle.innerHTML = data.user.biography;
-        errorContainer.innerHTML = '';
+        // errorContainer.innerHTML = '';
 
         profileInfo.classList.remove('hidden');
         form.classList.add('hidden');
