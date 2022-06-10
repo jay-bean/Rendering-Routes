@@ -8,22 +8,19 @@ append head
 
 block content
   h1= title
-
-  div(id="sample-crags-container")
-    button(class='carousel-button prev') Previous
-    button(class='carousel-button next') Next
-    div(class='crags-fade')
-      div(class='text') Anchorage and South Central Alaska Climbing
-      img(src="https://cdn2.apstatic.com/photos/climb/106946462_medium_1494153250.jpg")
-    div(class="crags-fade")
-      div(class='text') Yosemite Valley
-      img(src="https://cdn2.apstatic.com/photos/climb/105957832_medium_1558029938.jpg")
-    div(class='crags-fade')
-      div(class='text') Mokule'ia Wall
-      img(src="https://cdn2.apstatic.com/photos/climb/106803988_medium_1494142091.jpg")
-    div(class='crags-fade')
-      div(class='text') Rockfellow Group
-      img(src="https://cdn2.apstatic.com/photos/climb/106111506_medium_1558649460.jpg")
+  section(aria-label="Example Crags")
+    div(id="crag-carousel")
+      button(class='carousel-button prev') Previous
+      button(class='carousel-button next') Next
+      ul
+        li
+          img(src="https://cdn2.apstatic.com/photos/climb/106946462_medium_1494153250.jpg" alt="Anchorage and South Central Alaska Climbing")
+        li
+          img(src="https://cdn2.apstatic.com/photos/climb/105957832_medium_1558029938.jpg" alt="Yosemite Valley")
+        li
+          img(src="https://cdn2.apstatic.com/photos/climb/106803988_medium_1494142091.jpg" alt="Mokule'ia Wall")
+        li
+          img(src="https://cdn2.apstatic.com/photos/climb/106111506_medium_1558649460.jpg" alt="Rockfellow Group")
 
 
 

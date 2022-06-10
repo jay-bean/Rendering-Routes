@@ -6,12 +6,6 @@ h1 {
     box-sizing: border-box;
 }
 
-#sample-crags-container {
-    justify-content: center;
-    padding: 50px 50px 0px 0px;
-    align-content: center;
-    
-}
 
 .text {
     font-size: 24px;
