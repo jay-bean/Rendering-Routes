@@ -43,12 +43,10 @@ submitBtn.addEventListener('click', async(submitEvent) => {
     const data = await res.json()
     const errorContainer = document.querySelector('#user-error-container');
     if(data.message === 'Success!') {
-        const usernameEle = document.querySelector(`#edit-username-user${userId}`)
-        const emailEle = document.querySelector(`#edit-email-user${userId}`)
-        const bioEle = document.querySelector(`#edit-bio-user${userId}`)
+        const usernameEle = document.querySelector(`#username-user${userId}`)
+        const bioEle = document.querySelector(`#bio-user${userId}`)
 
-        usernameEle.innerHTML = data.user.username;
-        emailEle.innerHTML = data.user.email;
+        usernameEle.innerHTML = `${data.user.username}'s Profile`;
         bioEle.innerHTML = data.user.biography;
         errorContainer.innerHTML = '';
 
