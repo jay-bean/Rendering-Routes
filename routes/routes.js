@@ -77,7 +77,7 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       type,
       cragId
     } = req.body;
-
+console.log('THIS IS THE IMAGE', image)
     const route = db.Route.build({
       name,
       description,
@@ -89,7 +89,6 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       userId: res.locals.user.id,
       cragId: parseInt(cragId, 10)
     });
-
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {

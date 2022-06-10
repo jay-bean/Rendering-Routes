@@ -12,8 +12,7 @@ const { userValidators, loginValidators, userEditValidators, reviewValidators } 
 const router = express.Router();
 router.use(express.urlencoded())
 
-router.get('/', requireAuth,
-  asyncHandler(async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
     const users = await db.User.findAll();
 
     res.render('all-users', { users })
@@ -156,8 +155,7 @@ router.patch('/:userId(\\d+)', requireAuth, userEditValidators,
   }));
 
 
-router.get('/:userId(\\d+)/climb-list', requireAuth,
-  asyncHandler(async (req, res) => {
+router.get('/:userId(\\d+)/climb-list', asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10)
 
     const climbListRoutes = await db.ClimbList.findAll({
@@ -217,8 +215,7 @@ router.delete('/:userId(\\d+)/climb-list',
 
 );
 
-router.get('/:userId(\\d+)/reviews', requireAuth,
-  asyncHandler(async (req, res) => {
+router.get('/:userId(\\d+)/reviews', asyncHandler(async (req, res) => {
     const userId = req.params.userId
     const user = await db.User.findByPk(userId)
     const userReviews = await db.Review.findAll({
