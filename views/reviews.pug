@@ -1,6 +1,6 @@
 div(id='review-error-container')
 div#review-form
-  h2 Leave a Review
+  h2#h2-leave-review Leave a Review
   div#form-div
     form(action='/routes/reviews' method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
@@ -19,17 +19,13 @@ div#review-form
       label Description:
       textarea(rows='5' cols='30' name='description' value=review.description id='description-of-review')
       button(class='review-submit' id='review-post-button') Submit
-h2#h2-review Reviews
-div#review-head
-  h3 Title
-  h3 Climber
-  h3 Rating
-  h3 Comments
-div(id='review-container')
-  if reviews
-    each ele in reviews
-      div#single-review
-        h4= ele.title
-        div: a(href=`/users/${postUser.id}`) #{postUser.username}
-        p Rated it #{ele.rating}/5
-        p#description-review= ele.description
+div#review-main
+  h2#h2-review Reviews
+  div(id='review-container')
+    if reviews
+      each ele in reviews
+        div#single-review
+          h4#single-review-title= ele.title
+          p#single-review-rating Rating: #{ele.rating}/5
+          p#description-review= ele.description
+          div#single-review-user: a(href=`/users/${postUser.id}`) Posted by: #{postUser.username}

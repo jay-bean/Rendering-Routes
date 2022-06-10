@@ -11,8 +11,10 @@ block content
       div#h1-hr
         h1(class='h1-route' id=`route-${route.id}-name`)= route.name
         hr.route-hr
-      h2#h2-route Created by: #{postUser.username}
       div#all-attr
+        div#attr-head
+          h2#h2-attr Route information
+          hr#hr-attr
         div#difficulty-route
           h3.h3-route Difficulty:
           p(id=`route-${route.id}-difficulty`)= route.difficulty
@@ -31,6 +33,15 @@ block content
         div#crag-route
           h3.h3-route Crag:
           p(id=`route-${route.id}-crag`)= cragName
+        if seshAuth
+          if route.userId === seshAuth.userId
+            div#edit-btn-2
+              button(id='route-edit-button') Edit Route
+      div#route-image-h2
+        img(src=`${route.image}` alt='Photo of Route' id='img')
+        h2#h2-route Route posted by: #{postUser.username}
+      div#climb-list-p
+        p Is this route in your climb list?
       div(id='climb-list-div')
         if (currentClimbListRoute !== true)
           form(method='POST' action=`/routes/${route.id}` id='climb-list-form')
@@ -65,5 +76,3 @@ block content
           each crag in crags
             option(value=`${crag.id}-${cragName}`) #{crag.name}
         button(class="edit-submit" id=`route-edit-submit-${route.id}`) Submit
-      //- div#button-edit
-      button(id='route-edit-button') Edit Route
