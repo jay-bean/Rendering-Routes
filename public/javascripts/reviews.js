@@ -130,3 +130,30 @@ if (editReviewButtons) {
         }
     }
 }
+
+
+const deleteReviewBtns = document.querySelectorAll('.review-delete-btn')
+for (let i = 0; i < deleteReviewBtns.length; i++) {
+    const btn = deleteReviewBtns[i];
+
+    btn.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const splitURL = document.URL.split('/');
+        const userId = splitURL[4];
+        const reviewIdDiv = document.querySelector('div.hidden').id
+        const reviewId = reviewIdDiv.split('-')[2]
+
+        const res = await fetch(`/users/${userId}/reviews`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reviewId })
+        })
+
+        const data = await res.json();
+        if(data.message = "Success!") {
+            const container = document.getElementById(`single-review-container-${reviewId}`)
+            container.remove()
+        }
+    })
+
+}

@@ -1,0 +1,79 @@
+body {
+    background: url(/images/faded-mountain.png) no-repeat bottom 100px right -40px;
+    background-size: 700px 200px;
+}
+
+.form-container {
+    display: grid;
+    justify-content: center;
+    height: fit-content;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+form {
+    padding: 10px;
+}
+
+input {
+    display: block;
+    height: 36px;
+    width: 314px;
+    border: 1px solid gray;
+    background-color: #FAFAFA;
+    border-radius: 25px;
+    justify-content: center;
+    margin: 10px;
+    padding: 6.4px 12.8px;
+}
+
+label {
+    display: block;
+    margin: 10px;
+}
+
+.options {
+    display: block;
+    justify-content: center;
+}
+
+.register {
+    display: block;
+    justify-content: center;
+    height: 36px;
+    width: 314px;
+    border: 1px solid gray;
+    border-radius: 25px;
+    background-color: #587B7F;
+    color: white;
+    margin: 10px;
+    font-size: 20px;
+}
+
+.cancel {
+    display: flex;
+    justify-content: center;
+
+}
+
+.create-account {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 36px;
+    margin: 26px auto;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+/* .bottom{
+    display: inline-block;
+} */
+
+.text {
+    display: inline-block;
+    margin-left: 55px;
+}
+.sign-in {
+    display: inline-block;
+    margin-left: 15px;
+}
