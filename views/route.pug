@@ -12,24 +12,25 @@ block content
         h1(class='h1-route' id=`route-${route.id}-name`)= route.name
         hr.route-hr
       h2#h2-route Created by: #{postUser.username}
-      div#difficulty-route
-        h3.h3-route Difficulty:
-        p(id=`route-${route.id}-difficulty`)= route.difficulty
-      div#height-route
-        h3.h3-route Height:
-        p(id=`route-${route.id}-height`) #{route.height} ft.
-      div#type-route
-        h3.h3-route Type of Climb:
-        p(id=`route-${route.id}-type`)= route.type
-      div#protection-route
-        h3.h3-route Protection:
-        p(id=`route-${route.id}-protection`)= route.protection
-      div#description-route
-        h3.h3-route Description:
-        p(id=`route-${route.id}-description`)= route.description
-      div#crag-route
-        h3.h3-route Crag:
-        p(id=`route-${route.id}-crag`)= cragName
+      div#all-attr
+        div#difficulty-route
+          h3.h3-route Difficulty:
+          p(id=`route-${route.id}-difficulty`)= route.difficulty
+        div#height-route
+          h3.h3-route Height:
+          p(id=`route-${route.id}-height`) #{route.height} ft.
+        div#type-route
+          h3.h3-route Type of Climb:
+          p(id=`route-${route.id}-type`)= route.type
+        div#protection-route
+          h3.h3-route Protection:
+          p(id=`route-${route.id}-protection`)= route.protection
+        div#description-route
+          h3.h3-route Description:
+          p(id=`route-${route.id}-description`)= route.description
+        div#crag-route
+          h3.h3-route Crag:
+          p(id=`route-${route.id}-crag`)= cragName
       div(id='climb-list-div')
         if (currentClimbListRoute !== true)
           form(method='POST' action=`/routes/${route.id}` id='climb-list-form')
@@ -64,4 +65,5 @@ block content
           each crag in crags
             option(value=`${crag.id}-${cragName}`) #{crag.name}
         button(class="edit-submit" id=`route-edit-submit-${route.id}`) Submit
+      //- div#button-edit
       button(id='route-edit-button') Edit Route
