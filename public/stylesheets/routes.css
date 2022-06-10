@@ -2,7 +2,9 @@
   margin-top: 50px;
   margin-bottom: 20px;
   text-align: center;
-  color: #3B4E4C;
+  color: #30413f;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 50px;
   font-weight: 600;
   letter-spacing: .2em;
   text-shadow:
@@ -22,8 +24,10 @@ hr {
 #h2-routes {
   margin-bottom: 60px;
   text-align: center;
-  color: #3B4E4C;
+  color: #30413f;
+  font-family: 'Abhaya Libre', serif;;
   font-weight: 400;
+  font-size: 26px;
 }
 
 #h3-btn-div {
@@ -36,12 +40,14 @@ hr {
 #h3-routes {
   color: #575757;
   font-style: italic;
+  font-size: 18px;
 }
 
 #routes-btn {
   background-color: #808080;
   border-radius: 5px;
   border: thin double #ffffff;
+  padding: 4px;
   color: #ffffff;
   text-align: center;
   font-size: 20px;
