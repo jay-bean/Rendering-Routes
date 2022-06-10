@@ -15,12 +15,12 @@ block content
     label If the crag you are looking for isn't listed.
       a(href='/crags/new') Click Here
     +field('Description', 'description', route.description, 'textarea')
-    //- +field('Image URL', 'image', route.image)
+    +field('or use a image URL:', 'image', route.image)
     +field('Difficulty', 'difficulty', route.difficulty)
     +field('Height', 'height', route.height)
     +field('Protection', 'protection', route.protection)
     +field('Type of Climb', 'type', route.type)
-    label Image
+    label Upload image
     input(type="file" name="image" id="image" value=route.image)
     div
       button(type='submit') Create
