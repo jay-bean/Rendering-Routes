@@ -116,10 +116,6 @@ router.post('/demo/log-in', asyncHandler(async (req, res) => {
 router.get('/:userId(\\d+)', requireAuth,
   asyncHandler(async (req, res) => {
     const user = await db.User.findByPk(req.params.userId)
-    // const reviews = await db.Review.findAll({
-    //   where: { userId: req.params.userId}
-    // })
-
 
     if (!user) res.redirect('/404');
 
@@ -211,20 +207,20 @@ router.delete('/:userId(\\d+)/climb-list',
 
 router.get('/:userId(\\d+)/reviews', requireAuth,
   asyncHandler(async (req, res) => {
-  const userId = req.params.userId
-  const user = await db.User.findByPk(userId)
-  const userReviews = await db.Review.findAll({
-    where: {userId},
-    include: [{
-      model: db.Route
-    }]
-  })
+    const userId = req.params.userId
+    const user = await db.User.findByPk(userId)
+    const userReviews = await db.Review.findAll({
+      where: { userId },
+      include: [{
+        model: db.Route
+      }]
+    })
 
-  res.render('user-all-reviews', {userReviews, userId, user})
+    res.render('user-all-reviews', { userReviews, userId, user })
   }));
 
 
-  router.patch('/:userId(\\d+)/reviews', requireAuth, reviewValidators,
+router.patch('/:userId(\\d+)/reviews', requireAuth, reviewValidators,
   asyncHandler(async (req, res) => {
     const userId = req.params.userId
     const reviewId = parseInt(req.body.reviewId, 10)
@@ -236,7 +232,7 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
     review.rating = req.body.rating
 
     const validateErrors = validationResult(req);
-    if(validateErrors.isEmpty()) {
+    if (validateErrors.isEmpty()) {
       await review.save()
       res.status(200)
       res.json({ message: 'Success!', review })
@@ -246,4 +242,15 @@ router.get('/:userId(\\d+)/reviews', requireAuth,
       res.json({ message: 'Unsuccessful!', review, errors });
     }
   }));
+
+router.delete('/:userId(\\d+)/reviews', requireAuth,
+  asyncHandler(async (req, res) => {
+    const reviewId = parseInt(req.body.reviewId, 10)
+
+    const review = await db.Review.findByPk(reviewId)
+    await review.destroy();
+
+    res.json({ message: 'Success!' })
+
+  }))
 module.exports = router;

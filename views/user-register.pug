@@ -1,20 +1,32 @@
 extends layout.pug
 
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/sign-up.css")
+
 include utils.pug
 
 block content
   +validationErrorSummary(errors)
-  form(action='/users/sign-up' method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    +field('Username', 'username', user.username)
-    +field('Email Address', 'email', user.email)
-    +field('Biography', 'biography', user.biography)
-    +field('Password', 'password', user.password, 'password')
-    +field('Confirm Password', 'confirmPassword', '', 'password')
-    div
-      button(type='submit' ) Register
-      a(href='/' ) Cancel
-  div
-    p: a(href='/users/log-in') Already have an account?
-    form(action='/users/demo/log-in' method='post')
-      button(type='submit') Log in as Demo User
+  .form-container
+    form(action='/users/sign-up' method='post')
+      input(type='hidden' name='_csrf' value=csrfToken)
+      p.create-account Create Account
+      label Username
+      input(type="text" name="username" value=user.username)
+      label Email Address
+      input(type="email" name="email" value=user.email)
+      label Biography
+      input(type="textarea" name="biography" value=user.biography)
+      label Password
+      input(type="password" name="password" value=user.password)
+      label Confirm Password
+      input(type="password" name="confirmPassword" value = "")
+      div.options
+        button(type='submit' class="register") Register
+        a(href='/' class="cancel") Cancel
+    div.bottom
+      p.text Already have an account?
+      p.sign-in: a(href='/users/log-in') Sign In
+      //- form(action='/users/demo/log-in' method='post')
+      //-   button(type='submit') Log in as Demo User

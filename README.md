@@ -1,6 +1,6 @@
 # Rendering Routes
 
-![Rendering Routes Logo](https://user-images.githubusercontent.com/46910262/172935945-e0ae0922-7801-456f-83ec-a9968becc3fd.png)
+![Rendering Routes Logo](https://user-images.githubusercontent.com/46910262/172967859-be70b78f-9ada-4814-a35e-90c22ba1d468.png)
 ###### Connecting climbers to the climb.
 
 #### Visit our site here: [Rendering Routes](https://rendering-routes.herokuapp.com/)
