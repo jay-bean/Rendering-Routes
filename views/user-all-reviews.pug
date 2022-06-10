@@ -6,33 +6,34 @@ append head
 block content
     h2 All of #{user.username}'s Reviews
     each review in userReviews
-        div(id=`single-review-container-${review.id}`)
-            div(class="hidden" id=`hidden-review-${review.id}`)
-            div
-                p: a(href=`/routes/${review.Route.id}`) Go to Route
-            div
-                p Title
-                p(id=`title-${review.id}`) #{review.title}
-            div
-                p Rating:
-                p(id=`rating-${review.id}`) #{review.rating}
-            div
-                p Details:
-                p(id=`description-${review.id}`) #{review.description}
+        div(class="individual-review-container" id=`individual-review-container-id-${review.id}`)
+            h3 #{review.Route.name} Route
+            div(id=`individual-review-${review.id}`)
+                div
+                    p: a(href=`/routes/${review.Route.id}`) Go to Route
+                div
+                    p Title
+                    p(id=`title-${review.id}`) #{review.title}
+                div
+                    p Rating:
+                    p(id=`rating-${review.id}`) #{review.rating}
+                div
+                    p Details:
+                    p(id=`description-${review.id}`) #{review.description}
             if loggedInUser === userId
-            div(id='review-error-container')
+                div(id=`review-error-container-${review.id}`)
+                form(class='hidden' id=`edit-review-form-${review.id}`)
+                    label Title:
+                    input(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
+                    label Description:
+                    textarea(rows='5' cols='30' name='description' value=review.description id=`edit-review-description-${review.id}`) #{review.description}
+                    label Rating
+                    select(name='rating' id=`edit-review-rating-${review.id}`)
+                        option(value='1') 1
+                        option(value='2') 2
+                        option(value='3') 3
+                        option(value='4') 4
+                        option(value='5') 5
+                    button(class="edit-review-submit" id=`edit-submit-review-${review.id}`) Submit Edit
                 button(class='review-delete-btn' id=`deleteReview-${userId}-${review.id}`) Delete
                 button(class='edit-review-btn' id=`edit-review-${review.id}`) Edit Review
-            form(class='hidden' id=`edit-review-form-${userId}`)
-                label Title:
-                input(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
-                label Description:
-                textarea(rows='5' cols='30' name='description' id=`edit-review-description-${review.id}`)
-                label Rating
-                select(name='rating' id=`edit-review-rating-${review.id}`)
-                    option(value='1') 1
-                    option(value='2') 2
-                    option(value='3') 3
-                    option(value='4') 4
-                    option(value='5') 5
-                button(class="edit-review-submit" id=`edit-submit-review-${review.id}`) Submit Edit
