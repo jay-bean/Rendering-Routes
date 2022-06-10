@@ -10,24 +10,24 @@ block content
     .add-route-form-container
       form(action='/routes' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        label Name
-        input( type="text" name="name" value=route.name)
-        label Crag the route belongs to:
-        select(name='cragId')
+        label.addroute Name
+        input(type="text" class="addroute" name="name" value=route.name)
+        label.addroute Crag the route belongs to:
+        select(name='cragId' class="addroute")
           each crag in crags
             option(value=crag.id) #{crag.name}
-        label If the crag you are looking for isn't listed.
+        label.addroute If the crag you are looking for isn't listed.
           a(href='/crags/new') Click Here
-        label Decription
-        textarea(name="description")=route.description
-        label Upload an image for your route
-        input( type="text" name="image" value=route.image)
-        label Height
-        input( type="text" name="height" value=route.height placeholder="height in feet")
-        label Protection
-        textarea(name=protection)=route.protection
-        label Type of Climb
-        input( type="text" name="type" value=route.type)
+        label.addroute Decription
+        textarea(name="description" class="addroute")=route.description
+        label.addroute Upload an image for your route
+        input( type="text" class="addroute" name="image" value=route.image)
+        label.addroute Height
+        input( type="text" class="addroute" name="height" value=route.height placeholder="height in feet")
+        label.addroute Protection
+        textarea(name=protection class="addroute")=route.protection
+        label.addroute Type of Climb
+        input( type="text" class="addroute" name="type" value=route.type)
         div
-          button(type='submit') Create
-          a(href='/routes' ) Cancel
+          button(type='submit' class="addroute") Create
+          a(href='/routes' class="cancel" ) Cancel

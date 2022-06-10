@@ -15,7 +15,31 @@ h1.addroute {
 
 }
 .add-route-form-container {
-    display: flex;
+    display: grid;
     justify-content: center;
 
+}
+
+input.addroute {
+    height: 36px;
+    width: 314px;
+    border: 1px solid gray;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    padding: 6.4px 12.8px;
+    transition: background-color 0.5s
+}
+input.addroute:hover {
+    background-color: #e5e5e5;
+}
+
+textarea.addroute {
+    border-radius: 10px;
+    padding: 10px 16.8px;
+    transition: background-color 0.5s;
+    background-color: #FAFAFA;
+}
+
+textarea.addroute:hover {
+background-color: #e5e5e5;
 }
