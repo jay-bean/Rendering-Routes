@@ -121,6 +121,13 @@
 }
 
 .user-review-edit-headers  {
-  background-color: #587B7F;
-  font-size: 30px;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.user-review-edit-inputs {
+  border: thin solid black;
+  border-radius: 20px;
+  padding: 10px;
 }

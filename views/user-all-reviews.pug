@@ -27,11 +27,11 @@ block content
                     div#user-review-edit-form
                       form(class='hidden' id=`edit-review-form-${review.id}`)
                           label.user-review-edit-headers Title:
-                          input(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
+                          input.user-review-edit-inputs(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
                           label.user-review-edit-headers Description:
-                          textarea(rows='5' cols='30' name='description' value=review.description id=`edit-review-description-${review.id}`) #{review.description}
+                          textarea.user-review-edit-inputs(rows='5' cols='30' name='description' value=review.description id=`edit-review-description-${review.id}`) #{review.description}
                           label.user-review-edit-headers Rating
-                          select(name='rating' id=`edit-review-rating-${review.id}`)
+                          select.user-review-edit-inputs(name='rating' id=`edit-review-rating-${review.id}`)
                               option(value='1') 1
                               option(value='2') 2
                               option(value='3') 3
