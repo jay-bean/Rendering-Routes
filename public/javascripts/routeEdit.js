@@ -24,6 +24,7 @@ if (editButton) {
   });
 const cancelButton = document.querySelector(".edit-cancel-btn");
   cancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
     if (postInfo.classList.contains('hidden')) {
       postInfo.classList.remove('hidden');
       formInfo.classList.add('hidden');
