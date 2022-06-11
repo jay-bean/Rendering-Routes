@@ -39,31 +39,31 @@ form.addroute {
 .name-crag-container {
     grid-column-start: 2;
     grid-row-start: 1;
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
-.height-climb-container {
+.height-climb-image-container {
     grid-column-start: 2;
     grid-row-start: 2;
     display: grid;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
-.description-container {
+.description-difficulty-container {
     grid-column-start: 3;
     grid-row-start: 1;
     display: grid;
-    justify-content: center;
+    justify-content: left;
+    align-items: flex-start;
 }
 
-.protection-image-container {
+.protection-outer-container {
     grid-column-start: 3;
     grid-row-start: 2;
     display: grid;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: flex-start;
 }
 
 .bottom-page {
@@ -114,4 +114,52 @@ background-color: #e5e5e5;
 }
 #description-label {
     margin-bottom: 0;
+}
+
+#height-label {
+    margin-left: 5px;
+}
+
+#crag-input {
+width: 314px;
+height: 36px;
+}
+
+#redirect-label {
+    margin-top: 30px;
+    margin-left: 5px;
+}
+
+#name-input {
+    margin-bottom: 30px;
+}
+
+#name-label {
+    margin-top: 20px;
+}
+
+#description-label {
+    margin-top: 20px;
+}
+
+button.addroute {
+    width: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: white;
+    background-color: #587B7F;
+
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+button.addroute:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+.cancel {
+    margin-left: 20px;
 }

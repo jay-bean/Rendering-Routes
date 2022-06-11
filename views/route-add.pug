@@ -21,24 +21,26 @@ block content
                 option(value=crag.id) #{crag.name}
             label(class ="addroute" id="redirect-label") If the crag you are looking for isn't listed.
               a(href='/crags/new' id="crag-link") Click Here
-        .description-container
-          .description-inner-container
+        .description-difficulty-container
+          .description-container
             label(class ="addroute" id="description-label") Description
             textarea(name="description" id="description-input" class="addroute")=route.description
-        .height-climb-container
+          .difficulty-container
+            label(class="addroute" id="difficulty-label") Difficulty
+            input(type="text" class="addroute" id="difficulty-input" value=route.difficulty)
+        .height-climb-image-container
           .height-container
-            label(class ="addroute" id="height-label") Height
-            input(type="text" class="addroute" id="height-input" name="height" value=route.height placeholder="height in feet")
+            label(class ="addroute" id="height-label") Height in Feet
+            input(type="text" class="addroute" id="height-input" name="height" value=route.height placeholder="Number value only")
           .climb-container
             label(class ="addroute" id="type-label") Type of Climb
             input(type="text" id="type-input" class="addroute" name="type" value=route.type)
-        .protection-image-container
+          .image-container
+            label(class ="addroute" id="image-label") Upload an image for your route
+            input(type="text" class="addroute"  id="image-input" name="image" value=route.image placeholder="Optional")
+        .protection-outer-container
           .protection-container
             label(class ="addroute" id="protection-label") Protection
             textarea(name="protection" class="addroute" id="protection-input" )=route.protection
-          .image-container
-            label(class ="addroute" id="image-label") Upload an image for your route
-            input(type="text" class="addroute"  id="image-input" name="image" value=route.image)
-        div.bottom-page
-          button(type='submit' class="addroute") Create
-          a(href='/routes' class="cancel" ) Cancel
+            button(type='submit' class="addroute") Create
+            a(href='/routes' class="cancel" ) Cancel
