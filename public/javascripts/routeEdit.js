@@ -1,7 +1,13 @@
 const editButton = document.querySelector('#route-edit-button');
 
 const splitURL = document.URL.split('/');
-const routeId = splitURL[splitURL.length - 1];
+let routeId = splitURL[splitURL.length - 1];
+
+if (routeId.includes('?')) {
+  let newRouteId = routeId.split('?');
+  routeId = newRouteId[0];
+}
+
 if (editButton) {
   const postInfo = document.querySelector(`#route-post-${routeId}`);
   const formInfo = document.querySelector(`#route-edit-container`);
@@ -16,9 +22,9 @@ if (editButton) {
       formInfo.classList.remove('hidden');
     }
   });
-const cancelButton = document.querySelector(".edit-cancel-btn")
+const cancelButton = document.querySelector(".edit-cancel-btn");
   cancelButton.addEventListener('click', (e) => {
-    if (!postInfo.classList.contains('hidden')) {
+    if (postInfo.classList.contains('hidden')) {
       postInfo.classList.remove('hidden');
       formInfo.classList.add('hidden');
     }
@@ -53,7 +59,7 @@ const cancelButton = document.querySelector(".edit-cancel-btn")
       cragName,
       cragId
     };
-    console.log(request);
+
     const res = await fetch(`/routes/${routeId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },

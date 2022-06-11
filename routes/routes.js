@@ -151,7 +151,6 @@ router.patch('/:routeId(\\d+)', requireAuth, routeEditValidators,
     route.cragId = req.body.cragId;
     const currentCrag = await db.Crag.findByPk(route.cragId);
     const cragName = currentCrag.name;
-    console.log("INSIDE PATCHHHHHH")
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {

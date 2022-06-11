@@ -80,5 +80,5 @@ block content
             select(class='edit-crag2' name='cragId' id=`route-${route.id}-edit-crag`)
               each crag in crags
                 option(value=`${crag.id}-${cragName}`) #{crag.name}
-            a(href=`/routes/${route.id}` class='edit-cancel-btn' id=`route-edit-cancel-${route.id}`) Cancel
+            button(class='edit-cancel-btn' id=`route-edit-cancel-${route.id}`) Cancel
             button(class="edit-submit-btn" id=`route-edit-submit-${route.id}`) Submit
