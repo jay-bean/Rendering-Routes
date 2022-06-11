@@ -16,12 +16,15 @@ body {
     height: fit-content;
     margin-right: auto;
     margin-left: auto;
+    display:block;
 }
 
-form {
-    display: block;
-    margin-top: 60px;
+form.addcrag {
+    display: grid;
+    margin-top: 40px;
     margin-bottom: 20px;
+    width: inherit;
+    height: inherit;
 
 }
 
@@ -57,6 +60,7 @@ h2.title {
     /* font-family:  */
     font-size: 36px;
     font-weight: bold;
+    color: #1E2019;
 }
 
 p.info {
