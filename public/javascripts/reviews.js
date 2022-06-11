@@ -27,10 +27,12 @@ if (addAReviewButton) {
         const errorContainer = document.querySelector('#review-error-container');
         if (data.message === 'Success!') {
             const newReview = document.createElement('div');
+            newReview.id = 'single-review';
+
             newReview.innerHTML = `
-            <p>${data.review.title}</p>
-            <p>${data.review.rating}</p>
-            <p>${data.review.description}</p>
+            <h4 id='single-review-title'>${data.review.title}</h4>
+            <p id='single-review-rating'>Rating: ${data.review.rating}/5</p>
+            <p id='description-review'>${data.review.description}</p>
             `
 
             const reviewContainer = document.querySelector('#review-container');

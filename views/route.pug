@@ -38,7 +38,8 @@ block content
             div#edit-btn-2
               button(id='route-edit-button') Edit Route
       div#route-image-h2
-        img(src=`${route.image}` alt='Photo of Route' id='img')
+        if route.image
+          img(src=`${route.image}` alt='Photo of Route' id='img')
         h2#h2-route Route posted by: #{postUser.username}
       div#climb-list-p
         p Is this route in your climb list?
