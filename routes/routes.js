@@ -77,7 +77,7 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       type,
       cragId
     } = req.body;
-console.log('THIS IS THE IMAGE', image)
+// console.log('THIS IS THE IMAGE', image)
     const route = db.Route.build({
       name,
       description,
