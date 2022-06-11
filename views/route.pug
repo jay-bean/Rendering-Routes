@@ -46,13 +46,18 @@ block content
       div(id='climb-list-div')
         if (currentClimbListRoute !== true)
           form(method='POST' action=`/routes/${route.id}` id='climb-list-form')
+            input(type='hidden' name='routeId' value=`${route.id}` id='list-hidden-route')
             if seshAuth
               input(type='hidden' name='userId' value=`${seshAuth.userId}` id='list-hidden-user')
-              input(type='hidden' name='routeId' value=`${route.id}` id='list-hidden-route')
+            else
+              input(type='hidden' name='userId' value=`1` id='list-hidden-user')
             select(name='climbStatus' class='climb-status' id='climb-status-dropdown')
               option(value=`false`) Want to climb
               option(value=`true`) Have climbed
-            input(type='submit' value ='Add to List' class='save-climb-status' id='climb-list-add-button')
+            if seshAuth
+              input(type='submit' value ='Add to List' class='save-climb-status' id='climb-list-add-button')
+            else
+              a(href='/users/log-in' class='save-climb-status') Add to List
         else
           if seshAuth
             p(id='climb-list-form-info') This route is in your climb list! #[a(href=`/users/${seshAuth.userId}/climb-list`) Click here] to change its status.

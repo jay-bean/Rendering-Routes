@@ -53,7 +53,7 @@ if (deleteBtns) {
             if (data.message = "Success!") {
                 const container = document.getElementById(`route-container-${routeId}`)
                 container.remove()
-            } 
+            }
         })
     }
 }
