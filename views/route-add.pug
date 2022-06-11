@@ -1,25 +1,46 @@
 extends layout.pug
-
+append head
+  link(rel="stylesheet" href="/stylesheets/route-add.css")
 include utils.pug
 
 block content
-  h1 Create A Route
-  +validationErrorSummary(errors)
-  form(action='/routes' method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    +field('Name', 'name', route.name)
-    label Crag the route belongs to:
-    select(name='cragId')
-      each crag in crags
-        option(value=crag.id) #{crag.name}
-    label If the crag you are looking for isn't listed.
-      a(href='/crags/new') Click Here
-    +field('Description', 'description', route.description, 'textarea')
-    +field('Image URL', 'image', route.image)
-    +field('Difficulty', 'difficulty', route.difficulty)
-    +field('Height', 'height', route.height)
-    +field('Protection', 'protection', route.protection)
-    +field('Type of Climb', 'type', route.type)
-    div
-      button(type='submit') Create
-      a(href='/routes' ) Cancel
+  .add-route-container
+    h1.addroute Create A Route
+    +validationErrorSummary(errors)
+    .add-route-form-container
+      form(action='/routes' method='post' class="addroute")
+        input(type='hidden' name='_csrf' value=csrfToken)
+        .name-crag-container
+          .name-container
+            label(class ="addroute" id="name-label") Name
+            input(type="text" class="addroute" id="name-input" name="name" value=route.name)
+          .crag-container
+            label(class ="addroute" id="crag-label") Crag the route belongs to:
+            select(name='cragId' class="addroute" id="crag-input")
+              each crag in crags
+                option(value=crag.id) #{crag.name}
+            label(class ="addroute" id="redirect-label") If the crag you are looking for isn't listed.
+              a(href='/crags/new' id="crag-link") Click Here
+        .description-difficulty-container
+          .description-container
+            label(class ="addroute" id="description-label") Description
+            textarea(name="description" id="description-input" class="addroute")=route.description
+          .difficulty-container
+            label(class="addroute" id="difficulty-label") Difficulty
+            input(type="text" class="addroute" id="difficulty-input" value=route.difficulty)
+        .height-climb-image-container
+          .height-container
+            label(class ="addroute" id="height-label") Height in Feet
+            input(type="text" class="addroute" id="height-input" name="height" value=route.height placeholder="Number value only")
+          .climb-container
+            label(class ="addroute" id="type-label") Type of Climb
+            input(type="text" id="type-input" class="addroute" name="type" value=route.type)
+          .image-container
+            label(class ="addroute" id="image-label") Upload an image for your route
+            input(type="text" class="addroute"  id="image-input" name="image" value=route.image placeholder="Optional")
+        .protection-outer-container
+          .protection-container
+            label(class ="addroute" id="protection-label") Protection
+            textarea(name="protection" class="addroute" id="protection-input" )=route.protection
+            button(type='submit' class="addroute") Create
+            a(href='/routes' class="cancel" ) Cancel
