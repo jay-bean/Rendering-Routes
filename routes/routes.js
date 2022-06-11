@@ -77,9 +77,10 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       type,
       cragId
     } = req.body;
-console.log('THIS IS THE IMAGE', image)
+
+    const capitalizedName = `${name[0].toUpperCase()}${name.slice(1)}`
     const route = db.Route.build({
-      name,
+      name: capitalizedName,
       description,
       image,
       difficulty,
@@ -150,7 +151,7 @@ router.patch('/:routeId(\\d+)', requireAuth, routeEditValidators,
     route.cragId = req.body.cragId;
     const currentCrag = await db.Crag.findByPk(route.cragId);
     const cragName = currentCrag.name;
-
+    console.log("INSIDE PATCHHHHHH")
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {

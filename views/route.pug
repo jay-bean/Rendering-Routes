@@ -16,7 +16,7 @@ block content
           h2#h2-attr Route information
           hr#hr-attr
         div#difficulty-route
-          h3.h3-route Difficulty:
+          h3.h3-route Grade:
           p(id=`route-${route.id}-difficulty`)= route.difficulty
         div#height-route
           h3.h3-route Height:
@@ -38,7 +38,8 @@ block content
             div#edit-btn-2
               button(id='route-edit-button') Edit Route
       div#route-image-h2
-        img(src=`${route.image}` alt='Photo of Route' id='img')
+        if route.image
+          img(src=`${route.image}` alt='Photo of Route' id='img')
         h2#h2-route Route posted by: #{postUser.username}
       div#climb-list-p
         p Is this route in your climb list?
@@ -54,25 +55,30 @@ block content
             input(type='submit' value ='Add to List' class='save-climb-status' id='climb-list-add-button')
         else
           if seshAuth
-            p(id='climb-list-form-info') This route is in your climb list! #[a(href=`/users/${seshAuth.userId}/climb-list`) Click here] to change its status.
+            p(id='climb-list-form-info') This route is now in your climb list! #[a(href=`/users/${seshAuth.userId}/climb-list`) Click here] to change its' status.
       include reviews.pug
   if seshAuth
     if route.userId === seshAuth.userId
       div(id='route-error-container')
-      form(class='hidden' id=`route-edit-form-${route.id}`)
-        label Name:
-        input(type='text' name='name' value=route.name id=`route-${route.id}-edit-name`)
-        label Difficulty:
-        input(type='text' name='difficulty' value=route.difficulty id=`route-${route.id}-edit-difficulty`)
-        label Height:
-        input(type='number' name='height' value=route.height id=`route-${route.id}-edit-height`)
-        label Type of Climb:
-        input(type='text' name='type' value=route.type id=`route-${route.id}-edit-type`)
-        label Protection:
-        input(type='text' name='protection' value=route.protection id=`route-${route.id}-edit-protection`)
-        label Description:
-        textarea(rows='5' cols='30' name="description" value=route.description id=`route-${route.id}-edit-description`)= route.description
-        select(name='cragId' id=`route-${route.id}-edit-crag`)
-          each crag in crags
-            option(value=`${crag.id}-${cragName}`) #{crag.name}
-        button(class="edit-submit" id=`route-edit-submit-${route.id}`) Submit
+      div(class='hidden' id=`route-edit-container`)
+        div#grid-edit-form
+          h1#edit-route-h1 Edit your route
+          form(class="route-edit-form" id=`route-edit-form-${route.id}`)
+            label.label-edit Name:
+            input(class='edit-name' type='text' name='name' value=route.name id=`route-${route.id}-edit-name`)
+            label.label-edit Difficulty:
+            input(class='edit-difficulty' type='text' name='difficulty' value=route.difficulty id=`route-${route.id}-edit-difficulty`)
+            label.label-edit Height:
+            input(class='edit-height' type='number' name='height' value=route.height id=`route-${route.id}-edit-height`)
+            label.label-edit Type of Climb:
+            input(class='edit-type' type='text' name='type' value=route.type id=`route-${route.id}-edit-type`)
+            label.label-edit Protection:
+            input(class='edit-protection' type='text' name='protection' value=route.protection id=`route-${route.id}-edit-protection`)
+            label.label-edit Description:
+            textarea(class='edit-description' rows='5' cols='30' name="description" value=route.description id=`route-${route.id}-edit-description`)= route.description
+            label.label-edit Crag:
+            select(class='edit-crag2' name='cragId' id=`route-${route.id}-edit-crag`)
+              each crag in crags
+                option(value=`${crag.id}-${cragName}`) #{crag.name}
+            a(href=`/routes/${route.id}` class='edit-cancel-btn' id=`route-edit-cancel-${route.id}`) Cancel
+            button(class="edit-submit-btn" id=`route-edit-submit-${route.id}`) Submit
