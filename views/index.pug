@@ -1,18 +1,15 @@
 extends layout.pug
 
 append head
-  //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
-  //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  section(aria-label="Example Crags")
-    div(id="crag-container")
-      div(id="crag-image")
-        a(href="/crags/7")
-          img(src="https://cdn2.apstatic.com/photos/climb/105957832_medium_1558029938.jpg" alt="Alaska > Denali National Park")
+  div(id="top-container")
+    div(id="top-image-container")
+    div(id='top-container-info')
+      h1(id='top-container-title') Welcome to Rendering Routes
+      p(id='top-container-p') We're on a mission to connect climbers to awesome rocks. Join the community and post about your favorite routes and crags. Review other posts and give feedback to the community.
 
 
 

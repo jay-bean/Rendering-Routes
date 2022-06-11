@@ -1,19 +1,73 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Lato', 'sans-serif';
+#top-container {
+    width: 100%;
+    height: 360px;
+
+    display: flex;
+    justify-content: center;
+
+    background-color: #1E2019;
 }
 
-body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Lato', sans-serif;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-body::-webkit-scrollbar {
-    display: none;
+#top-container-info {
+    width: 30%;
+    margin: 20px 20% 20px 50px;
 }
 
-.hidden {
-    display: none;
+#top-container-title {
+    font-size: 32px;
+    color: white;
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+}
+
+#top-container-p {
+    font-size: 24px;
+    color: white;
+    text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+}
+
+#top-image-container {
+    position: relative;
+    width: 600px;
+    height: 320px;
+
+    margin: 20px 0px 20px 15%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+    animation: fade infinite linear 25s ;
+}
+
+@keyframes fade {
+    0% {
+        background-image: url('../images/home-page/istockphoto-146767207-612x612.jpg');
+    }
+    10% {
+        background-image: url('../images/home-page/istockphoto-146767207-612x612.jpg');
+    }
+    20% {
+        background-image: url('../images/home-page/107772044_medium_1494210484.jpg');
+    }
+    30% {
+        background-image: url('../images/home-page/107772044_medium_1494210484.jpg');
+    }
+    40% {
+        background-image: url('../images/home-page/106650415_medium_1494128802.jpg');
+    }
+    50% {
+        background-image: url('../images/home-page/106650415_medium_1494128802.jpg');
+    }
+    60% {
+        background-image: url('../images/home-page/rock-climbing-reference-caldwell.jpg');
+    }
+    70% {
+        background-image: url('../images/home-page/rock-climbing-reference-caldwell.jpg');
+    }
+    80% {
+        background-image: url('../images/home-page/109295012_medium_1494345793.jpg');
+    }
+    90% {
+        background-image: url('../images/home-page/109295012_medium_1494345793.jpg');
+    }
+    100% {
+        background-image: url('../images/home-page/istockphoto-146767207-612x612.jpg');
+    }
 }

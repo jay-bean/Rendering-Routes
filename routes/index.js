@@ -7,15 +7,7 @@ const { requireAuth } = require('../auth');
 const db = require('../db/models');
 
 router.get('/', asyncHandler(async (req, res) => {
-  /* TODO: need to cycle through 3-5 routes on one card
-
-  List for the card:
-    image
-    route.name
-    route.description
-
-  */
-  res.render('index', { title: 'Welcome to Rendering Routes!'});
+  res.render('index');
 }));
 
 router.get('/contact-us', asyncHandler(async (req, res) => {
