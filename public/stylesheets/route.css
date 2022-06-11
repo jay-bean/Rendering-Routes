@@ -52,8 +52,8 @@
   font-size: 32px;
   font-weight: 400;
   font-family: 'Abhaya Libre', serif;
-  margin: 0px;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 #all-attr {
@@ -193,7 +193,7 @@ text-align: center;
 }
 
 #single-review-user {
-  display: inline-block;
+  display: block;
 }
 
 #single-review-rating {
@@ -321,9 +321,9 @@ border-radius: 10px;
   margin-left: 46%;
 }
 #route-edit-container {
-  width: 40%;
-  margin-left: 30%;
-  margin-right: 30%;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
   margin-top: 3%;
   height: fit-content;
 }
@@ -334,21 +334,28 @@ border-radius: 10px;
   height: fit-content;
   grid-column: 1;
   grid-row: 1;
+  align-self: center;
 }
 
-.route-edit-form {
-align-self: center;
+#edit-route-h1 {
+  font-size: 36px;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-shadow:
+  2px 2px 0px #d5d5d5,
+  2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 .label-edit {
   display: block;
-
+  font-size: 20px;
 }
 
 .edit-name {
   display: block;
-  height: 36px;
-  width: 314px;
+  height: 44px;
+  width: 400px;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
@@ -359,8 +366,8 @@ align-self: center;
 }
 .edit-difficulty {
   display: block;
-  height: 36px;
-  width: 314px;
+  height: 44px;
+  width: 400px;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
@@ -371,8 +378,8 @@ align-self: center;
 }
 .edit-height {
   display: block;
-  height: 36px;
-  width: 314px;
+  height: 44px;
+  width: 400px;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
@@ -383,8 +390,8 @@ align-self: center;
 }
 .edit-type {
   display: block;
-  height: 36px;
-  width: 314px;
+  height: 44px;
+  width: 400px;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
@@ -395,8 +402,8 @@ align-self: center;
 }
 .edit-protection {
   display: block;
-  height: 36px;
-  width: 314px;
+  height: 44px;
+  width: 400px;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
@@ -408,7 +415,7 @@ align-self: center;
 .edit-description {
   display: block;
   height: 100px;
-  width: 314px;
+  width: 400px;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
@@ -419,8 +426,8 @@ align-self: center;
 }
 .edit-crag2 {
   display: block;
-  height: 36px;
-  width: 314px;
+  height: 44px;
+  width: 400px;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
