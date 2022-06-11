@@ -71,3 +71,33 @@
         background-image: url('../images/home-page/istockphoto-146767207-612x612.jpg');
     }
 }
+
+#home-page-content-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 10% 20px 10%;
+}
+
+#home-page-content-left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+#home-page-content-right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+#home-page-content-left-info {
+    display: flex;
+    justify-content: center;
+}
+
+#home-page-content-left-info-1 {
+    margin-right: 80px;
+}
+
+#home-page-content-left-info-1,#home-page-content-left-info-2 {
+    width: 30%;
+}
