@@ -29,3 +29,5 @@ div#review-main
           p#single-review-rating Rating: #{ele.rating}/5
           p#description-review= ele.description
           div#single-review-user: a(href=`/users/${postUser.id}`) Posted by: #{postUser.username}
+      else
+        h2#no-reviews There are currently no reviews for this route.

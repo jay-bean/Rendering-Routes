@@ -7,6 +7,8 @@ block content
   div#user-review-page-content
     div#user-review-grid
       h2#user-review-h2 #{user.username}'s reviews
+      if userReviews.length === 0
+        h3#no-reviews You currently don't have any reviews
       each review in userReviews
           div(class="individual-review-container" id=`individual-review-container-id-${review.id}`)
               h3#user-review-h3 #{review.Route.name} Route
