@@ -229,7 +229,6 @@ router.get('/:userId(\\d+)/reviews', asyncHandler(async (req, res) => {
   if (req.session.auth) {
     loggedInUser = (req.session.auth.userId).toString();
   }
-  // console.log(userId, loggedInUser)
 
   res.render('user-all-reviews', { userReviews, userId, user, loggedInUser })
 }));

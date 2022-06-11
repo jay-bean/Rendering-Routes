@@ -32,12 +32,9 @@ if (editButton) {
     const cragDropDown = document.getElementById(`route-${routeId}-edit-crag`);
     const crag = cragDropDown.options[cragDropDown.selectedIndex].value;
     const cragArr = crag.split('-');
-    // console.log(cragArr);
 
     const cragId = cragArr[0];
     const cragName = cragArr[1];
-    // console.log('cragId', cragId);
-    // console.log('cragN', cragName);
 
 
     const res = await fetch(`/routes/${routeId}`, {
@@ -66,8 +63,6 @@ if (editButton) {
       const protectionChange = document.querySelector(`#route-${routeId}-protection`);
       const descriptionChange = document.querySelector(`#route-${routeId}-description`);
       const cragChange = document.querySelector(`#route-${routeId}-crag`);
-      // console.log('cragChange', cragChange)
-      // console.log('cragName2', cragName)
       nameChange.innerHTML = data.route.name;
       difficultyChange.innerHTML = data.route.difficulty;
       heightChange.innerHTML = data.route.height;
