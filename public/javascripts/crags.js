@@ -5,7 +5,6 @@ if (editButton) {
     const cragId = splitURL[splitURL.length-1];
     const postInfo = document.querySelector(`#crag-post-${cragId}`)
     const formInfo = document.querySelector(`#crag-edit-form-${cragId}`)
-    const formContainer = document.querySelector(`#crag-edit-form-container`);
 
     // hide current details and show edit form (and viceversa)
     editButton.addEventListener('click', (e) => {
@@ -18,11 +17,9 @@ if (editButton) {
         if (postInfo.classList.contains('hidden')) {
             postInfo.classList.remove('hidden');
             formInfo.classList.add('hidden');
-            formContainer.classList.add('hidden');
         } else {
             postInfo.classList.add('hidden');
             formInfo.classList.remove('hidden');
-            formContainer.classList.remove('hidden');
         }
     });
 
@@ -60,7 +57,6 @@ if (editButton) {
 
             postInfo.classList.remove('hidden');
             formInfo.classList.add('hidden');
-            formContainer.classList.add('hidden');
         } else {
             data.errors.forEach(error => {
                 errorContainer.innerHTML += `<li>${error}</li>`;
