@@ -9,16 +9,20 @@ if (editButton) {
 
     // hide current details and show edit form (and viceversa)
     editButton.addEventListener('click', (e) => {
+        if (editButton.innerText === 'Edit') {
+            editButton.innerText = 'Cancel';
+        } else {
+            editButton.innerText = 'Edit';
+        }
+
         if (postInfo.classList.contains('hidden')) {
             postInfo.classList.remove('hidden');
             formInfo.classList.add('hidden');
             formContainer.classList.add('hidden');
-            editButton.innerText = 'Edit';
         } else {
             postInfo.classList.add('hidden');
             formInfo.classList.remove('hidden');
             formContainer.classList.remove('hidden');
-            editButton.innerText = 'Cancel';
         }
     });
 
