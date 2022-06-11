@@ -21,11 +21,11 @@ body {
 
 form.addcrag {
     display: grid;
-    margin-top: 60px;
+    margin-top: 40px;
     margin-bottom: 20px;
     width: inherit;
     height: inherit;
-    
+
 }
 
 input.addcrag {
