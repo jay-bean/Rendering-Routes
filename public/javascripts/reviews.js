@@ -74,7 +74,7 @@ if (editReviewButtons) {
             } else {
                 form.classList.add('hidden')
                 reviewContainer.classList.remove('hidden');
-                btn.innerText = "Edit Review"
+                btn.innerText = "Edit"
             }
         });
     }
