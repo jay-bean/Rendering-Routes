@@ -2,28 +2,8 @@
 @import "./routes.css";
 @import "./footer.css";
 @import "./contact-us.css";
-@import "./index.css";
 @import "./all-crags.css";
 @import "./route.css";
 @import "./climb-list.css";
 @import "./crag.css";
-
-* {
-    box-sizing: border-box;
-    font-family: 'Lato', 'sans-serif';
-}
-
-body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Lato', sans-serif;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-body::-webkit-scrollbar {
-    display: none;
-}
-
-.hidden {
-    display: none
-}
+@import "./index.css";

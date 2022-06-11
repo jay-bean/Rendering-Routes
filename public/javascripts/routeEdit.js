@@ -71,8 +71,6 @@ const cancelButton = document.querySelector(".edit-cancel-btn")
       const protectionChange = document.querySelector(`#route-${routeId}-protection`);
       const descriptionChange = document.querySelector(`#route-${routeId}-description`);
       const cragChange = document.querySelector(`#route-${routeId}-crag`);
-      console.log('cragChange', cragChange)
-      console.log('cragName2', cragName)
       nameChange.innerHTML = data.route.name;
       difficultyChange.innerHTML = data.route.difficulty;
       heightChange.innerHTML = data.route.height;

@@ -29,11 +29,12 @@ block content
     if seshAuth
       if crag.userId === seshAuth.userId
         div(id='crag-error-container')
-        form(class='hidden' id=`crag-edit-form-${crag.id}`)
-          label Name:
-          input(type="text" name="name" value=crag.name id=`crag-${crag.id}-edit-name`)
-          label Location:
-          input(type="text" name="location" value=crag.location id=`crag-${crag.id}-edit-location`)
-          label Description:
-          textarea(name="description", cols="30", rows="5", value=crag.description, id=`crag-${crag.id}-edit-description`) #{crag.description}
-          button(class="edit-submit" id=`crag-edit-submit-${crag.id}`) Submit Edit
+        form(class='crag-edit-form hidden' id=`crag-edit-form-${crag.id}`)
+          p(class='cragPostTitle') Posted by: #{postUser.username}
+          label(class='cragPostTitle') Name:
+          input(type="text" name="name" value=crag.name id=`crag-${crag.id}-edit-name` class='crag-edit-input-field')
+          label(class='cragPostTitle') Location:
+          input(type="text" name="location" value=crag.location id=`crag-${crag.id}-edit-location` class='crag-edit-input-field')
+          label(class='cragPostTitle') Description:
+          textarea(name="description", cols="30", rows="5", value=crag.description, id=`crag-${crag.id}-edit-description` class='crag-edit-input-field') #{crag.description}
+          button(class="crag-edit-submit" id=`crag-edit-submit-${crag.id}`) Submit Edit
