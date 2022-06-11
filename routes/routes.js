@@ -78,7 +78,13 @@ router.post('/', csrfProtection, requireAuth, routeValidators,
       cragId
     } = req.body;
 
-    const capitalizedName = `${name[0].toUpperCase()}${name.slice(1)}`
+    let capitalizedName
+    if (name) {
+
+    capitalizedName = `${name[0].toUpperCase()}${name.slice(1)}`;
+
+    }
+
     const route = db.Route.build({
       name: capitalizedName,
       description,
