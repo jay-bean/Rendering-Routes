@@ -33,7 +33,7 @@
     margin: 20px 0px 20px 15%;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 
-    animation: fade infinite linear 25s ;
+    animation: fade infinite linear 25s;
 }
 
 @keyframes fade {
@@ -70,4 +70,110 @@
     100% {
         background-image: url('../images/home-page/istockphoto-146767207-612x612.jpg');
     }
+}
+
+#home-page-content-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 10% 20px 10%;
+}
+
+#home-page-content-left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+#home-page-content-right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+#home-page-content-left-info {
+    display: flex;
+    justify-content: center;
+}
+
+#home-page-content-left-info-1 {
+    margin-right: 80px;
+}
+
+#home-page-content-left-info-1,#home-page-content-left-info-2 {
+    width: 35%;
+}
+
+#home-page-content-left-crags {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-right: 5px;
+    background-color: #D9D9D9;
+    border: 1px solid #cacaca;
+    border-radius: 20px;
+}
+
+#home-page-crag-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.home-page-individual-crag {
+    width: fit-content;
+    padding: 2px 16px 2px 16px;
+
+    border-radius: 10px;
+    background-color: #a1c391;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+    font-weight: 600;
+    transition: background-color 0.5s;
+    transition: box-shadow 0.5s;
+}
+#home-page-crag-container > a {
+    margin: 5px;
+    text-decoration: none;
+    color: black;
+}
+.home-page-individual-crag:hover {
+    cursor: pointer;
+    background-color: #8aa77c;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+}
+
+#home-page-content-right {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-right: 5px;
+    background-color: #95B2B2;
+    border: 1px solid #86a0a0;
+    border-radius: 20px;
+}
+
+#home-page-route-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.home-page-individual-route {
+    width: fit-content;
+    padding: 2px 16px 2px 16px;
+
+    border-radius: 10px;
+    background-color: #C0CDB8;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+    font-weight: 600;
+    transition: background-color 0.5s;
+    transition: box-shadow 0.5s;
+}
+#home-page-route-container > a {
+    margin: 5px;
+    text-decoration: none;
+    color: black;
+}
+.home-page-individual-route:hover {
+    cursor: pointer;
+    background-color: #aebaa7;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }

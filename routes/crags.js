@@ -62,7 +62,7 @@ router.post('/', csrfProtection, requireAuth, cragValidators,
       res.redirect(`/crags/${crag.id}`);
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
-      res.render('/new', {
+      res.render('new-crag', {
         crag,
         errors,
         csrfToken: req.csrfToken(),
