@@ -1,4 +1,4 @@
-const addAReviewButton = document.querySelector('#review-post-button')
+const addAReviewButton = document.querySelector('#review-post-button');
 if (addAReviewButton) {
     addAReviewButton.addEventListener("click", async (e) => {
         e.preventDefault();

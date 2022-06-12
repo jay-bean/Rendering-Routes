@@ -26,19 +26,19 @@ block content
                   p#route-link: a(href=`/routes/${review.Route.id}`) visit route
               if loggedInUser === userId
                   div(id=`review-error-container-${review.id}`)
-                    div#user-review-edit-form
-                      form(class='hidden' id=`edit-review-form-${review.id}`)
-                          label.user-review-edit-headers Title:
-                          input.user-review-edit-inputs(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
-                          label.user-review-edit-headers Description:
-                          textarea.user-review-edit-inputs(rows='5' cols='30' name='description' value=review.description id=`edit-review-description-${review.id}`) #{review.description}
-                          label.user-review-edit-headers Rating
-                          select.user-review-edit-inputs(name='rating' id=`edit-review-rating-${review.id}`)
-                              option(value='1') 1
-                              option(value='2') 2
-                              option(value='3') 3
-                              option(value='4') 4
-                              option(value='5') 5
-                          button(class="edit-review-submit" id=`edit-submit-review-${review.id}`) Submit
+                  div#user-review-edit-form
+                    form(class='hidden' id=`edit-review-form-${review.id}`)
+                        label.user-review-edit-headers Title:
+                        input.user-review-edit-inputs(type='text' name='title' value=review.title id=`edit-review-title-${review.id}`)
+                        label.user-review-edit-headers Description:
+                        textarea.user-review-edit-inputs(rows='5' cols='30' name='description' value=review.description id=`edit-review-description-${review.id}`) #{review.description}
+                        label.user-review-edit-headers Rating
+                        select.user-review-edit-inputs(name='rating' id=`edit-review-rating-${review.id}`)
+                            option(value='1') 1
+                            option(value='2') 2
+                            option(value='3') 3
+                            option(value='4') 4
+                            option(value='5') 5
+                        button(class="edit-review-submit" id=`edit-submit-review-${review.id}`) Submit
                   button(class='review-delete-btn' id=`deleteReview-${userId}-${review.id}`) Delete
                   button(class='edit-review-btn' id=`edit-review-${review.id}`) Edit
