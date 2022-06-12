@@ -1,24 +1,39 @@
 const editButton = document.querySelector('#route-edit-button');
 
+const splitURL = document.URL.split('/');
+let routeId = splitURL[splitURL.length - 1];
+
+if (routeId.includes('?')) {
+  let newRouteId = routeId.split('?');
+  routeId = newRouteId[0];
+}
+
 if (editButton) {
-  const splitURL = document.URL.split('/');
-  const routeId = splitURL[splitURL.length - 1];
   const postInfo = document.querySelector(`#route-post-${routeId}`);
-  const formInfo = document.querySelector(`#route-edit-form-${routeId}`);
+  const formInfo = document.querySelector(`#route-edit-container`);
 
   editButton.addEventListener('click', (e) => {
     if (postInfo.classList.contains('hidden')) {
       postInfo.classList.remove('hidden');
       formInfo.classList.add('hidden');
-      editButton.innerText = 'Edit Route';
     }
     else {
       postInfo.classList.add('hidden');
       formInfo.classList.remove('hidden');
-      editButton.innerHTML = 'Cancel';
     }
   });
-
+const cancelButton = document.querySelector(".edit-cancel-btn");
+  cancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (postInfo.classList.contains('hidden')) {
+      postInfo.classList.remove('hidden');
+      formInfo.classList.add('hidden');
+    }
+    else {
+      postInfo.classList.add('hidden');
+      formInfo.classList.remove('hidden');
+    }
+  });
   const submitButton = document.querySelector(`#route-edit-submit-${routeId}`);
   submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
@@ -35,21 +50,21 @@ if (editButton) {
 
     const cragId = cragArr[0];
     const cragName = cragArr[1];
-
+    const request = {
+      name,
+      difficulty,
+      height,
+      type,
+      protection,
+      description,
+      cragName,
+      cragId
+    };
 
     const res = await fetch(`/routes/${routeId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-          name,
-          difficulty,
-          height,
-          type,
-          protection,
-          description,
-          cragName,
-          cragId
-      })
+      body: JSON.stringify(request)
     });
 
 

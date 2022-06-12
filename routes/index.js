@@ -7,15 +7,15 @@ const { requireAuth } = require('../auth');
 const db = require('../db/models');
 
 router.get('/', asyncHandler(async (req, res) => {
-  /* TODO: need to cycle through 3-5 routes on one card
-
-  List for the card:
-    image
-    route.name
-    route.description
-
-  */
-  res.render('index', { title: 'Welcome to Rendering Routes!'});
+  const allCrags = await db.Crag.findAll({
+    order: ['name'],
+    limit: 25
+   });
+  const allRoutes = await db.Route.findAll({
+    order: ['name'],
+    limit: 35
+   });
+  res.render('index', { allCrags, allRoutes });
 }));
 
 router.get('/contact-us', asyncHandler(async (req, res) => {

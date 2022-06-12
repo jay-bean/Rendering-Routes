@@ -1,32 +1,35 @@
 extends layout.pug
 
 append head
-  //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
-  //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  section(aria-label="Example Crags")
-    div(id="crag-container")
-      div(id="crag-image")
-        a(href="/crags/7")
-          img(src="https://cdn2.apstatic.com/photos/climb/105957832_medium_1558029938.jpg" alt="Alaska > Denali National Park")
-
-
-
-
-  div
-    h3 Explore the most popular routes
-    //- Are we doing a few states or how many are we deciding to do?
-    -//
-      ul
-        li: a(href='/routes/1') Random Route
-        li: a(href='/routes/2') Where are we going?
-        li: a(href='/routes/3') Maybe here?
-
-  div
-    h3 Had fun on a specific route?
-      p Leave a review on your most recent route!
-      a(href='/routes') Find a Route
+  div(id="top-container")
+    div(id="top-image-container")
+    div(id='top-container-info')
+      h1(id='top-container-title') Welcome to Rendering Routes
+      p(id='top-container-p') We're on a mission to connect climbers to awesome rocks. Join the community and post about your favorite routes and crags. Review other posts and give feedback to the community.
+  div(id='home-page-content-container')
+    div(id='home-page-content-left')
+      div(id='home-page-content-left-info')
+        div(id='home-page-content-left-info-1')
+          h3(class='home-page-info-h3') Deciding what to climb next?
+          p(class='home-page-left-info-p') Rendering routes has your back! Select from one of our many routes or crags to plan your next trip.
+        div(id='home-page-content-left-info-2')
+          h3(class='home-page-info-h3') What are your friends climbing?
+          p(class='home-page-left-info-p') Visit our community page to checkout what other users have in their climb list! Add climbs to your wish list or your completed list.
+      div(id='home-page-content-left-crags')
+        h3(class='home-page-info-h3') Explore most popular crags
+        div(id='home-page-crag-container')
+          each crag in allCrags
+            a(href=`/crags/${crag.id}`)
+              div(class='home-page-individual-crag')
+                p #{crag.name}
+    div(id='home-page-content-right')
+      h3(class='home-page-info-h3') Explore most popular routes
+      div(id='home-page-route-container')
+        each route in allRoutes
+          a(href=`/routes/${route.id}`)
+            div(class='home-page-individual-route')
+              p #{route.name}
