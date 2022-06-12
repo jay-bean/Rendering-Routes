@@ -41,9 +41,11 @@ if (addAReviewButton) {
 
             const titleEle = document.querySelector(`#title-of-review`);
             const descriptionEle = document.querySelector(`#description-of-review`);
+            const noCurrentReviewsEle = document.querySelector(`#no-reviews`);
             errorContainer.innerHTML = ``;
             titleEle.value = '';
             descriptionEle.value = '';
+            if (noCurrentReviewsEle) noCurrentReviewsEle.innerHTML = '';
         } else {
             data.errors.forEach((error) => {
                 errorContainer.innerHTML += `<li>${error}</li>`
