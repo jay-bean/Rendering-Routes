@@ -6,18 +6,21 @@ const userId = splitURL[splitURL.length-1];
 const profileInfoRoutes = document.querySelector(`.the-outer-outer-routes`);
 const profileInfoCrags = document.querySelector(`.the-outer-outer-crags`);
 const form = document.querySelector(`#edit-form-${userId}`)
+const formContainer = document.querySelector(`.edit-form-container`);
 
 editBtn.addEventListener('click', e =>{
     if(form.classList.contains('hidden')) {
         form.classList.remove('hidden');
+        formContainer.classList.remove('hidden');
         profileInfoRoutes.classList.add('hidden');
         profileInfoCrags.classList.add('hidden');
         editBtn.innerText = "Cancel"
     } else {
         form.classList.add('hidden');
+        formContainer.classList.add('hidden');
         profileInfoRoutes.classList.remove('hidden');
         profileInfoCrags.classList.remove('hidden');
-        editBtn.innerText = "Edit"
+        editBtn.innerText = "Edit Profile"
     }
 
 });
@@ -47,15 +50,18 @@ submitBtn.addEventListener('click', async(submitEvent) => {
     const data = await res.json()
     const errorContainer = document.querySelector('#user-error-container');
     if(data.message === 'Success!') {
-        const usernameEle = document.querySelector(`#username-user${userId}`)
-        const bioEle = document.querySelector(`#bio-user${userId}`)
+        const usernameEle = document.querySelector(`#edit-username-user${userId}`)
+        const bioEle = document.querySelector(`#edit-bio-user${userId}`)
 
         usernameEle.innerHTML = `${data.user.username}'s Profile`;
         bioEle.innerHTML = data.user.biography;
-        // errorContainer.innerHTML = '';
+        errorContainer.innerHTML = '';
 
-        profileInfo.classList.remove('hidden');
+        profileInfoRoutes.classList.remove('hidden');
+        profileInfoCrags.classList.remove('hidden');
         form.classList.add('hidden');
+        formContainer.classList.add('hidden');
+        editBtn.innerText = "Edit Profile"
     }
     else {
        data.errors.forEach(error => {

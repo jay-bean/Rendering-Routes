@@ -37,18 +37,18 @@ block content
                                 a(href=`/crags/${crag.id}`)
                                     li= crag.name
 
-    if loggedInUser === user.id
-        .edit-form-container
-            div(id='user-error-container')
-            form(class='hidden' id=`edit-form-${user.id}`)
-                label.edituser Username:
-                input(type='text' class="edituser" name='username' value=user.username id=`edit-username-user${user.id}`)
-                label.edituser Biography:
-                input(type='text' class="edituser" name='biography' value=user.biography id=`edit-bio-user${user.id}`)
-                label.edituser Email:
-                input(type='email' class="edituser" name='email' value=user.email id=`edit-email-user${user.id}`)
-                label.edituser Password:
-                input(type='text' class="edituser" name='password' value='' id=`edit-password-user${user.id}`)
-                label.edituser Confirm Password:
-                input(type='text' class="edituser" name='confirmPassword' value='' id=`confirm-password-user${user.id}`)
-                button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit
+        if loggedInUser === user.id
+            div(class='edit-form-container hidden')
+                form(class='hidden' id=`edit-form-${user.id}`)
+                    div(id='user-error-container')
+                    label.edituser Username:
+                    input(type='text' class="edituser" name='username' value=user.username id=`edit-username-user${user.id}`)
+                    label.edituser Biography:
+                    input(type='text' class="edituser" name='biography' value=user.biography id=`edit-bio-user${user.id}`)
+                    label.edituser Email:
+                    input(type='email' class="edituser" name='email' value=user.email id=`edit-email-user${user.id}`)
+                    label.edituser Password:
+                    input(type='text' class="edituser" name='password' value='' id=`edit-password-user${user.id}`)
+                    label.edituser Confirm Password:
+                    input(type='text' class="edituser" name='confirmPassword' value='' id=`confirm-password-user${user.id}`)
+                    button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit

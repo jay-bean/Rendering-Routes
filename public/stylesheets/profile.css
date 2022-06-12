@@ -37,7 +37,7 @@ h2.profile {
     padding: 5px 10px 5px 10px;
     color: white;
     width: fit-content;
-    margin: 0 auto;
+    margin: 5px auto;
     background-color: #587B7F;
     border: none;
     border-radius: 10px;
@@ -151,13 +151,20 @@ label.user-list {
 }
 /* Styling for edit user form*/
 
-/* .edit-form-container {
-    display: grid;
+.edit-form-container {
+    grid-column-start: 3;
+    grid-row-start: 1;
     justify-content: center;
     height: fit-content;
-    grid-column: 1;
-    grid-row: 1;
+    width: fit-content;
+
+    background-color: lightgray;
+    border-radius: 10px;
+    margin-left: 20px;
+
+    padding: 20px;
 }
+
 
 form.hidden {
     padding: 10px;
@@ -197,4 +204,8 @@ label.edituser {
     margin: 10px;
     font-size: 20px;
     transition: background-color 0.5s
-} */
+}
+
+#user-error-container {
+    width: 50%;
+}
