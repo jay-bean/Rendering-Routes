@@ -13,12 +13,12 @@ div#review-form
       label Title:
       input(type='text' name='title' value=review.title id='title-of-review')
       label Rating:
-      select(name='rating' id='rating-of-review')
-        option(value='1') 1
-        option(value='2') 2
-        option(value='3') 3
-        option(value='4') 4
-        option(value='5') 5
+      ul(class='star-rating')
+        li(class='ratings' value='1')
+        li(class='ratings' value='2')
+        li(class='ratings' value='3')
+        li(class='ratings' value='4')
+        li(class='ratings active' value='5')
       label Description:
       textarea(rows='5' cols='30' name='description' value=review.description id='description-of-review')
       if seshAuth
@@ -32,7 +32,12 @@ div#review-main
       each ele in reviews
         div#single-review
           h4#single-review-title= ele.title
-          p#single-review-rating Rating: #{ele.rating}/5
+          ul(class='star-rating')
+            each _, n in Array(5)
+              if n + 1 === ele.rating
+                li(class='single-ratings active')
+              else
+                li(class='single-ratings')
           p#description-review= ele.description
           div#single-review-user: a(href=`/users/${ele.userId}`) Posted by: #{ele.User.username}
       else

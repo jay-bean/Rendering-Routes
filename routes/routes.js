@@ -26,9 +26,11 @@ router.get('/:routeId(\\d+)', csrfProtection,
     const currentCrag = await db.Crag.findByPk(route.cragId);
     const cragName = currentCrag.name;
     const reviews = await db.Review.findAll({
-      where: { routeId },
+      where: {
+        routeId
+      },
       include: [{
-        model:db.User
+        model: db.User
       }]
     });
 
