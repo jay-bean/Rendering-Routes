@@ -1,0 +1,133 @@
+#user-review-page-content {
+ width: 100%;
+}
+
+#user-review-grid {
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: auto;
+  width: 70%;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  padding: 20px;
+}
+
+#user-review-h2 {
+  grid-row: 1;
+  grid-column: 1;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 36px;
+  letter-spacing: .2em;
+  text-shadow:
+  2px 2px 0px #d5d5d5,
+  2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.individual-review-container {
+  display: block;
+  align-self: left;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#user-review-h3 {
+  font-size: 25px;
+  font-weight: 400;
+  margin-left: 5%;
+}
+
+#user-review-hr {
+  border: 0;
+  border-top: thin solid #ccc;
+  height: 1px;
+  width: 100%;
+  text-align: left;
+}
+
+.user-review-div {
+  display: block;
+}
+
+.user-review-headers {
+  font-size: 20px;
+}
+
+.user-review-text {
+  margin-left: 3%;
+}
+
+.review-delete-btn {
+  margin-left: 3%;
+  padding: 5px;
+  width: 75px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  font-family: inherit;
+  background-color: #587B7F;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.review-delete-btn:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.edit-review-btn {
+  margin-left: 10px;
+  padding: 5px;
+  width: 75px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  font-family: inherit;
+  background-color: #587B7F;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.edit-review-btn:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.edit-review-submit {
+  margin-left: 10px;
+  padding: 5px;
+  width: 75px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  font-family: inherit;
+  background-color: #587B7F;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.edit-review-submit:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+#user-review-edit-form {
+  margin: 20px;
+  padding: 20px;
+}
+
+.user-review-edit-headers  {
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.user-review-edit-inputs {
+  border: thin solid black;
+  border-radius: 20px;
+  padding: 10px;
+}
