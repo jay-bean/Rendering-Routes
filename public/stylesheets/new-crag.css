@@ -16,12 +16,17 @@ body {
     height: fit-content;
     margin-right: auto;
     margin-left: auto;
+    display:block;
 }
+
 
 #add-crag-form {
     display: block;
     margin-top: 60px;
+
     margin-bottom: 20px;
+    width: inherit;
+    height: inherit;
 
 }
 
@@ -57,6 +62,7 @@ h2.title {
     /* font-family:  */
     font-size: 36px;
     font-weight: bold;
+    color: #1E2019;
 }
 
 p.info {
