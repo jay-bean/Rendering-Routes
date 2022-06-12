@@ -1,4 +1,4 @@
-const addAReviewButton = document.querySelector('#review-post-button')
+const addAReviewButton = document.querySelector('#review-post-button');
 if (addAReviewButton) {
     addAReviewButton.addEventListener("click", async (e) => {
         e.preventDefault();
@@ -63,18 +63,18 @@ if (editReviewButtons) {
         const btn = editReviewButtons[i];
 
         btn.addEventListener('click', (e) => {
-            const postId = e.target.id.split('-')[2]
+            const postId = e.target.id.split('-')[2];
             const form = document.querySelector(`#edit-review-form-${postId}`);
             const reviewContainer = document.querySelector(`#individual-review-${postId}`);
 
-            if(form.classList.contains('hidden')) {
+            if (form.classList.contains('hidden')) {
                 form.classList.remove('hidden');
                 reviewContainer.classList.add('hidden');
                 btn.innerText = "Cancel"
             } else {
                 form.classList.add('hidden')
                 reviewContainer.classList.remove('hidden');
-                btn.innerText = "Edit Review"
+                btn.innerText = "Edit"
             }
         });
     }
@@ -118,7 +118,7 @@ if (editReviewButtons) {
                     descriptionEle.innerHTML = data.review.description;
                     rating.innerHTML = data.review.rating;
                     errorContainer.innerHTML = '';
-                    editBtn.innerText = "Edit Review"
+                    editBtn.innerText = "Edit"
 
                     reviewContainer.classList.remove('hidden');
                     form.classList.add('hidden');

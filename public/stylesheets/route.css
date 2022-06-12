@@ -449,3 +449,10 @@ border-radius: 10px;
   padding: 6.4px 12.8px;
   transition: background-color 0.5s
 }
+
+#no-reviews {
+  font-size: 20px;
+  color: #808080;
+  font-style: italic;
+  margin-left: 20px;
+}
