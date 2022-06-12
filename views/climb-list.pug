@@ -11,7 +11,7 @@ block content
     div(id='climb-lists-container')
         div(id='want-to-climb-container')
             h2(class='climb-list-title') Want to Climb
-            if wantToClimbCount > 0
+            if wantToClimbCount >= 0
                 each route in climbListRoutes
                     if route.haveClimbed === false
                         div(id=`route-container-${route.Route.id}`)
@@ -25,7 +25,7 @@ block content
                 p(class='nothing-in-list-tag') Nothing in this list.
         div(id='have-climbed-container')
             h2(class='climb-list-title') Have Climbed
-            if haveClimbedCount > 0
+            if haveClimbedCount >= 0
                 each route in climbListRoutes
                     if route.haveClimbed === true
                         div(class="add-here-container")
