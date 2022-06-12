@@ -6,21 +6,24 @@ append head
 
 
 block content
-    div(id=`profile-user-${user.id}`)
-        
-        //- table
-        //-     thead
-        //-         tr
-        //-             th(id=`username-users-${user.id}`) #{user.username}'s Profile
-        //-             th Biography
-        //-     tbody
-        //-         tr
-        //-             th: img(src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="250px" width="230px")
-        //-             th(id=`bio-user-${user.id}`) #{user.biography}
-        //- div
-        //-     a(href=`/users/${user.id}/climb-list`) View Climb Lists
-        //- div
-        //-     a(href=`/users/${user.id}/reviews`) Go to all your Reviews
+    div(id=`profile-user-${user.id}` class="profile-container")
+        h2(id=`username-users-${user.id}`) #{user.username}'s Profile
+        img(src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="250px" width="230px")
+        label Biography
+        p(id=`bio-user-${user.id}`) #{user.biography}
+        div
+            a(href=`/users/${user.id}/climb-list`) View Climb Lists
+        div
+            a(href=`/users/${user.id}/reviews`) Go to all your Reviews
+        div
+            label User's routes
+            each route in routes
+                ul
+                    li= route.name
+            label User's crags
+            each crag in crags
+                ul
+                    li= crag.name
 
     if loggedInUser === user.id
         div(id='user-error-container')
