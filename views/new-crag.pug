@@ -7,11 +7,10 @@ block content
   .add-crag-container
     .add-crag-form-container
       +validationErrorSummary(errors)
-      +validationErrorSummary(errors)
       div.header
         h2.title Post a Crag
         p.info *If a crag does not exist for your route, please create a crag.
-      form(action='/crags' method='post' class="addcrag")
+      form(action='/crags' method='post' id='add-crag-form')
         input(type='hidden' name='_csrf' value=csrfToken)
         label.addcrag Name
         input(type="text" class="addcrag" name="name" value=crag.name)

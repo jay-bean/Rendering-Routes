@@ -7,7 +7,15 @@ const { requireAuth } = require('../auth');
 const db = require('../db/models');
 
 router.get('/', asyncHandler(async (req, res) => {
-  res.render('index');
+  const allCrags = await db.Crag.findAll({
+    order: ['name'],
+    limit: 25
+   });
+  const allRoutes = await db.Route.findAll({
+    order: ['name'],
+    limit: 35
+   });
+  res.render('index', { allCrags, allRoutes });
 }));
 
 router.get('/contact-us', asyncHandler(async (req, res) => {
