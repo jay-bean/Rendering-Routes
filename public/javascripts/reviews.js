@@ -53,7 +53,7 @@ if (addAReviewButton) {
               }
             }
             unorderedList += '</ul>';
-            console.log(unorderedList)
+
             newReview.innerHTML = `
             <h4 id='single-review-title'>${data.review.title}</h4>
             ${unorderedList}
