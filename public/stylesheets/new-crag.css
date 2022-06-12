@@ -19,9 +19,11 @@ body {
     display:block;
 }
 
-form.addcrag {
-    display: grid;
-    margin-top: 40px;
+
+#add-crag-form {
+    display: block;
+    margin-top: 60px;
+
     margin-bottom: 20px;
     width: inherit;
     height: inherit;
