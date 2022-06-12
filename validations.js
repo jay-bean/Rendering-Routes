@@ -86,7 +86,7 @@ const routeValidators = [
     .withMessage('Please provide a value for Description'),
   check('difficulty')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Difficulty')
+    .withMessage('Please provide a value for Grade')
     .isLength({ max: 255 })
     .withMessage('Difficulty must not be more than 255 characters long'),
   check('height')
@@ -117,7 +117,7 @@ const routeEditValidators = [
     .withMessage('Please provide a value for Description'),
   check('difficulty')
     .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Difficulty')
+    .withMessage('Please provide a value for Grade')
     .isLength({ max: 255 })
     .withMessage('Difficulty must not be more than 255 characters long'),
   check('height')

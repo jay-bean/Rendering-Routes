@@ -7,6 +7,9 @@ div#review-form
       if seshAuth
         input(type='hidden' name='userId' value=`${seshAuth.userId}` id='reviews-hidden-user')
         input(type='hidden' name='routeId' value=`${route.id}` id='reviews-hidden-route')
+      else
+        input(type='hidden' name='userId' value=`1` id='reviews-hidden-user')
+        input(type='hidden' name='routeId' value=`1` id='reviews-hidden-route')
       label Title:
       input(type='text' name='title' value=review.title id='title-of-review')
       label Rating:
@@ -18,7 +21,10 @@ div#review-form
         option(value='5') 5
       label Description:
       textarea(rows='5' cols='30' name='description' value=review.description id='description-of-review')
-      button(class='review-submit' id='review-post-button') Submit
+      if seshAuth
+        button(class='review-submit' id='review-post-button') Submit
+      else
+        a(href='/users/log-in' class='review-submit') Submit
 div#review-main
   h2#h2-review Reviews
   div(id='review-container')
@@ -29,3 +35,5 @@ div#review-main
           p#single-review-rating Rating: #{ele.rating}/5
           p#description-review= ele.description
           div#single-review-user: a(href=`/users/${postUser.id}`) Posted by: #{postUser.username}
+      else
+        h2#no-reviews There are currently no reviews for this route.
