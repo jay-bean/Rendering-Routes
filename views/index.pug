@@ -20,8 +20,16 @@ block content
           h3(class='home-page-info-h3') What are your friends climbing?
           p(class='home-page-left-info-p') Visit our community page to checkout what other users have in their climb list! Add climbs to your wish list or your completed list.
       div(id='home-page-content-left-crags')
-        h3(class='home-page--info-h3') Explore most popular crags
+        h3(class='home-page-info-h3') Explore most popular crags
         div(id='home-page-crag-container')
+          each crag in allCrags
+            a(href=`/crags/${crag.id}`)
+              div(class='home-page-individual-crag')
+                p #{crag.name}
     div(id='home-page-content-right')
       h3(class='home-page-info-h3') Explore most popular routes
       div(id='home-page-route-container')
+        each route in allRoutes
+          a(href=`/routes/${route.id}`)
+            div(class='home-page-individual-route')
+              p #{route.name}
