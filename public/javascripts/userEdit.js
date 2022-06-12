@@ -3,17 +3,21 @@ const editBtn = document.querySelector('.edit-user-btn')
 if (editBtn) {
 const splitURL = document.URL.split('/');
 const userId = splitURL[splitURL.length-1];
-const profileInfo = document.querySelector(`#profile-user-${userId}`)
+// const profileInfo = document.querySelector(`#profile-user-${userId}`)
+const profileInfoRoutes = document.querySelector(`.the-outer-outer-routes`);
+const profileInfoCrags = document.querySelector(`.the-outer-outer-crags`);
 const form = document.querySelector(`#edit-form-${userId}`)
 
 editBtn.addEventListener('click', e =>{
     if(form.classList.contains('hidden')) {
         form.classList.remove('hidden');
-        profileInfo.classList.add('hidden');
+        profileInfoRoutes.classList.add('hidden');
+        profileInfoCrags.classList.add('hidden');
         editBtn.innerText = "Cancel"
     } else {
         form.classList.add('hidden');
-        profileInfo.classList.remove('hidden');
+        profileInfoRoutes.classList.remove('hidden');
+        profileInfoCrags.classList.remove('hidden');
         editBtn.innerText = "Edit"
     }
 });

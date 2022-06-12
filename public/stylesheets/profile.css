@@ -140,3 +140,12 @@ label.user-list {
     font-size: 25px;
     font-weight: bold;
 }
+
+.profile-crags > ul > a{
+    color: black;
+    text-decoration: none;
+}
+.profile-routes > ul > a{
+    color: black;
+    text-decoration: none;
+}

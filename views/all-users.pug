@@ -11,6 +11,9 @@ block content
           div.individual-user
             img(class="profile" src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="80px" width="80px")
             p.user-p #{user.username}
-            div.user-profile: a.community-aTag(href=`/users/${user.id}`) profile
-            div.user-climb-list: a.community-aTag(href=`/users/${user.id}/climb-list`) climb lists
-            div.user-reviews: a.community-aTag(href=`/users/${user.id}/reviews`) recent reviews
+            a.community-aTag(href=`/users/${user.id}`)
+              div.user-profile profile
+            a.community-aTag(href=`/users/${user.id}/climb-list`)
+              div.user-climb-list climb lists
+            a.community-aTag(href=`/users/${user.id}/reviews`)
+              div.user-reviews recent reviews

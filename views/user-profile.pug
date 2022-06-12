@@ -17,7 +17,7 @@ block content
                 label.bio Biography
                 p(id=`bio-user-${user.id}` class="profile") #{user.biography}
             a(href=`/users/${user.id}/climb-list` class="profile") View Climb Lists
-            a(href=`/users/${user.id}/reviews` class="profile") Go to all your Reviews
+            a(href=`/users/${user.id}/reviews` class="profile") Go to #{user.username}'s Reviews
         .the-outer-outer-routes
             .outer-container-routes
                 label.user-list User's routes
@@ -25,7 +25,8 @@ block content
                     div.profile-routes
                         each route in routes
                             ul
-                                li= route.name
+                                a(href=`/routes/${route.id}`)
+                                    li= route.name
         .the-outer-outer-crags
             .outer-container-crags
                 label.user-list User's crags
@@ -33,7 +34,8 @@ block content
                     div.profile-crags
                         each crag in crags
                             ul
-                                li= crag.name
+                                a(href=`/crags/${crag.id}`)
+                                    li= crag.name
 
 
         div(id='user-error-container')
