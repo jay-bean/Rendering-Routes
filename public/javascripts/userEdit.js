@@ -3,7 +3,6 @@ const editBtn = document.querySelector('.edit-user-btn')
 if (editBtn) {
 const splitURL = document.URL.split('/');
 const userId = splitURL[splitURL.length-1];
-// const profileInfo = document.querySelector(`#profile-user-${userId}`)
 const profileInfoRoutes = document.querySelector(`.the-outer-outer-routes`);
 const profileInfoCrags = document.querySelector(`.the-outer-outer-crags`);
 const form = document.querySelector(`#edit-form-${userId}`)
@@ -20,6 +19,7 @@ editBtn.addEventListener('click', e =>{
         profileInfoCrags.classList.remove('hidden');
         editBtn.innerText = "Edit"
     }
+
 });
 
 const submitBtn = document.querySelector(`#edit-submit-user${userId}`)

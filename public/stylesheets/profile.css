@@ -149,3 +149,52 @@ label.user-list {
     color: black;
     text-decoration: none;
 }
+/* Styling for edit user form*/
+
+/* .edit-form-container {
+    display: grid;
+    justify-content: center;
+    height: fit-content;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+form.hidden {
+    padding: 10px;
+}
+
+input.edituser {
+    display: block;
+    height: 36px;
+    width: 314px;
+    border: 1px solid gray;
+    background-color: #FAFAFA;
+    border-radius: 25px;
+    justify-content: center;
+    margin: 10px;
+    padding: 6.4px 12.8px;
+    transition: background-color 0.5s
+}
+
+input.edituser:hover {
+    background-color: #e5e5e5;
+}
+
+label.edituser {
+    display: block;
+    margin: 10px;
+}
+
+.edit-user-submit {
+    display: block;
+    justify-content: center;
+    height: 36px;
+    width: 314px;
+    border: 1px solid gray;
+    border-radius: 25px;
+    background-color: #587B7F;
+    color: white;
+    margin: 10px;
+    font-size: 20px;
+    transition: background-color 0.5s
+} */
