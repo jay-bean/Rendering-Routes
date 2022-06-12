@@ -456,3 +456,47 @@ border-radius: 10px;
   font-style: italic;
   margin-left: 20px;
 }
+/* star trial below */
+
+.star-rating{
+  display: flex;
+  flex-direction: row;
+  padding-left: 0px;
+}
+
+.ratings {
+  list-style-type: none;
+  cursor: pointer;
+  color: #3B4E4C;
+}
+
+/* makes all of the stars solid */
+.ratings::before {
+  content: '\2605';
+}
+
+/* stars before the active star are solid, after active star are empty */
+.ratings.active ~ .ratings::before {
+  content: '\2606';
+}
+
+/* on hoverered star, ones before are solid and ones after are empty */
+.ratings:hover ~ .ratings::before {
+  content: '\2606';
+}
+
+.single-ratings {
+  list-style-type: none;
+  cursor: pointer;
+  color: #3B4E4C;
+}
+
+/* makes all of the stars solid */
+.single-ratings::before {
+  content: '\2605';
+}
+
+/* stars before the active star are solid, after active star are empty */
+.single-ratings.active ~ .single-ratings::before {
+  content: '\2606';
+}
