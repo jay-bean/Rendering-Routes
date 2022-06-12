@@ -64,8 +64,8 @@ block content
       include reviews.pug
   if seshAuth
     if route.userId === seshAuth.userId
-      div(id='route-error-container')
       div(class='hidden' id=`route-edit-container`)
+        div(id='route-error-container')
         div#grid-edit-form
           h1#edit-route-h1 Edit Route
           form(class="route-edit-form" id=`route-edit-form-${route.id}`)
