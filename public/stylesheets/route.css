@@ -214,6 +214,7 @@ text-align: center;
 #climb-list-p {
   grid-row: 3 / 4;
   grid-column: 3 / 4;
+  margin-left: 65%;
   font-size: 20px;
   text-align: center;
   background-color: #34756f36;
