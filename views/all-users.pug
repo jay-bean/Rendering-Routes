@@ -4,11 +4,13 @@ append head
     script(src="/javascripts/index.js" type="module" defer)
 
 block content
-    h2 Check out what other members are climbing!
+    h2#community-h2 Welcome to the community page!
+    h3#community-h3 Here you can see what others are climbing, their thoughts on those climbs, and what they are looking forward to climbing.
     .all-users-container
         each user in users
+          div.individual-user
             img(class="profile" src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="80px" width="80px")
-            p See #{user.username}'s
-            div: a(href=`/users/${user.id}`) profile
-            div: a(href=`/users/${user.id}/climb-list`) climb lists
-            div: a(href=`/users/${user.id}/reviews`) recent reviews
+            p.user-p #{user.username}
+            div.user-profile: a.community-aTag(href=`/users/${user.id}`) profile
+            div.user-climb-list: a.community-aTag(href=`/users/${user.id}/climb-list`) climb lists
+            div.user-reviews: a.community-aTag(href=`/users/${user.id}/reviews`) recent reviews
