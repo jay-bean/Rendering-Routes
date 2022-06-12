@@ -28,7 +28,10 @@ router.get('/:routeId(\\d+)', csrfProtection,
     const reviews = await db.Review.findAll({
       where: {
         routeId
-      }
+      },
+      include: [{
+        model: db.User
+      }]
     });
 
     const review = db.Review.build();

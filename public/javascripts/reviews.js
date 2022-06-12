@@ -1,10 +1,25 @@
+const starRatings = document.querySelector('.star-rating');
+const stars = document.querySelectorAll('.ratings');
+let rating = 5;
+
+if (starRatings) {
+  starRatings.onclick =  (e) => {
+    const starClass = e.target.classList;
+    if (!starClass.contains('active')) {
+      stars.forEach(star => star.classList.remove('active'));
+      rating = e.target.getAttribute('value');
+      starClass.add('active');
+    }
+
+  };
+}
 const addAReviewButton = document.querySelector('#review-post-button');
 if (addAReviewButton) {
     addAReviewButton.addEventListener("click", async (e) => {
         e.preventDefault();
         const title = document.querySelector('#title-of-review').value;
         const description = document.querySelector('#description-of-review').value;
-        const rating = document.querySelector('#rating-of-review').value;
+        // const rating = document.querySelector('#rating-of-review').value;
         const userId = document.querySelector('#reviews-hidden-user').value;
         const routeId = document.querySelector('#reviews-hidden-route').value;
 
@@ -28,12 +43,22 @@ if (addAReviewButton) {
         if (data.message === 'Success!') {
             const newReview = document.createElement('div');
             newReview.id = 'single-review';
-
+            let unorderedList = `<ul class='star-rating'>`;
+            for (let n = 0; n < 5; n++) {
+              if (n + 1 === data.review.rating) {
+                unorderedList += `<li class='single-ratings active'></li>`;
+              }
+              else {
+                unorderedList += `<li class='single-ratings'></li>`;
+              }
+            }
+            unorderedList += '</ul>';
+            console.log(unorderedList)
             newReview.innerHTML = `
             <h4 id='single-review-title'>${data.review.title}</h4>
-            <p id='single-review-rating'>Rating: ${data.review.rating}/5</p>
+            ${unorderedList}
             <p id='description-review'>${data.review.description}</p>
-            `
+            `;
 
             const reviewContainer = document.querySelector('#review-container');
             reviewContainer.prepend(newReview);
