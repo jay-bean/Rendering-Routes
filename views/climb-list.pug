@@ -25,10 +25,10 @@ block content
                 p(class='nothing-in-list-tag') Nothing in this list.
         div(id='have-climbed-container')
             h2(class='climb-list-title') Have Climbed
+            div(class="add-here-container")
             if haveClimbedCount > 0
                 each route in climbListRoutes
                     if route.haveClimbed === true
-                        div(class="add-here-container")
                             div(id=`route-container-${route.Route.id}`)
                                 div(class="single-route-container" id=`true-${route.Route.id}`)
                                     ul
