@@ -107,7 +107,7 @@ router.post('/log-out', (req, res) => {
 });
 
 router.post('/demo/log-in', asyncHandler(async (req, res) => {
-  const user = await db.User.findOne({ where: { email: 'coolGuy48@gmail.com' } });
+  const user = await db.User.findOne({ where: { id: 1 } });
   loginUser(req, res, user);
   return res.redirect('/');
 }));
