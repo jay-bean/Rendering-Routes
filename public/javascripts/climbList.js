@@ -81,11 +81,11 @@ if (editListBtns) {
                 const container = document.getElementById(`route-container-${routeId}`)
                 const edit = document.getElementById(`update-route-${userId}-${routeId}`)
                 const div = document.querySelector(".add-here-container")
+                const nothingToSeeMessage = document.querySelector('.nothing-in-list-tag');
                 container.remove()
                 edit.remove()
                 div.append(container)
-            } else {
-
+                if (nothingToSeeMessage) nothingToSeeMessage.innerHTML = '';
             }
         })
     }
