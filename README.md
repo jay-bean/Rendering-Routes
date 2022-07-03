@@ -5,9 +5,10 @@
 
 #### Visit our site here: [Rendering Routes](https://rendering-routes.herokuapp.com/)
 
-### Tabel of Contents
+### Table of Contents
 * [Introduction](#introduction)
 * [Technologies Used](#technologies-used)
+* [Visual Overview](#visual-overview)
 * [Technical implementaion details](#technical-implementation-details)
 * [Index](#index)
 * [Future Features](#future-features)
