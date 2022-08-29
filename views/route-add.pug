@@ -19,8 +19,8 @@ block content
             select(name='cragId' class="addroute" id="crag-input")
               each crag in crags
                 option(value=crag.id) #{crag.name}
-            label(class ="addroute" id="redirect-label") If the crag you are looking for isn't listed.
-              a(href='/crags/new' id="crag-link") Click Here
+            label(class ="addroute" id="redirect-label") If the crag you are looking for isn't listed
+              a(href='/crags/new' id="crag-link") click here
         .description-difficulty-container
           .description-container
             label(class ="addroute" id="description-label") Description

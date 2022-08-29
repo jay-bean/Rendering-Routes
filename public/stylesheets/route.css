@@ -232,7 +232,7 @@ text-align: center;
 #climb-list-p-container {
   font-size: 20px;
   text-align: center;
-  background-color: #34756f36;
+  /* background-color: #34756f36; */
   border-radius: 16px;
   width: 50%;
   display: flex;
@@ -319,6 +319,7 @@ border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-bottom: 1em;
 }
 
 #img {
@@ -357,20 +358,28 @@ border-radius: 10px;
 }
 
 #route-edit-container {
-  width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
   margin-top: 3%;
+  margin-bottom: 3%;
   height: fit-content;
+  height: 100%;
 }
 
 #grid-edit-form {
-  display: grid;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   height: fit-content;
-  grid-column: 1;
-  grid-row: 1;
-  align-self: center;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.route-edit-form {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 #edit-route-h1 {
@@ -390,86 +399,86 @@ border-radius: 10px;
 
 .edit-name {
   display: block;
-  height: 44px;
-  width: 400px;
+  line-height: 1.50px;
+  width: 92%;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
   justify-content: center;
-  margin: 10px;
-  padding: 6.4px 12.8px;
+  margin: 2%;
+  padding: 2%;
   transition: background-color 0.5s
 }
 .edit-difficulty {
   display: block;
-  height: 44px;
-  width: 400px;
+  line-height: 1.50px;
+  width: 92%;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
   justify-content: center;
-  margin: 10px;
-  padding: 6.4px 12.8px;
+  margin: 2%;
+  padding: 2%;
   transition: background-color 0.5s
 }
 .edit-height {
   display: block;
-  height: 44px;
-  width: 400px;
+  line-height: 1.50px;
+  width: 92%;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
   justify-content: center;
-  margin: 10px;
-  padding: 6.4px 12.8px;
+  margin: 2%;
+  padding: 2%;
   transition: background-color 0.5s
 }
 .edit-type {
   display: block;
-  height: 44px;
-  width: 400px;
+  line-height: 1.50px;
+  width: 92%;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
   justify-content: center;
-  margin: 10px;
-  padding: 6.4px 12.8px;
+  margin: 2%;
+  padding: 2%;
   transition: background-color 0.5s
 }
 .edit-protection {
   display: block;
-  height: 44px;
-  width: 400px;
+  line-height: 1.50px;
+  width: 92%;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
   justify-content: center;
-  margin: 10px;
-  padding: 6.4px 12.8px;
+  margin: 2%;
+  padding: 2%;
   transition: background-color 0.5s
 }
 .edit-description {
   display: block;
   height: 100px;
-  width: 400px;
+  width: 92%;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
   justify-content: center;
-  margin: 10px;
-  padding: 6.4px 12.8px;
+  margin: 2%;
+  padding: 2%;
   transition: background-color 0.5s
 }
 .edit-crag2 {
   display: block;
-  height: 44px;
-  width: 400px;
+  line-height: 1.50px;
+  width: 92%;
   border: 1px solid gray;
   background-color: #FAFAFA;
   border-radius: 25px;
   justify-content: center;
-  margin: 10px;
-  padding: 6.4px 12.8px;
+  margin: 2%;
+  padding: 2%;
   transition: background-color 0.5s
 }
 
@@ -524,6 +533,11 @@ border-radius: 10px;
   content: '\2606';
 }
 
+#route-error-container {
+  list-style: none;
+  color: red;
+}
+
 @media only screen and (max-width: 580px) {
   #all-attr {
     grid-row: 2 / 4;
@@ -570,34 +584,39 @@ border-radius: 10px;
     padding: 0;
   }
   .edit-name {
-    width: 98%;
+    width: 96%;
     margin: 0;
-    padding: 1%;
+    padding: 2%;
   }
   .edit-difficulty {
-    width: 98%;
+    width: 96%;
     margin: 0;
-    padding: 1%;
+    padding: 2%;
   }
   .edit-height {
-    width: 98%;
+    width: 96%;
     margin: 0;
-    padding: 1%;
+    padding: 2%;
   }
   .edit-type {
-    width: 98%;
+    width: 96%;
     margin: 0;
-    padding: 1%;
+    padding: 2%;
+  }
+  .edit-protection {
+    width: 96%;
+    margin: 0;
+    padding: 2%;
   }
   .edit-description {
-    width: 98%;
+    width: 96%;
     margin: 0;
-    padding: 1%;
+    padding: 2%;
   }
   .edit-crag2 {
-    width: 98%;
+    width: 96%;
     margin: 0;
-    padding: 1%;
+    padding: 2%;
   }
   #grid-edit-form {
     width: 100%;

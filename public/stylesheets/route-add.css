@@ -3,7 +3,6 @@ body {
     background-size: 700px 200px;
 }
 
-
 h1.addroute {
     text-align: center;
     color: #1E2019;
@@ -14,6 +13,7 @@ h1.addroute {
     margin-right: auto;
     min-height: 100vh;
     grid-template-rows: 100px 1fr;
+    margin-bottom: 3em;
 }
 
 h1.addroute {
@@ -23,69 +23,77 @@ h1.addroute {
 .add-route-form-container {
     grid-row-start: 2;
     display: block;
-    height: 80vh;
+    height: 100%;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 form.addroute {
     height: inherit;
-    display: grid;
-    grid-template-columns: 10% 1fr 1fr 10%;
-    grid-template-rows: 1fr 1fr 40px;
+    display: flex;
+    flex-flow: row wrap;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    justify-content: space-between;
 }
 
 .name-crag-container {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    margin-left: auto;
-    margin-right: auto;
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
+
+.crag-container #crag-input {
+  width: 100%;
+  line-height: 1.80;
+  width: 100%;
+  border: 1px solid gray;
+  background-color: #FAFAFA;
+  border-radius: 10px;
+  padding: 6.4px 12.8px;
+  transition: background-color 0.5s
+}
+
 .height-climb-image-container {
-    grid-column-start: 2;
-    grid-row-start: 2;
-    display: grid;
-    justify-content: center;
-    align-items: flex-start;
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .description-difficulty-container {
-    grid-column-start: 3;
-    grid-row-start: 1;
-    display: grid;
-    justify-content: left;
-    align-items: flex-start;
+    width: 40%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .protection-outer-container {
-    grid-column-start: 3;
-    grid-row-start: 2;
-    display: grid;
-    justify-content: left;
-    align-items: flex-start;
-}
-
-.bottom-page {
-    grid-column-start: 2;
-    grid-row-start: 3;
-    display: grid;
-    justify-content: right;
-    align-items: center;
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 label.addroute,
 input.addroute,
 textarea.addroute,
 select.addroute,
-#crag-link,
-.bottom-page {
+#crag-link {
     display: block;
 }
 
+#crag-link {
+  text-decoration: none;
+  color: #587B7F;
+}
+
+#crag-link:hover {
+  text-decoration: underline;
+}
+
 input.addroute {
-    height: 36px;
-    width: 314px;
+    line-height: 1.80;
+    width: 100%;
     border: 1px solid gray;
     background-color: #FAFAFA;
     border-radius: 10px;
@@ -110,10 +118,8 @@ background-color: #e5e5e5;
 }
 
 #description-input {
-    margin-top: 0;
-}
-#description-label {
-    margin-bottom: 0;
+  width: 100%;
+  margin-bottom: 1em;
 }
 
 #height-label {
@@ -153,13 +159,63 @@ button.addroute {
 
     border: none;
     border-radius: 50px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
 button.addroute:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 }
 .cancel {
     margin-left: 20px;
+    text-decoration: none;
+    color: #587B7F;
+}
+.cancel:hover {
+  margin-left: 20px;
+  text-decoration: underline;
+}
+
+#protection-input {
+  width: 100%;
+}
+
+input {
+  margin-bottom: 1em;
+}
+
+label {
+  margin-bottom: 1em;
+}
+
+@media only screen and (max-width: 860px) {
+  .add-route-container {
+    margin-bottom: 16em;
+  }
+  form.addroute {
+    flex-flow: column;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: space-between;
+  }
+  .name-crag-container {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .description-difficulty-container {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .height-climb-image-container {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .protection-outer-container {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
