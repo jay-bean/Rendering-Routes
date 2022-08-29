@@ -1,12 +1,14 @@
 #grid-route {
   margin-top: 40px;
   margin-bottom: 20px;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-flow: row;
   align-items: center;
+  height: 100%;
 }
 #h1-hr {
   grid-column: 1 / 5;
@@ -58,13 +60,11 @@
 
 #all-attr {
   margin-top: 20x;
-  margin-left: 60px;
-  padding-left: 30px;
-  padding-right: 12px;
-  /* border-radius: 30px; */
+  margin-left: 5%;
+  margin-right: 5%;
   grid-row: 2 / 4;
   grid-column: 1 / 3;
-  max-width: 400px;
+  max-width: 90%;
   text-align: left;
 }
 
@@ -205,19 +205,44 @@ text-align: center;
   display: block;
 }
 
-#climb-list-div {
-  grid-row: 3 / 4;
-  grid-column: 4 / 5;
-  margin-left: 20px;
+#image-container {
+  grid-row: 2 / 4;
+  grid-column: 3 / 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 96%;
+  width: 100%;
+  gap: 10%;
 }
 
-#climb-list-p {
-  grid-row: 3 / 4;
-  grid-column: 3 / 4;
+#climb-list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+#climb-list-div {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+#climb-list-p-container {
   font-size: 20px;
   text-align: center;
   background-color: #34756f36;
   border-radius: 16px;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#climb-list-p {
+  width: 100%;
+  margin: 0;
 }
 
 #climb-status-dropdown {
@@ -290,16 +315,14 @@ border-radius: 10px;
 }
 
 #route-image-h2 {
-  grid-row: 2 / 3;
-  grid-column: 3 / 5;
-  width: 600px;
-  height: 340px;
-  text-align: right;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 #img {
-  max-width: 600px;
-  max-height: 340px;
+  max-width: 80%;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6);
   object-fit: contain;
 }
@@ -499,4 +522,142 @@ border-radius: 10px;
 /* stars before the active star are solid, after active star are empty */
 .single-ratings.active ~ .single-ratings::before {
   content: '\2606';
+}
+
+@media only screen and (max-width: 580px) {
+  #all-attr {
+    grid-row: 2 / 4;
+    grid-column: 1 / 5;
+  }
+  #image-container {
+    grid-row: 4 / 6;
+    grid-column: 1 / 5;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    height: 100%;
+  }
+  #review-form {
+    grid-row: 6 / 8;
+    grid-column: 1 / 5;
+  }
+  #review-main {
+    grid-row: 8 / 10;
+    grid-column: 1 / 5;
+  }
+  #route-image-h2 {
+    align-items: center;
+  }
+  #img {
+    height: 100%;
+    width: auto;
+  }
+  #title-of-review {
+    width: 100%;
+  }
+  #climb-list-container {
+    flex-direction: column;
+  }
+  #climb-list-p-container {
+    width: 100%;
+  }
+  #climb-list-div {
+    width: 100%;
+  }
+  #route-edit-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .edit-name {
+    width: 98%;
+    margin: 0;
+    padding: 1%;
+  }
+  .edit-difficulty {
+    width: 98%;
+    margin: 0;
+    padding: 1%;
+  }
+  .edit-height {
+    width: 98%;
+    margin: 0;
+    padding: 1%;
+  }
+  .edit-type {
+    width: 98%;
+    margin: 0;
+    padding: 1%;
+  }
+  .edit-description {
+    width: 98%;
+    margin: 0;
+    padding: 1%;
+  }
+  .edit-crag2 {
+    width: 98%;
+    margin: 0;
+    padding: 1%;
+  }
+  #grid-edit-form {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 580px) and (max-width: 860px) {
+  #all-attr {
+    grid-row: 2 / 4;
+    grid-column: 1 / 5;
+  }
+  #image-container {
+    grid-row: 4 / 6;
+    grid-column: 1 / 5;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    height: 100%;
+  }
+  #review-form {
+    grid-row: 6 / 8;
+    grid-column: 1 / 5;
+  }
+  #review-main {
+    grid-row: 8 / 10;
+    grid-column: 1 / 5;
+  }
+  #route-image-h2 {
+    align-items: center;
+  }
+  #img {
+    height: 100%;
+    width: auto;
+  }
+  #climb-list-container {
+    height: 10%;
+    flex-direction: row;
+  }
+  #title-of-review {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 860px) and (max-width: 1160px) {
+  #climb-list-container {
+    flex-direction: column;
+  }
+  #climb-list-p-container {
+    width: 100%;
+  }
+  #climb-list-div {
+    width: 100%;
+  }
+  #climb-list-p {
+    padding: 2%;
+  }
+  #climb-list-div {
+    justify-content: center;
+    margin-top: 2%;
+  }
+  #img {
+    max-width: 100%;
+  }
 }
