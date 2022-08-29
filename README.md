@@ -5,9 +5,10 @@
 
 #### Visit our site here: [Rendering Routes](https://rendering-routes.herokuapp.com/)
 
-### Tabel of Contents
+### Table of Contents
 * [Introduction](#introduction)
 * [Technologies Used](#technologies-used)
+* [Visual Overview](#visual-overview)
 * [Technical implementaion details](#technical-implementation-details)
 * [Index](#index)
 * [Future Features](#future-features)
@@ -30,15 +31,20 @@ Above all, Rendering Routes was created to share the love for climbing, and enco
 ### Visual Overview
 
 ##### Home Page
+![Home Page](https://i.imgur.com/QIC7jtP.png)
+##### Sign-up Page
+![Sign-up Page](https://i.imgur.com/UAoi06K.png)
+##### Login Page
+![Login Page](https://i.imgur.com/oJ9WDmn.png)
 ##### Routes Page
+![Routes Page](https://i.imgur.com/un7mNM1.png)
 ##### Profile Page
+![Profile Page](https://i.imgur.com/HUL2Wbx.png)
 
 ### Technical implementation details
 
  - Determining what we wanted the user to be able to create, update, and delete was important before beginning to ensure that other users information(their climb list, the crags, and routes they have created) wasn't lost inside the database.
  - Updating a route provided for some challenges. Implementing the update with a hidden form, while staying on the page without a redirect/refresh, took some trial and error.
-
-include some snippets of code here?
 
 ### Index
 * [Feature List](https://github.com/jay-bean/Rendering-Routes/wiki/feature-list)
@@ -50,3 +56,4 @@ include some snippets of code here?
 * Add climbers to friend list
 * Direct messages
 * Weather API
+* User avatars

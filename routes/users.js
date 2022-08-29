@@ -107,7 +107,7 @@ router.post('/log-out', (req, res) => {
 });
 
 router.post('/demo/log-in', asyncHandler(async (req, res) => {
-  const user = await db.User.findOne({ where: { email: 'coolGuy48@gmail.com' } });
+  const user = await db.User.findOne({ where: { id: 1 } });
   loginUser(req, res, user);
   return res.redirect('/');
 }));
@@ -115,6 +115,15 @@ router.post('/demo/log-in', asyncHandler(async (req, res) => {
 router.get('/:userId(\\d+)', requireAuth,
   asyncHandler(async (req, res) => {
     const user = await db.User.findByPk(req.params.userId)
+    const routes = await db.Route.findAll({
+      where: {userId: req.params.userId}
+    })
+    const crags = await db.Crag.findAll({
+      where: {userId: req.params.userId}
+    })
+    const reviews = await db.Review.findAll({
+      where: {userId: req.params.userId}
+    })
 
     if (!user) res.redirect('/404');
 
@@ -123,7 +132,7 @@ router.get('/:userId(\\d+)', requireAuth,
       loggedInUser = req.session.auth.userId
     }
 
-    res.render('user-profile', { user, loggedInUser })
+    res.render('user-profile', { user, loggedInUser, routes, crags, reviews })
   }));
 
 router.patch('/:userId(\\d+)', requireAuth, userEditValidators,

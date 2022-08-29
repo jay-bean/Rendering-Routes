@@ -2,36 +2,53 @@ extends layout.pug
 
 append head
     script(src="/javascripts/userEdit.js" type="module" defer)
+    link(rel="stylesheet" href="/stylesheets/profile.css")
 
 
 block content
-    div(id=`profile-user-${user.id}`)
-        table
-            thead
-                tr
-                    th(id=`username-users-${user.id}`) #{user.username}'s Profile
-                    th Biography
-            tbody
-                tr
-                    th: img(src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" height="250px" width="230px")
-                    th(id=`bio-user-${user.id}`) #{user.biography}
-        div
-            a(href=`/users/${user.id}/climb-list`) View Climb Lists
-        div
-            a(href=`/users/${user.id}/reviews`) Go to all your Reviews
+    div(id=`profile-user-${user.id}` class="profile-container")
+        .main-item-container
+            img(src="https://plumepoetry.com/wp-content/uploads/2019/12/default-profile.png" id="profile-image")
+            h2(id=`username-users-${user.id}` class="profile") #{user.username}
+            if loggedInUser === user.id
+                button(class='edit-user-btn' id=`edit-user-${user.id}`) Edit Profile
+        .bio-and-links-container
+            .bio-container
+                label.bio Biography
+                p(id=`bio-user-${user.id}` class="profile") #{user.biography}
+            a(href=`/users/${user.id}/climb-list` class="profile") View Climb Lists
+            a(href=`/users/${user.id}/reviews` class="profile") Go to #{user.username}'s Reviews
+        .the-outer-outer-routes
+            .outer-container-routes
+                label.user-list User's routes
+                .inner-container-routes
+                    div.profile-routes
+                        each route in routes
+                            ul
+                                a(href=`/routes/${route.id}`)
+                                    li= route.name
+        .the-outer-outer-crags
+            .outer-container-crags
+                label.user-list User's crags
+                .inner-container-crags
+                    div.profile-crags
+                        each crag in crags
+                            ul
+                                a(href=`/crags/${crag.id}`)
+                                    li= crag.name
 
-    if loggedInUser === user.id
-        div(id='user-error-container')
-        form(class='hidden' id=`edit-form-${user.id}`)
-            label Username:
-            input(type='text' name='username' value=user.username id=`edit-username-user${user.id}`)
-            label Biography:
-            input(type='text' name='biography' value=user.biography id=`edit-bio-user${user.id}`)
-            label Email:
-            input(type='email' name='email' value=user.email id=`edit-email-user${user.id}`)
-            label Password:
-            input(type='text' name='password' value='' id=`edit-password-user${user.id}`)
-            label Confirm Password:
-            input(type='text' name='confirmPassword' value='' id=`confirm-password-user${user.id}`)
-            button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit
-        button(class='edit-user-btn' id=`edit-user-${user.id}`) Edit Profile
+        if loggedInUser === user.id
+            div(class='edit-form-container hidden')
+                form(class='hidden' id=`edit-form-${user.id}`)
+                    div(id='user-error-container')
+                    label.edituser Username:
+                    input(type='text' class="edituser" name='username' value=user.username id=`edit-username-user${user.id}`)
+                    label.edituser Biography:
+                    input(type='text' class="edituser" name='biography' value=user.biography id=`edit-bio-user${user.id}`)
+                    label.edituser Email:
+                    input(type='email' class="edituser" name='email' value=user.email id=`edit-email-user${user.id}`)
+                    label.edituser Password:
+                    input(type='text' class="edituser" name='password' value='' id=`edit-password-user${user.id}`)
+                    label.edituser Confirm Password:
+                    input(type='text' class="edituser" name='confirmPassword' value='' id=`confirm-password-user${user.id}`)
+                    button(class="edit-user-submit" id=`edit-submit-user${user.id}`) Submit Edit

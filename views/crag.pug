@@ -10,10 +10,19 @@ block content
         button(id='crag-edit-button') Edit
     div(id=`crag-post-${crag.id}` class='cragPostContainer')
       p(class='cragPostTitle' id='cragPostedBy') Posted by: #{postUser.username}
-      p(class='cragPostTitle') Name:
-      p(id=`crag-${crag.id}-name` class='cragPostInfo') #{crag.name}
-      p(class='cragPostTitle') Location:
-      p(id=`crag-${crag.id}-location` class='cragPostInfo') #{crag.location}
+      if crag.image
+        div(class='crag-post-top-info')
+          div(class='crag-post-top-info-left')
+            p(class='cragPostTitle') Name:
+            p(id=`crag-${crag.id}-name` class='cragPostInfo') #{crag.name}
+            p(class='cragPostTitle2') Location:
+            p(id=`crag-${crag.id}-location` class='cragPostInfo') #{crag.location}
+          img(src=`${crag.image}` class='cragPostImage')
+      else
+        p(class='cragPostTitle') Name:
+        p(id=`crag-${crag.id}-name` class='cragPostInfo') #{crag.name}
+        p(class='cragPostTitle') Location:
+        p(id=`crag-${crag.id}-location` class='cragPostInfo') #{crag.location}
       p(class='cragPostTitle') Description:
       p(id=`crag-${crag.id}-description` class='cragPostInfo') #{crag.description}
       if routeLength > 0
@@ -28,8 +37,8 @@ block content
           a(href='/routes/add')  Post one here!
     if seshAuth
       if crag.userId === seshAuth.userId
-        div(id='crag-error-container')
         form(class='crag-edit-form hidden' id=`crag-edit-form-${crag.id}`)
+          div(id='crag-error-container')
           p(class='cragPostTitle') Posted by: #{postUser.username}
           label(class='cragPostTitle') Name:
           input(type="text" name="name" value=crag.name id=`crag-${crag.id}-edit-name` class='crag-edit-input-field')
