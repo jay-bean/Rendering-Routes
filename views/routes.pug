@@ -14,8 +14,8 @@ block content
       tr
         th(scope='col') Name
         th(scope='col') Grade
-        th(scope='col') Height
-        th(scope='col') Protection
+        th.th-none(scope='col') Height
+        th.th-none(scope='col') Protection
         th(scope='col') Type
     tbody
       each route in routes
@@ -23,6 +23,6 @@ block content
             td
               a(class='route-links' href=`routes/${route.id}`)= route.name
             td= route.difficulty
-            td= route.height
-            td= route.protection
+            td.th-none= route.height
+            td.th-none= route.protection
             td= route.type
