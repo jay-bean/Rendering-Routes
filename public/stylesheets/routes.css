@@ -95,8 +95,7 @@ tr {
 
 
 th, td {
-  padding: 2%;
-  width: 96%;
+  padding: 1em;
 }
 
 #row-highlight:hover {
